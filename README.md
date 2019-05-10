@@ -2,7 +2,7 @@
 
 ## Trabalho de Laboratório - Simulação Básica em Matlab/Simulink
 
-[lab1 html version](lab1.html)
+[lab1 html version](./LAB1/html/lab1.html)
 
 ### Contents
 
