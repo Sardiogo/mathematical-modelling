@@ -26,7 +26,6 @@ figure(n)
 n=n+1;
 I = imread('./figures/1.4.jpg');
 imshow(I);
-close all;
 %% Questão 1.5 - Simulação do movimento livre de uma viatura
 % A equação diferencial 
 % $m\frac{dv\left(t\right)}{dt}=-\beta v\left(t\right)$

@@ -83,9 +83,8 @@ imshow(I);
 n=n+1;
 I = imread(<span class="string">'./figures/1.4.jpg'</span>);
 imshow(I);
-close <span class="string">all</span>;
-</pre><h2>Quest&atilde;o 1.5 - Simula&ccedil;&atilde;o do movimento livre de uma viatura<a name="5"></a></h2><p>A equa&ccedil;&atilde;o diferencial <img src="lab1_eq12521763204515002836.png" alt="$m\frac{dv\left(t\right)}{dt}=-\beta v\left(t\right)$"> mais o c&aacute;lculo da posi&ccedil;&atilde;o <img src="lab1_eq00790942888036039854.png" alt="$y\left(t\right)$"> s&atilde;o representados pelo seguinte diagrama de Blocos no Simulink:</p><pre class="codeinput">open_system(<span class="string">'viatura'</span>)
-</pre><p>Simula&ccedil;&atilde;o de um movimento livre de uma viatura para diferentes valores de m, beta e V0</p><pre class="codeinput">y0=5;
+</pre><img vspace="5" hspace="5" src="lab1_04.png" alt=""> <h2>Quest&atilde;o 1.5 - Simula&ccedil;&atilde;o do movimento livre de uma viatura<a name="5"></a></h2><p>A equa&ccedil;&atilde;o diferencial <img src="lab1_eq12521763204515002836.png" alt="$m\frac{dv\left(t\right)}{dt}=-\beta v\left(t\right)$"> mais o c&aacute;lculo da posi&ccedil;&atilde;o <img src="lab1_eq00790942888036039854.png" alt="$y\left(t\right)$"> s&atilde;o representados pelo seguinte diagrama de Blocos no Simulink:</p><pre class="codeinput">open_system(<span class="string">'viatura'</span>)
+</pre><img vspace="5" hspace="5" src="lab1_05.png" alt=""> <p>Simula&ccedil;&atilde;o de um movimento livre de uma viatura para diferentes valores de m, beta e V0</p><pre class="codeinput">y0=5;
 v0=0;
 beta=5;
 m=0;
@@ -103,7 +102,7 @@ title(<span class="string">'Curvas da Posi&ccedil;&atilde;o do Ve&iacute;culo'</
 ylabel(<span class="string">'Posi&ccedil;&atilde;o'</span>)
 xlabel(<span class="string">'Tempo(s)'</span>)
 grid <span class="string">on</span>
-</pre><img vspace="5" hspace="5" src="lab1_04.png" alt=""> <p>Gr&aacute;ficos de Velocidade</p><pre class="codeinput">figure(n)
+</pre><img vspace="5" hspace="5" src="lab1_06.png" alt=""> <p>Gr&aacute;ficos de Velocidade</p><pre class="codeinput">figure(n)
 n=n+1;
 hold <span class="string">all</span>;
 <span class="keyword">for</span> m=[30 60 3]
@@ -117,7 +116,7 @@ title(<span class="string">'Curvas da Velocidade do Ve&iacute;culo'</span>)
 ylabel(<span class="string">'Velocidade'</span>)
 xlabel(<span class="string">'Tempo(s)'</span>)
 grid <span class="string">on</span>
-</pre><img vspace="5" hspace="5" src="lab1_05.png" alt=""> <h2>Quest&atilde;o 2.1 Modelo Predador-Presa<a name="9"></a></h2><pre class="codeinput">figure(n)
+</pre><img vspace="5" hspace="5" src="lab1_07.png" alt=""> <h2>Quest&atilde;o 2.1 Modelo Predador-Presa<a name="9"></a></h2><pre class="codeinput">figure(n)
 n=n+1;
 I = imread(<span class="string">'./figures/2.1.1.jpg'</span>);
 J = imresize(I, 0.7);
@@ -127,8 +126,8 @@ n=n+1;
 I = imread(<span class="string">'./figures/2.1.2.jpg'</span>);
 J = imresize(I, 0.7);
 imshow(J);
-</pre><img vspace="5" hspace="5" src="lab1_06.png" alt=""> <img vspace="5" hspace="5" src="lab1_07.png" alt=""> <h2>Quest&otilde;es 2.2 e 2.3 - Simula&ccedil;&otilde;es do Modelo Predador-Presa<a name="10"></a></h2><p>O sistema de equa&ccedil;&otilde;es: <img src="lab1_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab1_eq15874463903658567652.png" alt="$\frac{d{N}_{1}\left(t\right)}{dt}={\delta}_{1}{N}_{1}\left(t\right)-{\alpha }_{1}{N}_{1}\left(t\right){N}_{2}\left(t\right)$"> <img src="lab1_eq04776999460769517871.png" alt="$\enspace \enspace  ,  \enspace \enspace$"> <img src="lab1_eq14887232447587665567.png" alt="$\frac{d{N}_{2}\left(t\right)}{dt}={\delta}_{2}{N}_{2}\left(t\right)+{\alpha }_{2}{N}_{1}\left(t\right){N}_{2}\left(t\right)$"> <img src="lab1_eq09312057465371336284.png" alt="$\enspace$"> &eacute; representado pelo seguinte diagrama Simulink:</p><pre class="codeinput">open_system(<span class="string">'predador_presa'</span>)
-</pre><p>Considerando alpha1=alpha2=1, simula-se o sistema descrito pelo diagrama para diferentes valores das condi&ccedil;&otilde;es iniciais: N1(0), N2(0), delta 1 e delta 2:</p><pre class="codeinput">alpha1=1;
+</pre><img vspace="5" hspace="5" src="lab1_08.png" alt=""> <img vspace="5" hspace="5" src="lab1_09.png" alt=""> <h2>Quest&otilde;es 2.2 e 2.3 - Simula&ccedil;&otilde;es do Modelo Predador-Presa<a name="10"></a></h2><p>O sistema de equa&ccedil;&otilde;es: <img src="lab1_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab1_eq15874463903658567652.png" alt="$\frac{d{N}_{1}\left(t\right)}{dt}={\delta}_{1}{N}_{1}\left(t\right)-{\alpha }_{1}{N}_{1}\left(t\right){N}_{2}\left(t\right)$"> <img src="lab1_eq04776999460769517871.png" alt="$\enspace \enspace  ,  \enspace \enspace$"> <img src="lab1_eq14887232447587665567.png" alt="$\frac{d{N}_{2}\left(t\right)}{dt}={\delta}_{2}{N}_{2}\left(t\right)+{\alpha }_{2}{N}_{1}\left(t\right){N}_{2}\left(t\right)$"> <img src="lab1_eq09312057465371336284.png" alt="$\enspace$"> &eacute; representado pelo seguinte diagrama Simulink:</p><pre class="codeinput">open_system(<span class="string">'predador_presa'</span>)
+</pre><img vspace="5" hspace="5" src="lab1_10.png" alt=""> <p>Considerando alpha1=alpha2=1, simula-se o sistema descrito pelo diagrama para diferentes valores das condi&ccedil;&otilde;es iniciais: N1(0), N2(0), delta 1 e delta 2:</p><pre class="codeinput">alpha1=1;
 alpha2=1;
 </pre><h2>Quest&otilde;es 2.2 e 2.3 - Solu&ccedil;&otilde;es de Equil&iacute;brio<a name="13"></a></h2><p>Neste caso constata-se que o numero de individuos de cada uma das popula&ccedil;&otilde;es mantem-se constante atrav&ecirc;s da verifica&ccedil;&atilde;o das seguintes condi&ccedil;o~es: <img src="lab1_eq13768049383752896234.png" alt="${N}_{2\left(t\right)}=\frac{{\delta }_{1}}{{\alpha }_{1}} \enspace e \enspace {N}_{1}\left(t\right)=-\frac{{\delta }_{2}}{{\alpha }_{2}}$"></p><pre class="codeinput">figure(n)
 fig = figure(n);
@@ -155,7 +154,7 @@ delta2_aux=[-2 -10 -50 -100];
     grid <span class="string">on</span>
     legend(<span class="string">'show'</span>)
 <span class="keyword">end</span>
-</pre><img vspace="5" hspace="5" src="lab1_08.png" alt=""> <h2>Quest&otilde;es 2.2 e 2.3 - Solu&ccedil;&otilde;es Oscilat&oacute;rias<a name="14"></a></h2><p>As solu&ccedil;&otilde;es oscilat&oacute;rias verificam-se caso: <img src="lab1_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab1_eq15329815425619715204.png" alt="${\delta }_{1}&gt;0 \enspace e \enspace {\delta }_{2}<0$"> <img src="lab1_eq09312057465371336284.png" alt="$\enspace$"> Para al&eacute;m disto: <img src="lab1_eq01728940799209910435.png" alt="$\enspace {N}_{2}\left(t\right)\ne \frac{{\delta }_{1}}{{\alpha }_{1}} \enspace e \enspace {N}_{1}\left(t\right)\ne -\frac{{\delta }_{2}}{{\alpha }_{2}}$"></p><p>Solu&ccedil;&otilde;es para delta1 = 1.5 e delta2 = -1.5</p><pre class="codeinput">figure(n)
+</pre><img vspace="5" hspace="5" src="lab1_11.png" alt=""> <h2>Quest&otilde;es 2.2 e 2.3 - Solu&ccedil;&otilde;es Oscilat&oacute;rias<a name="14"></a></h2><p>As solu&ccedil;&otilde;es oscilat&oacute;rias verificam-se caso: <img src="lab1_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab1_eq15329815425619715204.png" alt="${\delta }_{1}&gt;0 \enspace e \enspace {\delta }_{2}<0$"> <img src="lab1_eq09312057465371336284.png" alt="$\enspace$"> Para al&eacute;m disto: <img src="lab1_eq01728940799209910435.png" alt="$\enspace {N}_{2}\left(t\right)\ne \frac{{\delta }_{1}}{{\alpha }_{1}} \enspace e \enspace {N}_{1}\left(t\right)\ne -\frac{{\delta }_{2}}{{\alpha }_{2}}$"></p><p>Solu&ccedil;&otilde;es para delta1 = 1.5 e delta2 = -1.5</p><pre class="codeinput">figure(n)
 fig = figure(n);
 set(fig, <span class="string">'Position'</span>, [0, 0, 700, 500])  <span class="comment">% x, y, largura e comprimento da figura</span>
 n=n+1;
@@ -178,7 +177,7 @@ k=1;
         legend(<span class="string">'show'</span>)
     <span class="keyword">end</span>
 <span class="keyword">end</span>
-</pre><img vspace="5" hspace="5" src="lab1_09.png" alt=""> <p>Solu&ccedil;&otilde;es para delta1 = 3.5 e delta2 = -2.5</p><pre class="codeinput">figure(n)
+</pre><img vspace="5" hspace="5" src="lab1_12.png" alt=""> <p>Solu&ccedil;&otilde;es para delta1 = 3.5 e delta2 = -2.5</p><pre class="codeinput">figure(n)
 fig = figure(n);
 set(fig, <span class="string">'Position'</span>, [0, 0, 700, 500])  <span class="comment">% x, y, largura e comprimento da figura</span>
 n=n+1;
@@ -201,7 +200,7 @@ k=1;
         legend(<span class="string">'show'</span>)
     <span class="keyword">end</span>
 <span class="keyword">end</span>
-</pre><img vspace="5" hspace="5" src="lab1_10.png" alt=""> <h2>Quest&otilde;es 2.2 e 2.3 - Solu&ccedil;&otilde;es em que a Presa se extingue e o Predador mantem-se constante<a name="17"></a></h2><p>Dois conjuntos de condi&ccedil;&otilde;es iniciais que conduzem a evolu&ccedil;&otilde;es identicas do sistema. <img src="lab1_eq16271419575808837354.png" alt="$\forall {\delta }_{1}  \enspace e \enspace   {\delta }_{2}=0$"></p><pre class="codeinput">figure(n)
+</pre><img vspace="5" hspace="5" src="lab1_13.png" alt=""> <h2>Quest&otilde;es 2.2 e 2.3 - Solu&ccedil;&otilde;es em que a Presa se extingue e o Predador mantem-se constante<a name="17"></a></h2><p>Dois conjuntos de condi&ccedil;&otilde;es iniciais que conduzem a evolu&ccedil;&otilde;es identicas do sistema. <img src="lab1_eq16271419575808837354.png" alt="$\forall {\delta }_{1}  \enspace e \enspace   {\delta }_{2}=0$"></p><pre class="codeinput">figure(n)
 fig = figure(n);
 set(fig, <span class="string">'Position'</span>, [0, 0, 1000, 500])  <span class="comment">% x, y, largura e comprimento da figura</span>
 n=n+1;
@@ -226,7 +225,7 @@ tsim=2;
     grid <span class="string">on</span>
     legend(<span class="string">'show'</span>)
 <span class="keyword">end</span>
-</pre><img vspace="5" hspace="5" src="lab1_11.png" alt=""> <h2>Quest&otilde;es 2.2 e 2.3 - Solu&ccedil;&otilde;es em que a Presa e o Predador se extinguem<a name="18"></a></h2><p><img src="lab1_eq16765845684082412970.png" alt="${\delta }_{1}=0  \enspace e \enspace   {\delta }_{2}<0$"></p><p>Solu&ccedil;&otilde;es para delta1 = 3.5 e delta2 = -2.5</p><pre class="codeinput">figure(n)
+</pre><img vspace="5" hspace="5" src="lab1_14.png" alt=""> <h2>Quest&otilde;es 2.2 e 2.3 - Solu&ccedil;&otilde;es em que a Presa e o Predador se extinguem<a name="18"></a></h2><p><img src="lab1_eq16765845684082412970.png" alt="${\delta }_{1}=0  \enspace e \enspace   {\delta }_{2}<0$"></p><p>Solu&ccedil;&otilde;es para delta1 = 3.5 e delta2 = -2.5</p><pre class="codeinput">figure(n)
 fig = figure(n);
 set(fig, <span class="string">'Position'</span>, [0, 0, 700, 500])  <span class="comment">% x, y, largura e comprimento da figura</span>
 n=n+1;
@@ -249,7 +248,7 @@ k=1;
         legend(<span class="string">'show'</span>)
     <span class="keyword">end</span>
 <span class="keyword">end</span>
-</pre><img vspace="5" hspace="5" src="lab1_12.png" alt=""> <h2>Quest&otilde;es 2.2 e 2.3 - Solu&ccedil;&otilde;es em que a Presa se extingue e o Predador cresce indefinidamente<a name="20"></a></h2><p><img src="lab1_eq07953447640202565574.png" alt="${\delta }_{1}=0  \enspace e \enspace   {\delta }_{2}&gt;0$"></p><p>Solu&ccedil;&otilde;es para delta1 = 3.5 e delta2 = -2.5</p><pre class="codeinput">figure(n)
+</pre><img vspace="5" hspace="5" src="lab1_15.png" alt=""> <h2>Quest&otilde;es 2.2 e 2.3 - Solu&ccedil;&otilde;es em que a Presa se extingue e o Predador cresce indefinidamente<a name="20"></a></h2><p><img src="lab1_eq07953447640202565574.png" alt="${\delta }_{1}=0  \enspace e \enspace   {\delta }_{2}&gt;0$"></p><p>Solu&ccedil;&otilde;es para delta1 = 3.5 e delta2 = -2.5</p><pre class="codeinput">figure(n)
 fig = figure(n);
 set(fig, <span class="string">'Position'</span>, [0, 0, 700, 500])  <span class="comment">% x, y, largura e comprimento da figura</span>
 n=n+1;
@@ -273,7 +272,7 @@ tsim=0.5;
         legend(<span class="string">'show'</span>)
     <span class="keyword">end</span>
 <span class="keyword">end</span>
-</pre><img vspace="5" hspace="5" src="lab1_13.png" alt=""> <h2>Quest&otilde;es 2.2 e 2.3 - Gr&aacute;fico do espa&ccedil;o de fases N1 e N2 para direntes valores de N01 e N02<a name="22"></a></h2><pre class="codeinput">delta1 =5;
+</pre><img vspace="5" hspace="5" src="lab1_16.png" alt=""> <h2>Quest&otilde;es 2.2 e 2.3 - Gr&aacute;fico do espa&ccedil;o de fases N1 e N2 para direntes valores de N01 e N02<a name="22"></a></h2><pre class="codeinput">delta1 =5;
 delta2 =-5;
 tsim = 5;
 figure(n)
@@ -290,7 +289,7 @@ xlabel(<span class="string">'N&uacute;mero de Presas (N1)'</span>)
 ylabel(<span class="string">'N&uacute;mero de Predadores (N2)'</span>)
 title(<span class="string">'Gr&aacute;fico em espa&ccedil;o de fase (N1,N2)'</span>)
 legend(<span class="string">'show'</span>)
-</pre><img vspace="5" hspace="5" src="lab1_14.png" alt=""> <h2>Quest&atilde;o 2.4.a) Aproxima&ccedil;&atilde;o por tentativa e erro<a name="23"></a></h2><p>Simulando o sistema para diferentes valores das caracter&iacute;sticas N2(0) e <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$"> dos predadores, obteve-se, por tentativa e erro, uma evolu&ccedil;&otilde;&atilde;o temporal do n&uacute;mero de presas aproximada &agrave; curva fornecida.</p><pre class="codeinput">load(<span class="string">'presas.mat'</span>)
+</pre><img vspace="5" hspace="5" src="lab1_17.png" alt=""> <h2>Quest&atilde;o 2.4.a) Aproxima&ccedil;&atilde;o por tentativa e erro<a name="23"></a></h2><p>Simulando o sistema para diferentes valores das caracter&iacute;sticas N2(0) e <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$"> dos predadores, obteve-se, por tentativa e erro, uma evolu&ccedil;&otilde;&atilde;o temporal do n&uacute;mero de presas aproximada &agrave; curva fornecida.</p><pre class="codeinput">load(<span class="string">'presas.mat'</span>)
 <span class="comment">% carregamento do ficheiro presas.mat que contem valores para uma populacao</span>
 <span class="comment">% de presas ao longo do tempo</span>
 delta1=3.1;
@@ -319,7 +318,7 @@ title(<span class="string">'Aproxima&ccedil;&atilde;o dos dados recolhidos por s
 ylabel(<span class="string">'N&uacute;mero de indiv&iacute;duos N1(t) '</span>)
 xlabel(<span class="string">'Tempo(s)'</span>)
 grid <span class="string">on</span>
-</pre><img vspace="5" hspace="5" src="lab1_15.png" alt=""> <p>foi obtida por tentativa e erro a Seguinte aproxima&ccedil;&atilde;o:</p><p>N2(0)= 1.6 e <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$">= 0.7</p><h2>Quest&atilde;o 2.4.b) Ajuste de parametros por estima&ccedil;&atilde;o do erro absoluto<a name="26"></a></h2><p>De forma a obter uma estimativa dos valores de N2(0) e <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$"> da popula&ccedil;&atilde;o de predadores come&ccedil;a-se por fazer um varrimento de poss&iacute;veis valores destes par&acirc;metros e, para cada par de valores, estimar o erro absoluto ou soma dos valores absolutos das diferen&ccedil;as entre os valores fornecidos e os calculados. Os valores s&atilde;o escolhidos tendo em conta que, na al&iacute;nea anterior, foi obtida uma aproxima&ccedil;&atilde;o aos valores de N2(0) e <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$"> por tentativa e erro. Na al&iacute;nea anterior foram obtidos dois pares de valores: N2(0)= 1.6 e <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$">=0.7</p><pre class="codeinput">p=15; <span class="comment">% numero de valores de N0 e alpha a testar</span>
+</pre><img vspace="5" hspace="5" src="lab1_18.png" alt=""> <p>foi obtida por tentativa e erro a Seguinte aproxima&ccedil;&atilde;o:</p><p>N2(0)= 1.6 e <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$">= 0.7</p><h2>Quest&atilde;o 2.4.b) Ajuste de parametros por estima&ccedil;&atilde;o do erro absoluto<a name="26"></a></h2><p>De forma a obter uma estimativa dos valores de N2(0) e <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$"> da popula&ccedil;&atilde;o de predadores come&ccedil;a-se por fazer um varrimento de poss&iacute;veis valores destes par&acirc;metros e, para cada par de valores, estimar o erro absoluto ou soma dos valores absolutos das diferen&ccedil;as entre os valores fornecidos e os calculados. Os valores s&atilde;o escolhidos tendo em conta que, na al&iacute;nea anterior, foi obtida uma aproxima&ccedil;&atilde;o aos valores de N2(0) e <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$"> por tentativa e erro. Na al&iacute;nea anterior foram obtidos dois pares de valores: N2(0)= 1.6 e <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$">=0.7</p><pre class="codeinput">p=15; <span class="comment">% numero de valores de N0 e alpha a testar</span>
 erros = zeros(p, p); <span class="comment">% icializa&ccedil;&atilde;o da matriz com os valores de erro</span>
 N20_min=1.4;
 N20_max=1.8;
@@ -357,7 +356,7 @@ subplot(2,1,2)
 contour(alpha2_aux,N20_aux,erros,100);<span class="comment">% 100 linhas de contorno</span>
 xlabel(<span class="string">'{\alpha }_{2}'</span>); ylabel(<span class="string">'N2(0)'</span>); colorbar;
 title(<span class="string">'Curvas de n&iacute;vel'</span>)
-</pre><img vspace="5" hspace="5" src="lab1_16.png" alt=""> <p>Os valores de <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$"> e N2(0) n&atilde;o s&atilde;o facilmente estimados pela observa&ccedil;&atilde;o dos gr&aacute;ficos anteriores, sendo apenas poss&iacute;vel estimar um intervalo de valores. A precis&atilde;o da estima&ccedil;&atilde;o depende do n&uacute;mero (p) de valores a testar e do intervalo entre o valor m&iacute;nimo e o m&aacute;ximo. Os intervalos de valores para <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$"> e N2(0) foram escolhidos obsevando a surferficie de erro obtida vista de cima e analisando dentro da curva mais estreita do grafico contour, obtendo-se:</p><p>N2(0)= [1.586 , 1.614] e <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$"> = [0.614 , 0.74]</p><p>Com base neste intervalaos vamos estimar de novo intervalos de valores mais precisos</p><pre class="codeinput">N20_min=1.586;
+</pre><img vspace="5" hspace="5" src="lab1_19.png" alt=""> <p>Os valores de <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$"> e N2(0) n&atilde;o s&atilde;o facilmente estimados pela observa&ccedil;&atilde;o dos gr&aacute;ficos anteriores, sendo apenas poss&iacute;vel estimar um intervalo de valores. A precis&atilde;o da estima&ccedil;&atilde;o depende do n&uacute;mero (p) de valores a testar e do intervalo entre o valor m&iacute;nimo e o m&aacute;ximo. Os intervalos de valores para <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$"> e N2(0) foram escolhidos obsevando a surferficie de erro obtida vista de cima e analisando dentro da curva mais estreita do grafico contour, obtendo-se:</p><p>N2(0)= [1.586 , 1.614] e <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$"> = [0.614 , 0.74]</p><p>Com base neste intervalaos vamos estimar de novo intervalos de valores mais precisos</p><pre class="codeinput">N20_min=1.586;
 N20_max=1.614;
 alpha2_min=0.674;
 alpha2_max=0.74;
@@ -389,7 +388,7 @@ subplot(2,1,2)
 contour(alpha2_aux,N20_aux,erros,100);<span class="comment">% 100 linhas de contorno</span>
 xlabel(<span class="string">'{\alpha }_{2}'</span>); ylabel(<span class="string">'N2(0)'</span>); colorbar;
 title(<span class="string">'Curvas de n&iacute;vel'</span>)
-</pre><img vspace="5" hspace="5" src="lab1_17.png" alt=""> <p>Pelo que se conclui que o m&iacute;nimo global &eacute;, aproximadamente: <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$"> = 0.71 e N2(0)=1.597</p><h2>Quest&atilde;o 2.4.c) Obten&ccedil;&atilde;o dos parametros por calculo exacto do erro m&iacute;nimo<a name="31"></a></h2><p>Utilizando um m&eacute;todo de optimiza&ccedil;&atilde;o, pretende-se calcular o m&iacute;nimo erro de forma mais eficientea que na al&iacute;nea anterior. Recorrendo &agrave; fun&ccedil;&atilde;o fminsearch, que calcula o m&iacute;nimo local, vamos obter os valores m&iacute;nimos de <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$"> e N02 partindo dos valores obtidos na al&iacute;nea anterior: <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$"> = 0.71 e N2(0)=1.597</p><pre class="codeinput">optimo = fminsearch(@erro, [1.597 0.71]);
+</pre><img vspace="5" hspace="5" src="lab1_20.png" alt=""> <p>Pelo que se conclui que o m&iacute;nimo global &eacute;, aproximadamente: <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$"> = 0.71 e N2(0)=1.597</p><h2>Quest&atilde;o 2.4.c) Obten&ccedil;&atilde;o dos parametros por calculo exacto do erro m&iacute;nimo<a name="31"></a></h2><p>Utilizando um m&eacute;todo de optimiza&ccedil;&atilde;o, pretende-se calcular o m&iacute;nimo erro de forma mais eficientea que na al&iacute;nea anterior. Recorrendo &agrave; fun&ccedil;&atilde;o fminsearch, que calcula o m&iacute;nimo local, vamos obter os valores m&iacute;nimos de <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$"> e N02 partindo dos valores obtidos na al&iacute;nea anterior: <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$"> = 0.71 e N2(0)=1.597</p><pre class="codeinput">optimo = fminsearch(@erro, [1.597 0.71]);
 </pre><p>optimo contem o valor preciso de alpha2 e N2(0) que melhor optimizam a evolucao temporal do modelo. Com esta fun&ccedil;&atilde;o podemos obter um resultado mais exacto do que na alinea anterior, caso os valores inicias dos pares alpha2 e N2(0) forem o mais correctos. Se n&atilde;o forem bem escolhidos o valor returnado ser&aacute; um m&iacute;nimo local em vez de um m&iacute;nimo absoluto da fun&ccedil;&atilde;o.</p><pre class="codeinput">disp(strcat(<span class="string">'N2(0)='</span>,num2str(optimo(1))));
 disp(strcat(<span class="string">'alpha2='</span>,num2str(optimo(2))));
 </pre><pre class="codeoutput">N2(0)=1.6042
@@ -416,7 +415,7 @@ xlabel(<span class="string">'Tempo(s)'</span>)
 ylabel(<span class="string">'N&uacute;mero de Ind&iacute;v&iacute;duos N1(t)'</span>)
 legend(<span class="string">'Presa (simula&ccedil;&atilde;o)'</span>, <span class="string">'Presa (dados)'</span>)
 grid <span class="string">on</span>
-</pre><img vspace="5" hspace="5" src="lab1_18.png" alt=""> <p>Como podemos averiguar os valores dos par&acirc;metros estimados N2(0) e <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$"> permitem-nos obter uma boa aproxima&ccedil;&atilde;o da curva proveniente dos dados. A solu&ccedil;&atilde;o do sistema para os valores estimados inclui os pontos da curva fornecida por simula&ccedil;&atilde;o excepto os valores afectados pelo ru&iacute;do.</p><h2>Quest&atilde;o 3.1 Sistema Ca&oacute;tico<a name="39"></a></h2><p>Como estamos em repouso inicial, consideramos que t10' = t20' = 0, sendo t10' e t20&acute; as velocidades angulares iniciais de cada um dos bra&ccedil;os. Por conseguinte, obtemos p1 = p2 = 0.</p><pre class="codeinput">open_system(<span class="string">'pendulo'</span>)
+</pre><img vspace="5" hspace="5" src="lab1_21.png" alt=""> <p>Como podemos averiguar os valores dos par&acirc;metros estimados N2(0) e <img src="lab1_eq04694004292762793260.png" alt="${\alpha}_{2}$"> permitem-nos obter uma boa aproxima&ccedil;&atilde;o da curva proveniente dos dados. A solu&ccedil;&atilde;o do sistema para os valores estimados inclui os pontos da curva fornecida por simula&ccedil;&atilde;o excepto os valores afectados pelo ru&iacute;do.</p><h2>Quest&atilde;o 3.1 Sistema Ca&oacute;tico<a name="39"></a></h2><p>Como estamos em repouso inicial, consideramos que t10' = t20' = 0, sendo t10' e t20&acute; as velocidades angulares iniciais de cada um dos bra&ccedil;os. Por conseguinte, obtemos p1 = p2 = 0.</p><pre class="codeinput">open_system(<span class="string">'pendulo'</span>)
 
 p10 = 0;
 p20 = 0;
@@ -432,7 +431,7 @@ title(<span class="string">'Simula&ccedil;&atilde;o de Teste'</span>);
 legend(<span class="string">'Teta1'</span>,<span class="string">'Teta2'</span>)
 
 n=n+1;
-</pre><img vspace="5" hspace="5" src="lab1_19.png" alt=""> <h2>Quest&atilde;o 3.2 Curva de Lissajous<a name="40"></a></h2><p>Para obter uma figura que se parecesse com a curva de Lissajous, opta-se por tomar t10 = t20 = pi/10.</p><pre class="codeinput">sim(<span class="string">'pendulo'</span>, 3)
+</pre><img vspace="5" hspace="5" src="lab1_22.png" alt=""> <img vspace="5" hspace="5" src="lab1_23.png" alt=""> <h2>Quest&atilde;o 3.2 Curva de Lissajous<a name="40"></a></h2><p>Para obter uma figura que se parecesse com a curva de Lissajous, opta-se por tomar t10 = t20 = pi/10.</p><pre class="codeinput">sim(<span class="string">'pendulo'</span>, 3)
 figure(n);
 plot(t1,t2);
 title(<span class="string">'Curva de Lissajous'</span>);
@@ -440,7 +439,7 @@ xlabel(<span class="string">'Teta1'</span>);
 ylabel(<span class="string">'Teta2'</span>);
 
 n=n+1;
-</pre><img vspace="5" hspace="5" src="lab1_20.png" alt=""> <p>Aumentando a amplitude da deflex&atilde;o inicial do p&ecirc;ndulo obtemos:</p><pre class="codeinput"><span class="keyword">for</span> i = [pi/5 pi/2 3]
+</pre><img vspace="5" hspace="5" src="lab1_24.png" alt=""> <p>Aumentando a amplitude da deflex&atilde;o inicial do p&ecirc;ndulo obtemos:</p><pre class="codeinput"><span class="keyword">for</span> i = [pi/5 pi/2 3]
 
     t10 = i;
     t20 = i;
@@ -453,7 +452,7 @@ n=n+1;
     n = n+1;
 
 <span class="keyword">end</span>
-</pre><img vspace="5" hspace="5" src="lab1_21.png" alt=""> <img vspace="5" hspace="5" src="lab1_22.png" alt=""> <img vspace="5" hspace="5" src="lab1_23.png" alt=""> <p>Como podemos claramente verificar, &aacute; medida que aumentamos o Teta1 e Teta2 iniciais, a figura fica cada vez mais irregular.</p><h2>Quest&atilde;o 3.3 Solu&ccedil;&otilde;es pos&iacute;veis<a name="43"></a></h2><pre class="codeinput">figure(n)
+</pre><img vspace="5" hspace="5" src="lab1_25.png" alt=""> <img vspace="5" hspace="5" src="lab1_26.png" alt=""> <img vspace="5" hspace="5" src="lab1_27.png" alt=""> <p>Como podemos claramente verificar, &aacute; medida que aumentamos o Teta1 e Teta2 iniciais, a figura fica cada vez mais irregular.</p><h2>Quest&atilde;o 3.3 Solu&ccedil;&otilde;es pos&iacute;veis<a name="43"></a></h2><pre class="codeinput">figure(n)
 n=n+1;
 I = imread(<span class="string">'./figures/3.3.1.jpg'</span>);
 J = imresize(I, 0.6);
@@ -463,7 +462,7 @@ n=n+1;
 I = imread(<span class="string">'./figures/3.3.2.jpg'</span>);
 J = imresize(I, 0.6);
 imshow(J);
-</pre><img vspace="5" hspace="5" src="lab1_24.png" alt=""> <img vspace="5" hspace="5" src="lab1_25.png" alt=""> <h2>Quest&atilde;o 3.4 - Determina&ccedil;&atilde;o do tempo que decorre at&eacute; uma das  barras &#8220;fazer um looping&#8221;%%<a name="44"></a></h2><pre class="codeinput">m=1;
+</pre><img vspace="5" hspace="5" src="lab1_28.png" alt=""> <img vspace="5" hspace="5" src="lab1_29.png" alt=""> <h2>Quest&atilde;o 3.4 - Determina&ccedil;&atilde;o do tempo que decorre at&eacute; uma das  barras &#8220;fazer um looping&#8221;%%<a name="44"></a></h2><pre class="codeinput">m=1;
 l=0.5;
 </pre><pre class="codeinput"><span class="comment">%Come&ccedil;amos por criar 2 vectores x e y com as coordenadas x e y,</span>
 <span class="comment">%respectivamente, da posi&ccedil;&atilde;o inicial da ponta do p&ecirc;ndulo</span>
@@ -551,7 +550,7 @@ j=1;
 
 <span class="comment">%Tempos de simula&ccedil;&atilde;o apropriados</span>
 sim_temp = [10, 50, 100];
-</pre><img vspace="5" hspace="5" src="lab1_26.png" alt=""> <img vspace="5" hspace="5" src="lab1_27.png" alt=""> <img vspace="5" hspace="5" src="lab1_28.png" alt=""> <img vspace="5" hspace="5" src="lab1_29.png" alt=""> <p>Simula&ccedil;&atilde;o dos pontos inciais novamente de modo a obter gr&aacute;ficos das evolu&ccedil;&otilde;es temporais do teta1 ou teta2 com os instantes onde ocorre looping assinalados.</p><pre class="codeinput"><span class="keyword">for</span> i=1:2
+</pre><img vspace="5" hspace="5" src="lab1_30.png" alt=""> <img vspace="5" hspace="5" src="lab1_31.png" alt=""> <img vspace="5" hspace="5" src="lab1_32.png" alt=""> <img vspace="5" hspace="5" src="lab1_33.png" alt=""> <p>Simula&ccedil;&atilde;o dos pontos inciais novamente de modo a obter gr&aacute;ficos das evolu&ccedil;&otilde;es temporais do teta1 ou teta2 com os instantes onde ocorre looping assinalados.</p><pre class="codeinput"><span class="keyword">for</span> i=1:2
 
     <span class="comment">% Aqui Fazemos apenas 2 simula&ccedil;&otilde;es porque apenas conseguimos 2 das 3</span>
     <span class="comment">% configura&ccedil;&otilde;es pretendidas. As configura&ccedil;&otilde;es em que os loopings est&atilde;o</span>
@@ -591,7 +590,7 @@ sim_temp = [10, 50, 100];
         n=n+1;
     <span class="keyword">end</span>
 <span class="keyword">end</span>
-</pre><img vspace="5" hspace="5" src="lab1_30.png" alt=""> <img vspace="5" hspace="5" src="lab1_31.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+</pre><img vspace="5" hspace="5" src="lab1_34.png" alt=""> <img vspace="5" hspace="5" src="lab1_35.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Trabalho de Laboratório - Simulação Básica em Matlab/Simulink
 % 
@@ -621,7 +620,6 @@ figure(n)
 n=n+1;
 I = imread('./figures/1.4.jpg');
 imshow(I);
-close all;
 %% Questão 1.5 - Simulação do movimento livre de uma viatura
 % A equação diferencial 
 % $m\frac{dv\left(t\right)}{dt}=-\beta v\left(t\right)$
