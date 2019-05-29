@@ -3,7 +3,7 @@
 * [Trabalho de Laboratório nº1 - Simulação Básica em Matlab/Simulink](#Simulação-Básica-em-Matlab-e-Simulink)
 * [Trabalho de Laboratório nº2 - Optimização do servomecanismo de um disco rígido](#Optimização-do-servomecanismo-de-um-disco-rígido)
 * [Trabalho de Laboratório nº3 - Dinâmica de um metrónomo básico](#Dinâmica-de-um-metrónomo-básico)
-* [Trabalho de Laboratório nº4 - Detecção de Hotspots Wifi](#Detecção-deHotspots-Wifi)
+* [Trabalho de Laboratório nº4 - Detecção de Hotspots Wifi](#Detecção-de-Hotspots-Wifi)
 
 # Simulação Básica em Matlab e Simulink
 
