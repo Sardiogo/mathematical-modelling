@@ -67,10 +67,15 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
   </style></head><body><div class="content"><h1>Trabalho de Laborat&oacute;rio n&ordm;2 - Optimiza&ccedil;&atilde;o do servomecanismo de um disco r&iacute;gido</h1><!--introduction--><pre class="language-matlab">Autor: Diogo Vilar <span class="string">Sardinha</span>
-</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Quest&atilde;o 2 - Gera&ccedil;&atilde;o do impulso prot&oacute;tipo</a></li><li><a href="#4">Quest&atilde;o 3 - Gera&ccedil;&atilde;o de um sinal de controlo u(t)</a></li><li><a href="#6">Quest&atilde;o 7 - Testes da din&acirc;mica do sistema para diferentes par&acirc;metros</a></li><li><a href="#13">Quest&atilde;o 8 -</a></li></ul></div><pre class="codeinput">close <span class="string">all</span>;
+</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Quest&atilde;o 1 - express&atilde;o anal&iacute;tica</a></li><li><a href="#3">Quest&atilde;o 2 - Gera&ccedil;&atilde;o do impulso prot&oacute;tipo</a></li><li><a href="#5">Quest&atilde;o 3 - Gera&ccedil;&atilde;o de um sinal de controlo u(t)</a></li><li><a href="#7">Quest&atilde;o 4 - &Aacute;rea de uma vers&atilde;o escalada em amplitude e no tempo</a></li><li><a href="#8">Quest&atilde;o 7 - Testes da din&acirc;mica do sistema para diferentes par&acirc;metros</a></li><li><a href="#15">Quest&atilde;o 8 -</a></li></ul></div><pre class="codeinput">close <span class="string">all</span>;
 n=1;
 <span class="comment">% inicializa&ccedil;&atilde;o do contador para as figuras</span>
-</pre><h2>Quest&atilde;o 2 - Gera&ccedil;&atilde;o do impulso prot&oacute;tipo<a name="2"></a></h2><p>beta pertence ao intervalo [0,1]. beta controla a suavidade dos flancos dos impulsos.</p><pre class="codeinput">beta = 0.6;
+</pre><h2>Quest&atilde;o 1 - express&atilde;o anal&iacute;tica<a name="2"></a></h2><pre class="codeinput">n=1; <span class="comment">% inicializa&ccedil;&atilde;o do contador para as figuras</span>
+figure(n)
+n=n+1;I = imread(<span class="string">'./figures/Scan10001.jpg'</span>);
+imshow(I);
+</pre><pre class="codeoutput">Warning: Image is too big to fit on screen; displaying at 33% 
+</pre><img vspace="5" hspace="5" src="lab2_01.png" alt=""> <h2>Quest&atilde;o 2 - Gera&ccedil;&atilde;o do impulso prot&oacute;tipo<a name="3"></a></h2><p>beta pertence ao intervalo [0,1]. beta controla a suavidade dos flancos dos impulsos.</p><pre class="codeinput">beta = 0.6;
 <span class="comment">% cria&ccedil;&atilde;o do vector com os instantes de tempo</span>
 t_min=-1;
 t_max=1;
@@ -89,7 +94,7 @@ grid <span class="string">on</span>
 xlabel(<span class="string">'Tempo'</span>);
 ylabel(<span class="string">'Amplitude do impulso'</span>);
 title(<span class="string">'Impulso Prot&oacute;tipo'</span>);
-</pre><img vspace="5" hspace="5" src="lab2_01.png" alt=""> <h2>Quest&atilde;o 3 - Gera&ccedil;&atilde;o de um sinal de controlo u(t)<a name="4"></a></h2><p>Nesta quest&atilde;o pretende-se apenas testar se a fun&ccedil;&atilde;o para  criar u(t), est&aacute; correcta, definindo assim valores arbitr&aacute;rios para as amplitudes U1 e U2, para alpha, beta e valores de T.</p><pre class="codeinput"><span class="comment">% dura&ccedil;&atilde;o total da forma de onda</span>
+</pre><img vspace="5" hspace="5" src="lab2_02.png" alt=""> <h2>Quest&atilde;o 3 - Gera&ccedil;&atilde;o de um sinal de controlo u(t)<a name="5"></a></h2><p>Nesta quest&atilde;o pretende-se apenas testar se a fun&ccedil;&atilde;o para  criar u(t), est&aacute; correcta, definindo assim valores arbitr&aacute;rios para as amplitudes U1 e U2, para alpha, beta e valores de T.</p><pre class="codeinput"><span class="comment">% dura&ccedil;&atilde;o total da forma de onda</span>
 T = 1;
 alpha = 1.5;
 <span class="comment">% n&uacute;mero de pontos para a escala do tempo de cada um dos impulsos</span>
@@ -108,7 +113,11 @@ grid <span class="string">on</span>
 xlabel(<span class="string">'Tempo'</span>);
 ylabel(<span class="string">'Amplitude'</span>);
 title(<span class="string">'Sinal de controlo u(t)'</span>);
-</pre><img vspace="5" hspace="5" src="lab2_02.png" alt=""> <h2>Quest&atilde;o 7 - Testes da din&acirc;mica do sistema para diferentes par&acirc;metros<a name="6"></a></h2><p>Nesta quest&atilde;o simulamos a dinamica do sistema para diferentes valores dos parametros que comp&otilde;em o sinal de comcontrolo u(t)</p><p>Diagrama de blocos que simula a din&acirc;mica do servomecanismo do disco r&iacute;gido</p><pre class="codeinput">open_system(<span class="string">'dinamicadosistema'</span>)
+</pre><img vspace="5" hspace="5" src="lab2_03.png" alt=""> <h2>Quest&atilde;o 4 - &Aacute;rea de uma vers&atilde;o escalada em amplitude e no tempo<a name="7"></a></h2><pre class="codeinput">n=1; <span class="comment">% inicializa&ccedil;&atilde;o do contador para as figuras</span>
+figure(n)
+n=n+1;I = imread(<span class="string">'./figures/Scan10002.png'</span>);
+imshow(I);
+</pre><img vspace="5" hspace="5" src="lab2_04.png" alt=""> <h2>Quest&atilde;o 7 - Testes da din&acirc;mica do sistema para diferentes par&acirc;metros<a name="8"></a></h2><p>Nesta quest&atilde;o simulamos a dinamica do sistema para diferentes valores dos parametros que comp&otilde;em o sinal de comcontrolo u(t)</p><p>Diagrama de blocos que simula a din&acirc;mica do servomecanismo do disco r&iacute;gido</p><pre class="codeinput">open_system(<span class="string">'dinamicadosistema'</span>)
 
 <span class="comment">% dura&ccedil;&atilde;o total do sinal de entrada u(t) (de controlo)</span>
 T = 1;
@@ -144,7 +153,7 @@ ylabel(<span class="string">'Amplitude'</span>);
 title(<span class="string">'Sinais de controlo u(t)'</span>);
 grid <span class="string">on</span>
 legend(<span class="string">'show'</span>)
-</pre><img vspace="5" hspace="5" src="lab2_03.png" alt=""> <p>Velocidades angulares para diferentes parametros</p><pre class="codeinput"><span class="comment">% Simula&ccedil;&otilde;es sem perturba&ccedil;&atilde;o do sistema com efeito de atrito (b=0)</span>
+</pre><img vspace="5" hspace="5" src="lab2_05.png" alt=""> <p>Velocidades angulares para diferentes parametros</p><pre class="codeinput"><span class="comment">% Simula&ccedil;&otilde;es sem perturba&ccedil;&atilde;o do sistema com efeito de atrito (b=0)</span>
 b=0;
 figure(n)
 fig = figure(n);
@@ -184,7 +193,7 @@ ylabel(<span class="string">'Velocidade Angular'</span>);
 title(<span class="string">'Velocidades angulares com efeito de atrito'</span>);
 grid <span class="string">on</span>
 legend(<span class="string">'show'</span>)
-</pre><img vspace="5" hspace="5" src="lab2_04.png" alt=""> <p>Posi&ccedil;&otilde;es angulares para diferentes parametros</p><pre class="codeinput"><span class="comment">% Simula&ccedil;&otilde;es sem perturba&ccedil;&atilde;o do sistema com efeito de atrito (b=0)</span>
+</pre><img vspace="5" hspace="5" src="lab2_06.png" alt=""> <p>Posi&ccedil;&otilde;es angulares para diferentes parametros</p><pre class="codeinput"><span class="comment">% Simula&ccedil;&otilde;es sem perturba&ccedil;&atilde;o do sistema com efeito de atrito (b=0)</span>
 b=0;
 figure(n)
 fig = figure(n);
@@ -224,7 +233,7 @@ ylabel(<span class="string">'Posi&ccedil;&atilde;o'</span>);
 title(<span class="string">'Posi&ccedil;&atilde;o angular com efeito de atrito'</span>);
 grid <span class="string">on</span>
 legend(<span class="string">'show'</span>)
-</pre><img vspace="5" hspace="5" src="lab2_05.png" alt=""> <p>Infelizmente devido &agrave; falta de tempo n&atilde;o foi feita a analise teorica correctamente. Os valores finais da velocidade e da posi&ccedil;&atilde;o da cabe&ccedil;a do disco deviam tender para zero o que n&atilde;o se verifica em todos os casos. Para al&eacute;m disto o modelo n&atilde;o apresenta diferen&ccedil;as significativas quando se considera o efeito de atrito (b&gt;0), o que n&atilde;o devia ser verdade pois o atrito leva a que n&atilde;o seja antingida a posi&ccedil;&atilde;o pertendida e ocorreria uma redu&ccedil;&atilde;o de velocidade.</p><h2>Quest&atilde;o 8 -<a name="13"></a></h2><pre class="codeinput">open_system(<span class="string">'P8'</span>);
+</pre><img vspace="5" hspace="5" src="lab2_07.png" alt=""> <p>Infelizmente devido &agrave; falta de tempo n&atilde;o foi feita a analise teorica correctamente. Os valores finais da velocidade e da posi&ccedil;&atilde;o da cabe&ccedil;a do disco deviam tender para zero o que n&atilde;o se verifica em todos os casos. Para al&eacute;m disto o modelo n&atilde;o apresenta diferen&ccedil;as significativas quando se considera o efeito de atrito (b&gt;0), o que n&atilde;o devia ser verdade pois o atrito leva a que n&atilde;o seja antingida a posi&ccedil;&atilde;o pertendida e ocorreria uma redu&ccedil;&atilde;o de velocidade.</p><h2>Quest&atilde;o 8 -<a name="15"></a></h2><pre class="codeinput">open_system(<span class="string">'P8'</span>);
 
 y=linspace(-5,5,100);
 dy=linspace(-5,5,100);
@@ -252,7 +261,7 @@ Warning: Model 'P8' is using a default value of 0.2 for maximum step size. You
 can disable this diagnostic by setting 'Automatic solver parameter selection'
 diagnostic to 'none' in the Diagnostics page of the configuration parameters
 dialog 
-</pre><img vspace="5" hspace="5" src="lab2_06.png" alt=""> <img vspace="5" hspace="5" src="lab2_07.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+</pre><img vspace="5" hspace="5" src="lab2_08.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Trabalho de Laboratório nº2 - Optimização do servomecanismo de um disco rígido
 % 
@@ -262,7 +271,12 @@ dialog
 close all;
 n=1;
 % inicialização do contador para as figuras
-
+%% Questão 1 - expressão analítica
+%
+n=1; % inicialização do contador para as figuras
+figure(n)
+n=n+1;I = imread('./figures/Scan10001.jpg');
+imshow(I);
 %% Questão 2 - Geração do impulso protótipo
 %%
 % beta pertence ao intervalo [0,1].  
@@ -312,7 +326,12 @@ grid on
 xlabel('Tempo');
 ylabel('Amplitude');
 title('Sinal de controlo u(t)');
-
+%% Questão 4 - Área de uma versão escalada em amplitude e no tempo
+%
+n=1; % inicialização do contador para as figuras
+figure(n)
+n=n+1;I = imread('./figures/Scan10002.png');
+imshow(I);
 %% Questão 7 - Testes da dinâmica do sistema para diferentes parâmetros
 %%
 % Nesta questão simulamos a dinamica do sistema para diferentes valores dos

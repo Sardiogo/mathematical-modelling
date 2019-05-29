@@ -6,7 +6,12 @@
 close all;
 n=1;
 % inicialização do contador para as figuras
-
+%% Questão 1 - expressão analítica
+%
+n=1; % inicialização do contador para as figuras
+figure(n)
+n=n+1;I = imread('./figures/Scan10001.jpg');
+imshow(I);
 %% Questão 2 - Geração do impulso protótipo
 %%
 % beta pertence ao intervalo [0,1].  
@@ -56,7 +61,12 @@ grid on
 xlabel('Tempo');
 ylabel('Amplitude');
 title('Sinal de controlo u(t)');
-
+%% Questão 4 - Área de uma versão escalada em amplitude e no tempo
+%
+n=1; % inicialização do contador para as figuras
+figure(n)
+n=n+1;I = imread('./figures/Scan10002.png');
+imshow(I);
 %% Questão 7 - Testes da dinâmica do sistema para diferentes parâmetros
 %%
 % Nesta questão simulamos a dinamica do sistema para diferentes valores dos

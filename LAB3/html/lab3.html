@@ -67,12 +67,33 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
   </style></head><body><div class="content"><h1>Trabalho de Laborat&oacute;rio n&ordm;3 - Din&acirc;mica de um metr&oacute;nomo b&aacute;sico</h1><!--introduction--><pre class="language-matlab">Autor: Diogo Vilar <span class="string">Sardinha</span>
-</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Quest&atilde;o 5</a></li><li><a href="#8">Quest&atilde;o 6</a></li><li><a href="#12">Quest&atilde;o 7</a></li><li><a href="#17">Quest&atilde;o 8</a></li><li><a href="#19">Quest&atilde;o 9</a></li><li><a href="#26">Quest&atilde;o 10</a></li><li><a href="#32">Quest&atilde;o 11</a></li><li><a href="#36">Quest&atilde;o 12</a></li></ul></div><pre class="codeinput">close <span class="string">all</span>;
+</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Quest&atilde;o 1 - Equa&ccedil;&atilde;o diferencial</a></li><li><a href="#3">Quest&atilde;o 2 - Modelo de Estado</a></li><li><a href="#4">Quest&atilde;o 3 e 4 - Fun&ccedil;&atilde;o de Transfer&ecirc;ncia</a></li><li><a href="#5">Quest&atilde;o 5</a></li><li><a href="#11">Quest&atilde;o 6</a></li><li><a href="#15">Quest&atilde;o 7</a></li><li><a href="#20">Quest&atilde;o 8</a></li><li><a href="#22">Quest&atilde;o 9</a></li><li><a href="#29">Quest&atilde;o 10</a></li><li><a href="#35">Quest&atilde;o 11</a></li><li><a href="#39">Quest&atilde;o 12</a></li></ul></div><pre class="codeinput">close <span class="string">all</span>;
 clear;
 n=1;
 <span class="comment">% inicializa&ccedil;&atilde;o do contador para as figuras</span>
-</pre><h2>Quest&atilde;o 5<a name="2"></a></h2><p>Diagrama de blocos que simula a din&acirc;mica de um metr&oacute;nomo b&aacute;sico</p><pre class="codeinput">open_system(<span class="string">'Q5'</span>)
-</pre><img vspace="5" hspace="5" src="lab3_01.png" alt=""> <p>De acordo com o modelo obtido na prepara&ccedil;&atilde;o te&oacute;rica obtemos:</p><pre class="codeinput"><span class="comment">% Dados do enunciado:</span>
+</pre><h2>Quest&atilde;o 1 - Equa&ccedil;&atilde;o diferencial<a name="2"></a></h2><pre class="codeinput">n=1; <span class="comment">% inicializa&ccedil;&atilde;o do contador para as figuras</span>
+figure(n)
+n=n+1;I = imread(<span class="string">'./figures/10001.jpg'</span>);
+imshow(I);
+</pre><pre class="codeoutput">Warning: Image is too big to fit on screen; displaying at 33% 
+</pre><img vspace="5" hspace="5" src="lab3_01.png" alt=""> <h2>Quest&atilde;o 2 - Modelo de Estado<a name="3"></a></h2><pre class="codeinput">figure(n)
+n=n+1;
+I = imread(<span class="string">'./figures/10002.png'</span>);
+imshow(I);
+</pre><pre class="codeoutput">Warning: Image is too big to fit on screen; displaying at 33% 
+</pre><img vspace="5" hspace="5" src="lab3_02.png" alt=""> <h2>Quest&atilde;o 3 e 4 - Fun&ccedil;&atilde;o de Transfer&ecirc;ncia<a name="4"></a></h2><pre class="codeinput">figure(n)
+n=n+1;
+I = imread(<span class="string">'./figures/10003.png'</span>);
+J = imresize(I, 0.7);
+imshow(J);
+figure(n)
+n=n+1;
+I = imread(<span class="string">'./figures/10004.png'</span>);
+J = imresize(I, 0.7);
+imshow(J);
+</pre><pre class="codeoutput">Warning: Image is too big to fit on screen; displaying at 50% 
+</pre><img vspace="5" hspace="5" src="lab3_03.png" alt=""> <img vspace="5" hspace="5" src="lab3_04.png" alt=""> <h2>Quest&atilde;o 5<a name="5"></a></h2><p>Diagrama de blocos que simula a din&acirc;mica de um metr&oacute;nomo b&aacute;sico</p><pre class="codeinput">open_system(<span class="string">'Q5'</span>)
+</pre><img vspace="5" hspace="5" src="lab3_05.png" alt=""> <p>De acordo com o modelo obtido na prepara&ccedil;&atilde;o te&oacute;rica obtemos:</p><pre class="codeinput"><span class="comment">% Dados do enunciado:</span>
 L=0.5;      <span class="comment">% comprimento da haste</span>
 M=0.15;     <span class="comment">% peso da haste</span>
 l=0.4;      <span class="comment">% Distancia a que est&aacute; a massa da origem</span>
@@ -108,21 +129,21 @@ xlabel(<span class="string">'Tempo [s]'</span>)
 ylabel(<span class="string">' {d\theta }/{dt}   [rad/s]'</span>)
 grid <span class="string">on</span>
 title(<span class="string">'Varia&ccedil;&atilde;o da Velocidade angular {d\theta(t)}/{dt} '</span>)
-</pre><img vspace="5" hspace="5" src="lab3_02.png" alt=""> <p>Representa&ccedil;&atilde;o da evolu&ccedil;&atilde;o do &acirc;ngulo e velocidade angular do sistema no espa&ccedil;o de estados:</p><pre class="codeinput">figure(n)
+</pre><img vspace="5" hspace="5" src="lab3_06.png" alt=""> <p>Representa&ccedil;&atilde;o da evolu&ccedil;&atilde;o do &acirc;ngulo e velocidade angular do sistema no espa&ccedil;o de estados:</p><pre class="codeinput">figure(n)
 n=n+1;
 plot(teta,v)
 title(<span class="string">'Representa&ccedil;&atilde;o das vari&aacute;veis de estado no espa&ccedil;o de estados'</span>)
 xlabel(<span class="string">'{\theta}   [rad]'</span>)
 ylabel(<span class="string">'{d\theta }/{dt}    [rad/s]'</span>)
 grid <span class="string">on</span>
-</pre><img vspace="5" hspace="5" src="lab3_03.png" alt=""> <p>Trata-se de um foco est&aacute;vel.</p><h2>Quest&atilde;o 6<a name="8"></a></h2><pre class="codeinput">J = ((M*(L^2))/3) + m*(l^2); <span class="comment">% Momento de in&eacute;rcia</span>
+</pre><img vspace="5" hspace="5" src="lab3_07.png" alt=""> <p>Trata-se de um foco est&aacute;vel.</p><h2>Quest&atilde;o 6<a name="11"></a></h2><pre class="codeinput">J = ((M*(L^2))/3) + m*(l^2); <span class="comment">% Momento de in&eacute;rcia</span>
 A = [0 1;(m*g*l+(M*g*L/2)-k)/(((M*(L^2))/3)+m*(l^2)) -beta/J];
 B = [0 1]';
 C = [1 0;0 1];
 D = [0 0]';
 x0 = [0 pi/4]';
 </pre><p>O diagrama de Simulink que simula o sistema recorrendo a um bloco de modelo de estado pr&eacute;-definido &eacute;:</p><pre class="codeinput">open_system(<span class="string">'Q6'</span>)
-</pre><img vspace="5" hspace="5" src="lab3_04.png" alt=""> <p>As matrizes A e B foram obtidas na resolu&ccedil;&atilde;o teorica.</p><p>Para efeitos de simula&ccedil;&atilde;o, a matriz C &eacute; definida por C=[1 0;0 1]. Desta forma a sa&iacute;da Y &eacute; uma matriz que cont&eacute;m as vari&aacute;veis de estado (posi&ccedil;&atilde;o e velocidade angular).</p><p>A matriz D &eacute; uma matriz nula.</p><h2>Quest&atilde;o 7<a name="12"></a></h2><p>Representa&ccedil;&atilde;o grafica da resposta no tempo para <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=0 e <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=1.</p><pre class="codeinput">beta_aux=[0 1];
+</pre><img vspace="5" hspace="5" src="lab3_08.png" alt=""> <p>As matrizes A e B foram obtidas na resolu&ccedil;&atilde;o teorica.</p><p>Para efeitos de simula&ccedil;&atilde;o, a matriz C &eacute; definida por C=[1 0;0 1]. Desta forma a sa&iacute;da Y &eacute; uma matriz que cont&eacute;m as vari&aacute;veis de estado (posi&ccedil;&atilde;o e velocidade angular).</p><p>A matriz D &eacute; uma matriz nula.</p><h2>Quest&atilde;o 7<a name="15"></a></h2><p>Representa&ccedil;&atilde;o grafica da resposta no tempo para <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=0 e <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=1.</p><pre class="codeinput">beta_aux=[0 1];
 figure(n)
 fig = figure(n);
 set(fig, <span class="string">'Position'</span>, [0, 0, 900, 500])  <span class="comment">% x, y, largura e comprimento da figura</span>
@@ -147,7 +168,7 @@ hold <span class="string">all</span>;
     ylabel(<span class="string">'{d\theta }/{dt}  [rad/s]'</span>)
     grid <span class="string">on</span>
 <span class="keyword">end</span>
-</pre><img vspace="5" hspace="5" src="lab3_05.png" alt=""> <p>Representa&ccedil;&atilde;o grafica da evolu&ccedil;&atilde;o do sistema no plano de estado para <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=0 e <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=1.</p><pre class="codeinput">beta_aux=[0 1];
+</pre><img vspace="5" hspace="5" src="lab3_09.png" alt=""> <p>Representa&ccedil;&atilde;o grafica da evolu&ccedil;&atilde;o do sistema no plano de estado para <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=0 e <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=1.</p><pre class="codeinput">beta_aux=[0 1];
 figure(n)
 fig = figure(n);
 set(fig, <span class="string">'Position'</span>, [0, 0, 900, 350])  <span class="comment">% x, y, largura e comprimento da figura</span>
@@ -164,7 +185,7 @@ hold <span class="string">all</span>;
     ylabel(<span class="string">'{d\theta }/{dt}    [rad/s]'</span>)
     grid <span class="string">on</span>
 <span class="keyword">end</span>
-</pre><img vspace="5" hspace="5" src="lab3_06.png" alt=""> <p>Representa&ccedil;&atilde;o grafica da evolu&ccedil;&atilde;o do sistema no plano de estado para <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=0 e <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=1 considerando v&aacute;rias condi&ccedil;&otilde;es in&iacute;ciais.</p><pre class="codeinput">p=20; <span class="comment">%numero de condi&ccedil;&otilde;es iniciais a testar</span>
+</pre><img vspace="5" hspace="5" src="lab3_10.png" alt=""> <p>Representa&ccedil;&atilde;o grafica da evolu&ccedil;&atilde;o do sistema no plano de estado para <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=0 e <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=1 considerando v&aacute;rias condi&ccedil;&otilde;es in&iacute;ciais.</p><pre class="codeinput">p=20; <span class="comment">%numero de condi&ccedil;&otilde;es iniciais a testar</span>
 col1= linspace(-pi,pi,p); <span class="comment">% intervalo de posi&ccedil;&otilde;es angulares iniciais a testar</span>
 col2= linspace(-2*pi,2*pi,p); <span class="comment">%intervalo de velocidades nagulares iniciais a testar</span>
 x0= [col1; col2]; <span class="comment">%inicializa&ccedil;&atilde;o de x0</span>
@@ -257,7 +278,12 @@ Matriz Diagonal dos Valores Pr&oacute;prios de A:
    -2.0323         0
          0  -20.4396
 
-</pre><img vspace="5" hspace="5" src="lab3_07.png" alt=""> <img vspace="5" hspace="5" src="lab3_08.png" alt=""> <img vspace="5" hspace="5" src="lab3_09.png" alt=""> <p>Quando <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=0, os valores pr&oacute;prios s&atilde;o puramente imagin&aacute;rios, o que origina uma resposta oscilat&oacute;ria constante, representada por uma circunfer&ecirc;ncia no plano de estado.</p><p>Quando <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=0.1, os valores pr&oacute;prios s&atilde;o complexos com parte real negativa, o que resulta numa resposta oscilat&oacute;ria a tender para a origem.</p><p>Quando <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=1, os valores pr&oacute;prios s&atilde;o reais e negativos, o que origina uma resposta com forma exponecial a tender para zero sem oscila&ccedil;&atilde;o.</p><h2>Quest&atilde;o 8<a name="17"></a></h2><p>Representa&ccedil;&atilde;o da evolu&ccedil;&atilde;o no plano de estados de duas trajectorias rectilineas com <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=1.</p><p>Se a condi&ccedil;&atilde;o inicial x0 for um m&uacute;ltiplo escalar de um dos vectores pr&oacute;prios v1 ou v2, a evolu&ccedil;&atilde;o da trajectoria nos espa&ccedil;o de estados &eacute; rect&iacute;l&iacute;nea.</p><pre class="codeinput">figure(n)
+</pre><img vspace="5" hspace="5" src="lab3_11.png" alt=""> <img vspace="5" hspace="5" src="lab3_12.png" alt=""> <img vspace="5" hspace="5" src="lab3_13.png" alt=""> <p>Quando <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=0, os valores pr&oacute;prios s&atilde;o puramente imagin&aacute;rios, o que origina uma resposta oscilat&oacute;ria constante, representada por uma circunfer&ecirc;ncia no plano de estado.</p><p>Quando <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=0.1, os valores pr&oacute;prios s&atilde;o complexos com parte real negativa, o que resulta numa resposta oscilat&oacute;ria a tender para a origem.</p><p>Quando <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=1, os valores pr&oacute;prios s&atilde;o reais e negativos, o que origina uma resposta com forma exponecial a tender para zero sem oscila&ccedil;&atilde;o.</p><h2>Quest&atilde;o 8<a name="20"></a></h2><p>Representa&ccedil;&atilde;o da evolu&ccedil;&atilde;o no plano de estados de duas trajectorias rectilineas com <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=1.</p><p>Se a condi&ccedil;&atilde;o inicial x0 for um m&uacute;ltiplo escalar de um dos vectores pr&oacute;prios v1 ou v2, a evolu&ccedil;&atilde;o da trajectoria nos espa&ccedil;o de estados &eacute; rect&iacute;l&iacute;nea.</p><pre class="codeinput">figure(n)
+n=n+1;
+I = imread(<span class="string">'./figures/10008.png'</span>);
+imshow(I);
+
+figure(n)
 n=n+1;
 hold <span class="string">all</span>;
 <span class="keyword">for</span> i=1:2
@@ -270,7 +296,8 @@ xlabel(<span class="string">'{\theta}   [rad]'</span>)
 ylabel(<span class="string">'{d\theta }/{dt}    [rad/s]'</span>)
 grid <span class="string">on</span>
 title([<span class="string">'Evolu&ccedil;&atilde;o do sistema no plano de estado com trajectorias rect&iacute;lineas para {\beta}='</span>,num2str(beta)])
-</pre><img vspace="5" hspace="5" src="lab3_10.png" alt=""> <h2>Quest&atilde;o 9<a name="19"></a></h2><p>Estimar os parametros l e m da massa na haste do metronomo</p><pre class="codeinput">L = 0.25; <span class="comment">%Comprimento da haste</span>
+</pre><pre class="codeoutput">Warning: Image is too big to fit on screen; displaying at 67% 
+</pre><img vspace="5" hspace="5" src="lab3_14.png" alt=""> <img vspace="5" hspace="5" src="lab3_15.png" alt=""> <h2>Quest&atilde;o 9<a name="22"></a></h2><p>Estimar os parametros l e m da massa na haste do metronomo</p><pre class="codeinput">L = 0.25; <span class="comment">%Comprimento da haste</span>
 M = 0.1; <span class="comment">%Peso da haste</span>
 k = 0.35; <span class="comment">%Constante da mola</span>
 beta = 0.001; <span class="comment">%Coeficiente de atrito</span>
@@ -300,7 +327,7 @@ figure(n);
 n = n+1;
 contour(m_temp,l_temp,wa,<span class="string">'ShowText'</span>,<span class="string">'on'</span>);
 xlabel(<span class="string">'massa(m)'</span>); ylabel(<span class="string">'Distancia da massa(l)'</span>); colorbar;
-</pre><img vspace="5" hspace="5" src="lab3_11.png" alt=""> <p>Temos wa=2*pi*f; bpm = f*60*2; logo obtemos:</p><pre class="codeinput">wa_50 = ((2*pi)*50)/120;  <span class="comment">% frequ&ecirc;ncia para 50bpm</span>
+</pre><img vspace="5" hspace="5" src="lab3_16.png" alt=""> <p>Temos wa=2*pi*f; bpm = f*60*2; logo obtemos:</p><pre class="codeinput">wa_50 = ((2*pi)*50)/120;  <span class="comment">% frequ&ecirc;ncia para 50bpm</span>
 wa_150 = ((2*pi)*150)/120; <span class="comment">% frequ&ecirc;ncia para 150bpm</span>
 wa_76 = ((2*pi)*76)/120;   <span class="comment">% frequ&ecirc;ncia para 76bpm</span>
 wa_124 = ((2*pi)*124)/120; <span class="comment">% frequ&ecirc;ncia para 124bpm</span>
@@ -338,7 +365,7 @@ disp(strcat(<span class="string">'Posi&ccedil;&atilde;o da massa para 124 BPM: l
 Posi&ccedil;&atilde;o da massa para 150 BPM: l=0.077586
 Posi&ccedil;&atilde;o da massa para 76 BPM: l=0.17414
 Posi&ccedil;&atilde;o da massa para 124 BPM: l=0.10517
-</pre><img vspace="5" hspace="5" src="lab3_12.png" alt=""> <p>Concluimos que com m=0.09kg, se verifica:</p><p>Para 150 BPM : l=0.077586.</p><p>Para 50 BPM : l=0.20862.</p><p>Para 124 BPM : l=0.10517.</p><p>Para 76 BPM : l=0.17414.</p><p>Realizando a simula&ccedil;&atilde;o vamos sobrepor graficamente a evolu&ccedil;&atilde;o da oscila&ccedil;&atilde;o da posi&ccedil;&atilde;o angular e a envolvente teorica e determinar a frequencia de oscila&ccedil;&atilde;o empirica para cada uma das situa&ccedil;&otilde;es</p><pre class="codeinput">U=0; <span class="comment">% bin&aacute;rio aplicado &eacute; nulo</span>
+</pre><img vspace="5" hspace="5" src="lab3_17.png" alt=""> <p>Concluimos que com m=0.09kg, se verifica:</p><p>Para 150 BPM : l=0.077586.</p><p>Para 50 BPM : l=0.20862.</p><p>Para 124 BPM : l=0.10517.</p><p>Para 76 BPM : l=0.17414.</p><p>Realizando a simula&ccedil;&atilde;o vamos sobrepor graficamente a evolu&ccedil;&atilde;o da oscila&ccedil;&atilde;o da posi&ccedil;&atilde;o angular e a envolvente teorica e determinar a frequencia de oscila&ccedil;&atilde;o empirica para cada uma das situa&ccedil;&otilde;es</p><pre class="codeinput">U=0; <span class="comment">% bin&aacute;rio aplicado &eacute; nulo</span>
 m = 0.1;
 bpm = [50 150 76 124];
 x0 = [pi/4 0]';
@@ -397,8 +424,8 @@ n = n+1;
 Frequ&ecirc;ncia angular para150 BPM =7.508rad/s
 Frequ&ecirc;ncia angular para76 BPM =3.3321rad/s
 Frequ&ecirc;ncia angular para124 BPM =6.244rad/s
-</pre><img vspace="5" hspace="5" src="lab3_13.png" alt=""> <p>Atrav&eacute;s da an&aacute;lise dos gr&aacute;ficos, &eacute; poss&iacute;vel concluir que o &acirc;ngulo apresenta varia&ccedil;&otilde;es de acordo com o esperado para ambas as frequ&ecirc;ncias embora com uma pequena discrep&acirc;ncia entre a envolvente e a varia&ccedil;&atilde;o do &acirc;ngulo.</p><h2>Quest&atilde;o 10<a name="26"></a></h2><p>Simula&ccedil;&atilde;o para o modelo n&atilde;o linear do metronome cosiderando os valores da quest&atilde;o 9.</p><pre class="codeinput">open_system(<span class="string">'Q10'</span>);
-</pre><img vspace="5" hspace="5" src="lab3_14.png" alt=""> <p>Usamos agora o dimensionamento da quest&atilde;o anterior:</p><pre class="codeinput">m = 0.09;
+</pre><img vspace="5" hspace="5" src="lab3_18.png" alt=""> <p>Atrav&eacute;s da an&aacute;lise dos gr&aacute;ficos, &eacute; poss&iacute;vel concluir que o &acirc;ngulo apresenta varia&ccedil;&otilde;es de acordo com o esperado para ambas as frequ&ecirc;ncias embora com uma pequena discrep&acirc;ncia entre a envolvente e a varia&ccedil;&atilde;o do &acirc;ngulo.</p><h2>Quest&atilde;o 10<a name="29"></a></h2><p>Simula&ccedil;&atilde;o para o modelo n&atilde;o linear do metronome cosiderando os valores da quest&atilde;o 9.</p><pre class="codeinput">open_system(<span class="string">'Q10'</span>);
+</pre><img vspace="5" hspace="5" src="lab3_19.png" alt=""> <p>Usamos agora o dimensionamento da quest&atilde;o anterior:</p><pre class="codeinput">m = 0.09;
 l_150 = 0.077586; <span class="comment">% comprimento l para 150 BPM</span>
 l_50 = 0.20862; <span class="comment">% comprimento l para 50 BPM</span>
 l_124 = 0.10517;<span class="comment">% comprimento l para 124 BPM</span>
@@ -460,7 +487,7 @@ n = n+1;
 Frequ&ecirc;ncia angular para150 BPM =7.8252rad/s
 Frequ&ecirc;ncia angular para76 BPM =4.0473rad/s
 Frequ&ecirc;ncia angular para124 BPM =6.6695rad/s
-</pre><img vspace="5" hspace="5" src="lab3_15.png" alt=""> <p>Conforme era esperado as frequ&ecirc;ncias angulares s&atilde;o um pouco diferentes comparadas com a simula&ccedil;&atilde;o considerando um modelo linear.</p><p>Uma forma de redimensionar as posi&ccedil;&otilde;es da massa m para que as cad&ecirc;ncias de oscila&ccedil;&atilde;o se aproximem mais dos valores pretendidos consiste em determinar o m&oacute;dulo da diferen&ccedil;a entre a frequ&ecirc;ncia pretendida e frequ&ecirc;ncia calculada com o sitema n&atilde;o linear.</p><pre class="codeinput"><span class="comment">%Vector que cont&eacute;m os comprimentos que se v&atilde;o obter</span>
+</pre><img vspace="5" hspace="5" src="lab3_20.png" alt=""> <p>Conforme era esperado as frequ&ecirc;ncias angulares s&atilde;o um pouco diferentes comparadas com a simula&ccedil;&atilde;o considerando um modelo linear.</p><p>Uma forma de redimensionar as posi&ccedil;&otilde;es da massa m para que as cad&ecirc;ncias de oscila&ccedil;&atilde;o se aproximem mais dos valores pretendidos consiste em determinar o m&oacute;dulo da diferen&ccedil;a entre a frequ&ecirc;ncia pretendida e frequ&ecirc;ncia calculada com o sitema n&atilde;o linear.</p><pre class="codeinput"><span class="comment">%Vector que cont&eacute;m os comprimentos que se v&atilde;o obter</span>
 <span class="comment">% ln = zeros(1, 2);</span>
 <span class="comment">% aux = 1;</span>
 
@@ -566,8 +593,8 @@ aux=1;
 Frequ&ecirc;ncia angular para150 BPM =7.8252rad/s
 Frequ&ecirc;ncia angular para76 BPM =4.0472rad/s
 Frequ&ecirc;ncia angular para124 BPM =6.386rad/s
-</pre><img vspace="5" hspace="5" src="lab3_16.png" alt=""> <p>A forma utilizada para refinar o dimensionamento das distancias l, parecem adequadas, uma vez que, as novas posi&ccedil;oes da massa m permitem obter valores para as cadencias proximos dos valores desejados.</p><h2>Quest&atilde;o 11<a name="32"></a></h2><p>Simula&ccedil;&atilde;o de um mecanismo de relojoaria no metr&oacute;nomo que impulsiona o p&ecirc;ndulo quando este passa na vertical de modo a contrariar o decaimento para zero da amplitude das oscila&ccedil;&otilde;es.</p><pre class="codeinput">open_system(<span class="string">'Q11'</span>);
-</pre><img vspace="5" hspace="5" src="lab3_17.png" alt=""> <p>Neste diagrama realiza-se a dete&ccedil;&atilde;o das passagens por zero do &acirc;ngulo teta e aplica um impulso positivo na entrada nas transi&ccedil;&otilde;es negativo-&gt;positivo.</p><pre class="codeinput">aux=1;
+</pre><img vspace="5" hspace="5" src="lab3_21.png" alt=""> <p>A forma utilizada para refinar o dimensionamento das distancias l, parecem adequadas, uma vez que, as novas posi&ccedil;oes da massa m permitem obter valores para as cadencias proximos dos valores desejados.</p><h2>Quest&atilde;o 11<a name="35"></a></h2><p>Simula&ccedil;&atilde;o de um mecanismo de relojoaria no metr&oacute;nomo que impulsiona o p&ecirc;ndulo quando este passa na vertical de modo a contrariar o decaimento para zero da amplitude das oscila&ccedil;&otilde;es.</p><pre class="codeinput">open_system(<span class="string">'Q11'</span>);
+</pre><img vspace="5" hspace="5" src="lab3_22.png" alt=""> <p>Neste diagrama realiza-se a dete&ccedil;&atilde;o das passagens por zero do &acirc;ngulo teta e aplica um impulso positivo na entrada nas transi&ccedil;&otilde;es negativo-&gt;positivo.</p><pre class="codeinput">aux=1;
 <span class="keyword">for</span> l= ls_opt
     cte3 = m*g*l + M*g*L/2;
     cte4 = 1/(((M*(L^2))/3 + m*(l^2)));
@@ -612,7 +639,7 @@ Frequ&ecirc;ncia angular para124 BPM =6.386rad/s
 Frequ&ecirc;ncia angular para8.3049 BPM =150rad/s para a distancia l=0.077586
 Frequ&ecirc;ncia angular para4.6012 BPM =76rad/s para a distancia l=0.17414
 Frequ&ecirc;ncia angular para6.988 BPM =124rad/s para a distancia l=0.11207
-</pre><img vspace="5" hspace="5" src="lab3_18.png" alt=""> <img vspace="5" hspace="5" src="lab3_19.png" alt=""> <img vspace="5" hspace="5" src="lab3_20.png" alt=""> <img vspace="5" hspace="5" src="lab3_21.png" alt=""> <p>Os valores das frequ&ecirc;ncias de oscila&ccedil;&atilde;o nas condi&ccedil;&otilde;es dimensionadas sofrem um pequeno aumento na presen&ccedil;a do mecanismo de relojoaria. O que permite concluir que a presen&ccedil;a deste mecanismo afecta um pouco a frequ&ecirc;ncia de oscila&ccedil;&atilde;o.</p><h2>Quest&atilde;o 12<a name="36"></a></h2><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+</pre><img vspace="5" hspace="5" src="lab3_23.png" alt=""> <img vspace="5" hspace="5" src="lab3_24.png" alt=""> <img vspace="5" hspace="5" src="lab3_25.png" alt=""> <img vspace="5" hspace="5" src="lab3_26.png" alt=""> <p>Os valores das frequ&ecirc;ncias de oscila&ccedil;&atilde;o nas condi&ccedil;&otilde;es dimensionadas sofrem um pequeno aumento na presen&ccedil;a do mecanismo de relojoaria. O que permite concluir que a presen&ccedil;a deste mecanismo afecta um pouco a frequ&ecirc;ncia de oscila&ccedil;&atilde;o.</p><h2>Quest&atilde;o 12<a name="39"></a></h2><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Trabalho de Laboratório nº3 - Dinâmica de um metrónomo básico
 % 
@@ -623,7 +650,30 @@ close all;
 clear;
 n=1;
 % inicialização do contador para as figuras
-
+%% Questão 1 - Equação diferencial
+%
+n=1; % inicialização do contador para as figuras
+figure(n)
+n=n+1;I = imread('./figures/10001.jpg');
+imshow(I);
+%% Questão 2 - Modelo de Estado
+%
+figure(n)
+n=n+1;
+I = imread('./figures/10002.png');
+imshow(I);
+%% Questão 3 e 4 - Função de Transferência
+%
+figure(n)
+n=n+1;
+I = imread('./figures/10003.png');
+J = imresize(I, 0.7);
+imshow(J);
+figure(n)
+n=n+1;
+I = imread('./figures/10004.png');
+J = imresize(I, 0.7);
+imshow(J);
 %% Questão 5 
 %%
 % Diagrama de blocos que simula a dinâmica de um metrónomo básico
@@ -849,6 +899,11 @@ end
 % Se a condição inicial x0 for um múltiplo escalar de um dos vectores 
 % próprios v1 ou v2, a evolução da trajectoria nos espaço de estados é 
 % rectílínea.
+
+figure(n)
+n=n+1;
+I = imread('./figures/10008.png');
+imshow(I);
 
 figure(n)
 n=n+1;

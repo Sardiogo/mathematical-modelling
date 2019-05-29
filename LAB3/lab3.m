@@ -7,7 +7,30 @@ close all;
 clear;
 n=1;
 % inicialização do contador para as figuras
-
+%% Questão 1 - Equação diferencial
+%
+n=1; % inicialização do contador para as figuras
+figure(n)
+n=n+1;I = imread('./figures/10001.jpg');
+imshow(I);
+%% Questão 2 - Modelo de Estado
+%
+figure(n)
+n=n+1;
+I = imread('./figures/10002.png');
+imshow(I);
+%% Questão 3 e 4 - Função de Transferência
+%
+figure(n)
+n=n+1;
+I = imread('./figures/10003.png');
+J = imresize(I, 0.7);
+imshow(J);
+figure(n)
+n=n+1;
+I = imread('./figures/10004.png');
+J = imresize(I, 0.7);
+imshow(J);
 %% Questão 5 
 %%
 % Diagrama de blocos que simula a dinâmica de um metrónomo básico
@@ -233,6 +256,11 @@ end
 % Se a condição inicial x0 for um múltiplo escalar de um dos vectores 
 % próprios v1 ou v2, a evolução da trajectoria nos espaço de estados é 
 % rectílínea.
+
+figure(n)
+n=n+1;
+I = imread('./figures/10008.png');
+imshow(I);
 
 figure(n)
 n=n+1;
