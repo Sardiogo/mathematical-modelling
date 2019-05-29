@@ -1,11 +1,11 @@
 # Laboratórios
 
-* [Trabalho de Laboratório nº1 - Simulação Básica em Matlab/Simulink](#Trabalho de Laboratório nº1 - Simulação Básica em Matlab/Simulink)
-* [Trabalho de Laboratório nº2 - Optimização do servomecanismo de um disco rígido](#Trabalho de Laboratório nº2 - Optimização do servomecanismo de um disco rígido)
-* [Trabalho de Laboratório nº3 - Dinâmica de um metrónomo básico](#Trabalho de Laboratório nº3 - Dinâmica de um metrónomo básico)
-* [Trabalho de Laboratório nº4 - Detecção de Hotspots Wifi](#Trabalho de Laboratório nº4 - Detecção de Hotspots Wifi)
+* [Trabalho de Laboratório nº1 - Simulação Básica em Matlab/Simulink](#Simulação-Básica-em-Matlab-e-Simulink)
+* [Trabalho de Laboratório nº2 - Optimização do servomecanismo de um disco rígido](#Optimização-do-servomecanismo-de-um-disco-rígido)
+* [Trabalho de Laboratório nº3 - Dinâmica de um metrónomo básico](#Dinâmica-de-um-metrónomo-básico)
+* [Trabalho de Laboratório nº4 - Detecção de Hotspots Wifi](#Detecção-deHotspots-Wifi)
 
-## Trabalho de Laboratório nº1 - Simulação Básica em Matlab/Simulink
+# Simulação Básica em Matlab e Simulink
 
 ### Contents
 
@@ -929,7 +929,7 @@ end
 
 
 
-# Trabalho de Laboratório nº2 - Optimização do servomecanismo de um disco rígido
+# Optimização do servomecanismo de um disco rígido
 
 ```{.language-matlab}
 Autor: Diogo Vilar Sardinha
@@ -961,7 +961,7 @@ n=n+1;I = imread('./figures/Scan10001.jpg');
 imshow(I);
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB2/html/lab2_01.png)
+![](D:./LAB2/html/lab2_01.png)
 
 ## Questão 2 - Geração do impulso protótipo{#3}
 
@@ -990,7 +990,7 @@ ylabel('Amplitude do impulso');
 title('Impulso Protótipo');
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB2/html/lab2_02.png)
+![](./LAB2/html/lab2_02.png)
 
 ## Questão 3 - Geração de um sinal de controlo u(t){#5}
 
@@ -1020,7 +1020,7 @@ ylabel('Amplitude');
 title('Sinal de controlo u(t)');
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB2/html/lab2_03.png)
+![](./LAB2/html/lab2_03.png)
 
 ## Questão 4 - Área de uma versão escalada em amplitude e no tempo{#7}
 
@@ -1031,7 +1031,7 @@ n=n+1;I = imread('./figures/Scan10002.png');
 imshow(I);
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB2/html/lab2_04.png)
+![](./LAB2/html/lab2_04.png)
 
 ## Questão 7 - Testes da dinâmica do sistema para diferentes parâmetros{#8}
 
@@ -1085,7 +1085,7 @@ grid on
 legend('show')
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB2/html/lab2_05.png)
+![](./LAB2/html/lab2_05.png)
 
 Velocidades angulares para diferentes parametros
 
@@ -1132,7 +1132,7 @@ grid on
 legend('show')
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB2/html/lab2_06.png)
+![](./LAB2/html/lab2_06.png)
 
 Posições angulares para diferentes parametros
 
@@ -1179,7 +1179,7 @@ grid on
 legend('show')
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB2/html/lab2_07.png)
+![](./LAB2/html/lab2_07.png)
 
 Infelizmente devido à falta de tempo não foi feita a analise teorica
 correctamente. Os valores finais da velocidade e da posição da cabeça do
@@ -1225,9 +1225,9 @@ diagnostic to 'none' in the Diagnostics page of the configuration parameters
 dialog 
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB2/html/lab2_08.png)
+![](./LAB2/html/lab2_08.png)
 
-# Trabalho de Laboratório nº3 - Dinâmica de um metrónomo básico
+# Dinâmica de um metrónomo básico
 
 ```{.language-matlab}
 Autor: Diogo Vilar Sardinha
@@ -1264,11 +1264,7 @@ n=n+1;I = imread('./figures/10001.jpg');
 imshow(I);
 ```
 
-```{.codeoutput}
-Warning: Image is too big to fit on screen; displaying at 33% 
-```
-
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_01.png)
+![](./LAB3/html/lab3_01.png)
 
 ## Questão 2 - Modelo de Estado{#3}
 
@@ -1279,11 +1275,7 @@ I = imread('./figures/10002.png');
 imshow(I);
 ```
 
-```{.codeoutput}
-Warning: Image is too big to fit on screen; displaying at 33% 
-```
-
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_02.png)
+![](./LAB3/html/lab3_02.png)
 
 ## Questão 3 e 4 - Função de Transferência{#4}
 
@@ -1304,7 +1296,7 @@ imshow(J);
 Warning: Image is too big to fit on screen; displaying at 50% 
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_03.png) ![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_04.png)
+![](./LAB3/html/lab3_03.png) ![](./LAB3/html/lab3_04.png)
 
 ## Questão 5{#5}
 
@@ -1314,7 +1306,7 @@ Diagrama de blocos que simula a dinâmica de um metrónomo básico
 open_system('Q5')
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_05.png)
+![](./LAB3/html/lab3_05.png)
 
 De acordo com o modelo obtido na preparação teórica obtemos:
 
@@ -1363,7 +1355,7 @@ grid on
 title('Variação da Velocidade angular {d\theta(t)}/{dt} ')
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_06.png)
+![](./LAB3/html/lab3_06.png)
 
 Representação da evolução do ângulo e velocidade angular do sistema no
 espaço de estados:
@@ -1378,7 +1370,7 @@ ylabel('{d\theta }/{dt}    [rad/s]')
 grid on
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_07.png)
+![](./LAB3/html/lab3_07.png)
 
 Trata-se de um foco estável.
 
@@ -1400,7 +1392,7 @@ modelo de estado pré-definido é:
 open_system('Q6')
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_08.png)
+![](./LAB3/html/lab3_08.png)
 
 As matrizes A e B foram obtidas na resolução teorica.
 
@@ -1446,7 +1438,7 @@ for p=1:2
 end
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_09.png)
+![](./LAB3/html/lab3_09.png)
 
 Representação grafica da evolução do sistema no plano de estado para
 ![\$\\enspace\$](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_eq09312057465371336284.png)
@@ -1474,7 +1466,7 @@ for p=1:2
 end
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_10.png)
+![](./LAB3/html/lab3_10.png)
 
 Representação grafica da evolução do sistema no plano de estado para
 ![\$\\enspace\$](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_eq09312057465371336284.png)
@@ -1581,7 +1573,7 @@ Matriz Diagonal dos Valores Próprios de A:
          0  -20.4396
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_11.png) ![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_12.png) ![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_13.png)
+![](./LAB3/html/lab3_11.png) ![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_12.png) ![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_13.png)
 
 Quando ![\$\\enspace\$](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_eq09312057465371336284.png)
 ![\${\\beta}\$](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_eq15374479647996296208.png)=0, os valores próprios
@@ -1633,7 +1625,7 @@ title(['Evolução do sistema no plano de estado com trajectorias rectílineas p
 Warning: Image is too big to fit on screen; displaying at 67% 
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_14.png) ![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_15.png)
+![](./LAB3/html/lab3_14.png) ![](./LAB3/html/lab3_15.png)
 
 ## Questão 9{#22}
 
@@ -1672,7 +1664,7 @@ contour(m_temp,l_temp,wa,'ShowText','on');
 xlabel('massa(m)'); ylabel('Distancia da massa(l)'); colorbar;
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_16.png)
+![](./LAB3/html/lab3_16.png)
 
 Temos wa=2\*pi\*f; bpm = f\*60\*2; logo obtemos:
 
@@ -1739,7 +1731,7 @@ Posição da massa para 76 BPM: l=0.17414
 Posição da massa para 124 BPM: l=0.10517
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_17.png)
+![](./LAB3/html/lab3_17.png)
 
 Concluimos que com m=0.09kg, se verifica:
 
@@ -1820,7 +1812,7 @@ Frequência angular para76 BPM =3.3321rad/s
 Frequência angular para124 BPM =6.244rad/s
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_18.png)
+![](./LAB3/html/lab3_18.png)
 
 Através da análise dos gráficos, é possível concluir que o ângulo
 apresenta variações de acordo com o esperado para ambas as frequências
@@ -1836,7 +1828,7 @@ da questão 9.
 open_system('Q10');
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_19.png)
+![](./LAB3/html/lab3_19.png)
 
 Usamos agora o dimensionamento da questão anterior:
 
@@ -1908,7 +1900,7 @@ Frequência angular para76 BPM =4.0473rad/s
 Frequência angular para124 BPM =6.6695rad/s
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_20.png)
+![](./LAB3/html/lab3_20.png)
 
 Conforme era esperado as frequências angulares são um pouco diferentes
 comparadas com a simulação considerando um modelo linear.
@@ -2039,7 +2031,7 @@ Frequência angular para76 BPM =4.0472rad/s
 Frequência angular para124 BPM =6.386rad/s
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_21.png)
+![](./LAB3/html/lab3_21.png)
 
 A forma utilizada para refinar o dimensionamento das distancias l,
 parecem adequadas, uma vez que, as novas posiçoes da massa m permitem
@@ -2055,7 +2047,7 @@ para zero da amplitude das oscilações.
 open_system('Q11');
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_22.png)
+![](./LAB3/html/lab3_22.png)
 
 Neste diagrama realiza-se a deteção das passagens por zero do ângulo
 teta e aplica um impulso positivo na entrada nas transições
@@ -2112,14 +2104,14 @@ Frequência angular para4.6012 BPM =76rad/s para a distancia l=0.17414
 Frequência angular para6.988 BPM =124rad/s para a distancia l=0.11207
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_23.png) ![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_24.png) ![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_25.png) ![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB3/html/lab3_26.png)
+![](./LAB3/html/lab3_23.png) ![](./LAB3/html/lab3_24.png) ![](./LAB3/html/lab3_25.png) ![](./LAB3/html/lab3_26.png)
 
 Os valores das frequências de oscilação nas condições dimensionadas
 sofrem um pequeno aumento na presença do mecanismo de relojoaria. O que
 permite concluir que a presença deste mecanismo afecta um pouco a
 frequência de oscilação.
 
-# Trabalho de Laboratório nº4 - Detecção de Hotspots Wifi
+# Detecção de Hotspots Wifi
 
 ```{.language-matlab}
 Autor: Diogo Vilar Sardinha
@@ -2315,7 +2307,7 @@ title(strcat('Distribuição de Equilíbrio da cadeia de Markov'));
 grid on
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB4/html/lab4_01.png)
+![](./LAB4/html/lab4_01.png)
 
 Grafo de comunicação entre agentes:
 
@@ -2324,7 +2316,7 @@ MarkovChainDraw(count)
 count=count+1;
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB4/html/lab4_02.png)
+![](./LAB4/html/lab4_02.png)
 
 Observando a Distribuiçao de Equilíbrio Estacionária da Cadeia de
 Markov, concluímos, que os estados variam em probabilidade de equilíbrio
@@ -2407,7 +2399,7 @@ end
 Erro:5.0814
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB4/html/lab4_03.png)
+![](./LAB4/html/lab4_03.png)
 
 ## Questão 2.c){#9}
 
@@ -2467,7 +2459,7 @@ end
 % distribuição de equilíbrio da cadeia de markov anteriormente calculada.
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB4/html/lab4_04.png) ![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB4/html/lab4_05.png) ![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB4/html/lab4_06.png)
+![](./LAB4/html/lab4_04.png) ![](./LAB4/html/lab4_05.png) ![](./LAB4/html/lab4_06.png)
 
 ## Questão 2.d){#10}
 
@@ -2551,5 +2543,5 @@ grid on
 % deteccção da fonte.
 ```
 
-![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB4/html/lab4_07.png) ![](D:/OneDrive/Work/EE/Modelling_&_Simulation_&_Automatic_Control/projects/LAB4/html/lab4_08.png)
+![](./LAB4/html/lab4_07.png) ![](./LAB4/html/lab4_08.png)
 
