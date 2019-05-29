@@ -1,0 +1,1281 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Trabalho de Laborat&oacute;rio n&ordm;3 - Din&acirc;mica de um metr&oacute;nomo b&aacute;sico</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-05-29"><meta name="DC.source" content="lab3.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Trabalho de Laborat&oacute;rio n&ordm;3 - Din&acirc;mica de um metr&oacute;nomo b&aacute;sico</h1><!--introduction--><pre class="language-matlab">Autor: Diogo Vilar <span class="string">Sardinha</span>
+</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Quest&atilde;o 5</a></li><li><a href="#8">Quest&atilde;o 6</a></li><li><a href="#12">Quest&atilde;o 7</a></li><li><a href="#17">Quest&atilde;o 8</a></li><li><a href="#19">Quest&atilde;o 9</a></li><li><a href="#26">Quest&atilde;o 10</a></li><li><a href="#32">Quest&atilde;o 11</a></li><li><a href="#36">Quest&atilde;o 12</a></li></ul></div><pre class="codeinput">close <span class="string">all</span>;
+clear;
+n=1;
+<span class="comment">% inicializa&ccedil;&atilde;o do contador para as figuras</span>
+</pre><h2>Quest&atilde;o 5<a name="2"></a></h2><p>Diagrama de blocos que simula a din&acirc;mica de um metr&oacute;nomo b&aacute;sico</p><pre class="codeinput">open_system(<span class="string">'Q5'</span>)
+</pre><img vspace="5" hspace="5" src="lab3_01.png" alt=""> <p>De acordo com o modelo obtido na prepara&ccedil;&atilde;o te&oacute;rica obtemos:</p><pre class="codeinput"><span class="comment">% Dados do enunciado:</span>
+L=0.5;      <span class="comment">% comprimento da haste</span>
+M=0.15;     <span class="comment">% peso da haste</span>
+l=0.4;      <span class="comment">% Distancia a que est&aacute; a massa da origem</span>
+m=0.2;      <span class="comment">% peso da massa</span>
+k=3;        <span class="comment">% constante da mola</span>
+beta=0.1;   <span class="comment">% coeficiente de atrito</span>
+g=9.8;      <span class="comment">% acelera&ccedil;&atilde;o da gravidade</span>
+
+<span class="comment">% Condi&ccedil;&otilde;es Inicias:</span>
+teta0 = 0;  <span class="comment">% &acirc;ngulo inicial</span>
+v0 = pi/4 ; <span class="comment">% velocidade angular inicial</span>
+
+<span class="comment">% Valores do ganhos da retroac&ccedil;&atilde;o da velocidade angular e do &acirc;ngulo como</span>
+<span class="comment">% &eacute; representado no diagrama de blocos:</span>
+cte1 = (beta) / ( ((M*(L^2))/3) + m*(l^2) );
+cte2 = ( m*g*l + (M*g*L/2) -k ) / ( ((M*(L^2))/3) + m*(l^2) );
+
+U=0; <span class="comment">% Bin&aacute;rio aplicado</span>
+
+sim(<span class="string">'Q5'</span>,7)
+</pre><p>Representa&ccedil;&atilde;o da evolu&ccedil;&atilde;o do &acirc;ngulo e velocidade angular do sistema ao longo do tempo:</p><pre class="codeinput">figure(n)
+n=n+1;
+hold <span class="string">all</span>;
+subplot(2,1,1)
+plot(t,teta)
+xlabel(<span class="string">'Tempo [s]'</span>)
+ylabel(<span class="string">'{\theta}   [rad]'</span>)
+grid <span class="string">on</span>
+title(<span class="string">'Varia&ccedil;&atilde;o da Posi&ccedil;&atilde;o angular {\theta(t)}'</span>)
+subplot(2,1,2)
+plot(t,v)
+xlabel(<span class="string">'Tempo [s]'</span>)
+ylabel(<span class="string">' {d\theta }/{dt}   [rad/s]'</span>)
+grid <span class="string">on</span>
+title(<span class="string">'Varia&ccedil;&atilde;o da Velocidade angular {d\theta(t)}/{dt} '</span>)
+</pre><img vspace="5" hspace="5" src="lab3_02.png" alt=""> <p>Representa&ccedil;&atilde;o da evolu&ccedil;&atilde;o do &acirc;ngulo e velocidade angular do sistema no espa&ccedil;o de estados:</p><pre class="codeinput">figure(n)
+n=n+1;
+plot(teta,v)
+title(<span class="string">'Representa&ccedil;&atilde;o das vari&aacute;veis de estado no espa&ccedil;o de estados'</span>)
+xlabel(<span class="string">'{\theta}   [rad]'</span>)
+ylabel(<span class="string">'{d\theta }/{dt}    [rad/s]'</span>)
+grid <span class="string">on</span>
+</pre><img vspace="5" hspace="5" src="lab3_03.png" alt=""> <p>Trata-se de um foco est&aacute;vel.</p><h2>Quest&atilde;o 6<a name="8"></a></h2><pre class="codeinput">J = ((M*(L^2))/3) + m*(l^2); <span class="comment">% Momento de in&eacute;rcia</span>
+A = [0 1;(m*g*l+(M*g*L/2)-k)/(((M*(L^2))/3)+m*(l^2)) -beta/J];
+B = [0 1]';
+C = [1 0;0 1];
+D = [0 0]';
+x0 = [0 pi/4]';
+</pre><p>O diagrama de Simulink que simula o sistema recorrendo a um bloco de modelo de estado pr&eacute;-definido &eacute;:</p><pre class="codeinput">open_system(<span class="string">'Q6'</span>)
+</pre><img vspace="5" hspace="5" src="lab3_04.png" alt=""> <p>As matrizes A e B foram obtidas na resolu&ccedil;&atilde;o teorica.</p><p>Para efeitos de simula&ccedil;&atilde;o, a matriz C &eacute; definida por C=[1 0;0 1]. Desta forma a sa&iacute;da Y &eacute; uma matriz que cont&eacute;m as vari&aacute;veis de estado (posi&ccedil;&atilde;o e velocidade angular).</p><p>A matriz D &eacute; uma matriz nula.</p><h2>Quest&atilde;o 7<a name="12"></a></h2><p>Representa&ccedil;&atilde;o grafica da resposta no tempo para <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=0 e <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=1.</p><pre class="codeinput">beta_aux=[0 1];
+figure(n)
+fig = figure(n);
+set(fig, <span class="string">'Position'</span>, [0, 0, 900, 500])  <span class="comment">% x, y, largura e comprimento da figura</span>
+n=n+1;
+hold <span class="string">all</span>;
+<span class="keyword">for</span> p=1:2
+    beta=beta_aux(p);
+    A = [0 1;(m*g*l+(M*g*L/2)-k)/(((M*(L^2))/3)+m*(l^2)) -beta/J];
+    sim(<span class="string">'Q6'</span>,4)
+
+    subplot(2,2,p)
+    plot(t,Y(:,1)) <span class="comment">% Y(todas as linahs, coluna 1)</span>
+    title([<span class="string">'Respostas no tempo da Posi&ccedil;&atilde;o angular {\theta(t)} para {\beta}='</span>,num2str(beta)])
+    xlabel(<span class="string">'Tempo [s]'</span>)
+    ylabel(<span class="string">'{\theta}  [rad]'</span>)
+    grid <span class="string">on</span>
+
+    subplot(2,2,p+2)
+    plot(t,Y(:,2)) <span class="comment">% Y(todas as linahs, coluna 2)</span>
+    title([<span class="string">'Respostas no tempo da velocidade angular para {\beta}='</span>,num2str(beta)])
+    xlabel(<span class="string">'Tempo [s]'</span>)
+    ylabel(<span class="string">'{d\theta }/{dt}  [rad/s]'</span>)
+    grid <span class="string">on</span>
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="lab3_05.png" alt=""> <p>Representa&ccedil;&atilde;o grafica da evolu&ccedil;&atilde;o do sistema no plano de estado para <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=0 e <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=1.</p><pre class="codeinput">beta_aux=[0 1];
+figure(n)
+fig = figure(n);
+set(fig, <span class="string">'Position'</span>, [0, 0, 900, 350])  <span class="comment">% x, y, largura e comprimento da figura</span>
+n=n+1;
+hold <span class="string">all</span>;
+<span class="keyword">for</span> p=1:2
+    beta=beta_aux(p);
+    A = [0 1;(m*g*l+(M*g*L/2)-k)/(((M*(L^2))/3)+m*(l^2)) -beta/J];
+    sim(<span class="string">'Q6'</span>,4)
+    subplot(1,2,p)
+    plot(Y(:,1),Y(:,2))
+    title([<span class="string">'Evolu&ccedil;&atilde;o do sistema no plano de estado para {\beta}='</span>,num2str(beta)])
+    xlabel(<span class="string">'{\theta}   [rad]'</span>)
+    ylabel(<span class="string">'{d\theta }/{dt}    [rad/s]'</span>)
+    grid <span class="string">on</span>
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="lab3_06.png" alt=""> <p>Representa&ccedil;&atilde;o grafica da evolu&ccedil;&atilde;o do sistema no plano de estado para <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=0 e <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=1 considerando v&aacute;rias condi&ccedil;&otilde;es in&iacute;ciais.</p><pre class="codeinput">p=20; <span class="comment">%numero de condi&ccedil;&otilde;es iniciais a testar</span>
+col1= linspace(-pi,pi,p); <span class="comment">% intervalo de posi&ccedil;&otilde;es angulares iniciais a testar</span>
+col2= linspace(-2*pi,2*pi,p); <span class="comment">%intervalo de velocidades nagulares iniciais a testar</span>
+x0= [col1; col2]; <span class="comment">%inicializa&ccedil;&atilde;o de x0</span>
+x0_aux =  transpose(x0);
+aux = size(x0_aux); <span class="comment">%aux guarda o numero de colunas e numero de linhas</span>
+p_aux = aux(1); <span class="comment">%p_aux guarda o n&uacute;mero de linhas</span>
+
+<span class="keyword">for</span> beta=[0 0.1 1]
+    figure(n)
+    fig = figure(n);
+    set(fig, <span class="string">'Position'</span>, [0, 0, 1200, 500])  <span class="comment">% x, y, largura e comprimento da figura</span>
+    n=n+1;
+    hold <span class="string">all</span>;
+    <span class="keyword">for</span> p=1:p_aux
+        A = [0 1;(m*g*l+(M*g*L/2)-k)/(((M*(L^2))/3)+m*(l^2)) -beta/J];
+        x0=x0_aux(p,:);
+        sim(<span class="string">'Q6'</span>,4)
+        plot(Y(:,1),Y(:,2),<span class="string">'DisplayName'</span>,[<span class="string">'[{\theta} , {d\theta }/{dt}] = '</span>, num2str(x0) ])
+    <span class="keyword">end</span>
+    xlabel(<span class="string">'{\theta}   [rad]'</span>)
+    ylabel(<span class="string">'{d\theta }/{dt}    [rad/s]'</span>)
+    grid <span class="string">on</span>
+    title([<span class="string">'Evolu&ccedil;&atilde;o do sistema no plano de estado para {\beta}='</span>,num2str(beta)])
+    legend(<span class="string">'show'</span>)
+    <span class="comment">%Inicializa&ccedil;&atilde;o das matrizes que guardam as componentes horizontais e</span>
+    <span class="comment">%verticais que constituem cada vector do campo vectorial:</span>
+    cx= zeros(p_aux,p_aux); <span class="comment">%componente em x</span>
+    cy= zeros(p_aux,p_aux); <span class="comment">%componente em y</span>
+    Max = max(Y);
+    mini = min(Y);
+    <span class="comment">%intervalos de pontos na horizontal do campo vectorial</span>
+    xx = col1;
+    <span class="comment">%intervalos de pontos na vertical do campo vectorial:</span>
+    <span class="keyword">if</span> abs(Max(2))&lt;=abs(mini(2))
+        yy = linspace(-mini(2),mini(2),p);
+    <span class="keyword">end</span>
+    <span class="keyword">if</span> abs(Max(2))&gt;=abs(mini(2))
+        yy = linspace(-Max(2),Max(2),p);
+    <span class="keyword">end</span>
+    <span class="comment">% Cria&ccedil;&atilde;o da matriz que contem as componetes horizontais e</span>
+    <span class="comment">% verticais de cada vector do campo vectorial:</span>
+    <span class="keyword">for</span> i=1:p
+        <span class="keyword">for</span> j=1:p
+            aux1=A*[xx(i);yy(j)];
+            cx(j,i)=aux1(1);
+            cy(j,i)=aux1(2);
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+    quiver(xx,yy,cx,cy)
+    <span class="comment">%V ectores e valores pr&oacute;prios da matriz A:</span>
+    [eigenvectors,eigenvalues] = eig(A,<span class="string">'matrix'</span>);
+    disp(<span class="string">' '</span>);
+    disp(strcat(<span class="string">'Para beta = '</span>,num2str(beta),<span class="string">':'</span>));
+    disp(<span class="string">' '</span>);
+    disp(<span class="string">'Matriz Modal cujas colunas s&atilde;o os Vectores Pr&oacute;prios de A:'</span>);
+    disp(eigenvectors);
+    disp(<span class="string">'Matriz Diagonal dos Valores Pr&oacute;prios de A:'</span>);
+    disp(eigenvalues);
+<span class="keyword">end</span>
+</pre><pre class="codeoutput"> 
+Para beta =0:
+ 
+Matriz Modal cujas colunas s&atilde;o os Vectores Pr&oacute;prios de A:
+   0.0000 - 0.1533i   0.0000 + 0.1533i
+   0.9882 + 0.0000i   0.9882 + 0.0000i
+
+Matriz Diagonal dos Valores Pr&oacute;prios de A:
+   0.0000 + 6.4451i   0.0000 + 0.0000i
+   0.0000 + 0.0000i   0.0000 - 6.4451i
+
+ 
+Para beta =0.1:
+ 
+Matriz Modal cujas colunas s&atilde;o os Vectores Pr&oacute;prios de A:
+  -0.0267 - 0.1510i  -0.0267 + 0.1510i
+   0.9882 + 0.0000i   0.9882 + 0.0000i
+
+Matriz Diagonal dos Valores Pr&oacute;prios de A:
+  -1.1236 + 6.3464i   0.0000 + 0.0000i
+   0.0000 + 0.0000i  -1.1236 - 6.3464i
+
+ 
+Para beta =1:
+ 
+Matriz Modal cujas colunas s&atilde;o os Vectores Pr&oacute;prios de A:
+    0.4415   -0.0489
+   -0.8973    0.9988
+
+Matriz Diagonal dos Valores Pr&oacute;prios de A:
+   -2.0323         0
+         0  -20.4396
+
+</pre><img vspace="5" hspace="5" src="lab3_07.png" alt=""> <img vspace="5" hspace="5" src="lab3_08.png" alt=""> <img vspace="5" hspace="5" src="lab3_09.png" alt=""> <p>Quando <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=0, os valores pr&oacute;prios s&atilde;o puramente imagin&aacute;rios, o que origina uma resposta oscilat&oacute;ria constante, representada por uma circunfer&ecirc;ncia no plano de estado.</p><p>Quando <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=0.1, os valores pr&oacute;prios s&atilde;o complexos com parte real negativa, o que resulta numa resposta oscilat&oacute;ria a tender para a origem.</p><p>Quando <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=1, os valores pr&oacute;prios s&atilde;o reais e negativos, o que origina uma resposta com forma exponecial a tender para zero sem oscila&ccedil;&atilde;o.</p><h2>Quest&atilde;o 8<a name="17"></a></h2><p>Representa&ccedil;&atilde;o da evolu&ccedil;&atilde;o no plano de estados de duas trajectorias rectilineas com <img src="lab3_eq09312057465371336284.png" alt="$\enspace$"> <img src="lab3_eq15374479647996296208.png" alt="${\beta}$">=1.</p><p>Se a condi&ccedil;&atilde;o inicial x0 for um m&uacute;ltiplo escalar de um dos vectores pr&oacute;prios v1 ou v2, a evolu&ccedil;&atilde;o da trajectoria nos espa&ccedil;o de estados &eacute; rect&iacute;l&iacute;nea.</p><pre class="codeinput">figure(n)
+n=n+1;
+hold <span class="string">all</span>;
+<span class="keyword">for</span> i=1:2
+    x0=3*eigenvectors(:,i);
+    sim(<span class="string">'Q6'</span>,6)
+    plot(Y(:,1),Y(:,2))
+<span class="keyword">end</span>
+legend(<span class="string">'x0 = 3*v1'</span>,<span class="string">'x0 = 3*v2'</span>)
+xlabel(<span class="string">'{\theta}   [rad]'</span>)
+ylabel(<span class="string">'{d\theta }/{dt}    [rad/s]'</span>)
+grid <span class="string">on</span>
+title([<span class="string">'Evolu&ccedil;&atilde;o do sistema no plano de estado com trajectorias rect&iacute;lineas para {\beta}='</span>,num2str(beta)])
+</pre><img vspace="5" hspace="5" src="lab3_10.png" alt=""> <h2>Quest&atilde;o 9<a name="19"></a></h2><p>Estimar os parametros l e m da massa na haste do metronomo</p><pre class="codeinput">L = 0.25; <span class="comment">%Comprimento da haste</span>
+M = 0.1; <span class="comment">%Peso da haste</span>
+k = 0.35; <span class="comment">%Constante da mola</span>
+beta = 0.001; <span class="comment">%Coeficiente de atrito</span>
+g = 9.8; <span class="comment">%Acelera&ccedil;&atilde;o da gravidade</span>
+U=0; <span class="comment">%bin&aacute;rio aplicado &eacute; nulo</span>
+x0=[pi/10 pi]';
+
+p=30; <span class="comment">%numero de condi&ccedil;&otilde;es iniciais a testar</span>
+m_temp = linspace(0,0.2,p);
+l_temp = linspace(0.05,L,p);
+wa=zeros(p,p);
+
+<span class="keyword">for</span> i=1:p
+    <span class="keyword">for</span> j=1:p
+        m = m_temp(i);
+        l = l_temp(j);
+        J = ((M*(L^2))/3) + m*(l^2); <span class="comment">% Momento de in&eacute;rcia</span>
+        cte= m*g*l+M*g*L/2;
+        wn = sqrt((k-cte)/J);
+        qsi = beta/(2*J*sqrt((k-cte)/J));
+        aux  = wn*sqrt(1-power(qsi,2));
+        wa(i,j) = abs(aux);
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+figure(n);
+n = n+1;
+contour(m_temp,l_temp,wa,<span class="string">'ShowText'</span>,<span class="string">'on'</span>);
+xlabel(<span class="string">'massa(m)'</span>); ylabel(<span class="string">'Distancia da massa(l)'</span>); colorbar;
+</pre><img vspace="5" hspace="5" src="lab3_11.png" alt=""> <p>Temos wa=2*pi*f; bpm = f*60*2; logo obtemos:</p><pre class="codeinput">wa_50 = ((2*pi)*50)/120;  <span class="comment">% frequ&ecirc;ncia para 50bpm</span>
+wa_150 = ((2*pi)*150)/120; <span class="comment">% frequ&ecirc;ncia para 150bpm</span>
+wa_76 = ((2*pi)*76)/120;   <span class="comment">% frequ&ecirc;ncia para 76bpm</span>
+wa_124 = ((2*pi)*124)/120; <span class="comment">% frequ&ecirc;ncia para 124bpm</span>
+</pre><p>150BPM equivale a uma velocidade angular de 5pi/2 rad/s ~ 7.854 rad/s</p><p>50 BPM equivale a uma velocidade angular de pi/4 rad/s ~ 0.785 rad/s</p><p>124BPM equivale a uma velocidade angular de ~ 6.4926 rad/s</p><p>76 BPM equivale a uma velocidade angular de ~ 3.9794 rad/s</p><p>Analisando as curvas de nivel do gr&aacute;fico para diferentes frequencias podemos dizer que m=0.09 &eacute; um valor aceitavel para a massa m.</p><p>Utilizando este valor para a massa podemos determinar dois valores para a a distancia l (l&gt;= 0.05) a que se encontra a massa, que permitam obter no metr&oacute;nomo as velocidades angulares correspondentes a 50 BPM (lento), 150 BPM (allegro), 76 BPM e 124bpm.</p><pre class="codeinput">m=0.09;
+<span class="keyword">for</span> i=1:p
+    l = l_temp(i);
+    J = ((M*(L^2))/3) + m*(l^2); <span class="comment">% Momento de in&eacute;rcia</span>
+    cte= m*g*l+M*g*L/2;
+    wn = sqrt((k-cte)/J);
+    qsi = beta/(2*J*sqrt((k-cte)/J));
+    aux  = wn*sqrt(1-power(qsi,2));
+    wa_new(i) = abs(aux);
+<span class="keyword">end</span>
+
+figure(n);
+n = n+1;
+plot(l_temp,wa_new)
+ylabel(<span class="string">'Velocidade angular (wa) (rad/s)'</span>);
+xlabel(<span class="string">'Distancia da massa (l)'</span>);
+grid <span class="string">on</span>;
+
+<span class="comment">%C&aacute;lculo do comprimento da posi&ccedil;&atilde;o da massa para a cad&ecirc;ncia de 50 BMP</span>
+[m1,ind1] = min(abs(wa_50-wa_new));
+disp(strcat(<span class="string">'Posi&ccedil;&atilde;o da massa para 50 BPM: l= '</span>, num2str(l_temp(ind1))));
+<span class="comment">%C&aacute;lculo do comprimento da posi&ccedil;&atilde;o da massa para a cad&ecirc;ncia de 150 BPM</span>
+[m2,ind2] = min(abs(wa_150-wa_new));
+disp(strcat(<span class="string">'Posi&ccedil;&atilde;o da massa para 150 BPM: l= '</span>, num2str(l_temp(ind2))));
+<span class="comment">%C&aacute;lculo do comprimento da posi&ccedil;&atilde;o da massa para a cad&ecirc;ncia de 76 BMP</span>
+[m3,ind3] = min(abs(wa_76-wa_new));
+disp(strcat(<span class="string">'Posi&ccedil;&atilde;o da massa para 76 BPM: l= '</span>, num2str(l_temp(ind3))));
+<span class="comment">%C&aacute;lculo do comprimento da posi&ccedil;&atilde;o da massa para a cad&ecirc;ncia de 124 BPM</span>
+[m4,ind4] = min(abs(wa_124-wa_new));
+disp(strcat(<span class="string">'Posi&ccedil;&atilde;o da massa para 124 BPM: l= '</span>, num2str(l_temp(ind4))));
+</pre><pre class="codeoutput">Posi&ccedil;&atilde;o da massa para 50 BPM: l=0.20862
+Posi&ccedil;&atilde;o da massa para 150 BPM: l=0.077586
+Posi&ccedil;&atilde;o da massa para 76 BPM: l=0.17414
+Posi&ccedil;&atilde;o da massa para 124 BPM: l=0.10517
+</pre><img vspace="5" hspace="5" src="lab3_12.png" alt=""> <p>Concluimos que com m=0.09kg, se verifica:</p><p>Para 150 BPM : l=0.077586.</p><p>Para 50 BPM : l=0.20862.</p><p>Para 124 BPM : l=0.10517.</p><p>Para 76 BPM : l=0.17414.</p><p>Realizando a simula&ccedil;&atilde;o vamos sobrepor graficamente a evolu&ccedil;&atilde;o da oscila&ccedil;&atilde;o da posi&ccedil;&atilde;o angular e a envolvente teorica e determinar a frequencia de oscila&ccedil;&atilde;o empirica para cada uma das situa&ccedil;&otilde;es</p><pre class="codeinput">U=0; <span class="comment">% bin&aacute;rio aplicado &eacute; nulo</span>
+m = 0.1;
+bpm = [50 150 76 124];
+x0 = [pi/4 0]';
+aux = 1; <span class="comment">% contador auxiliar para o ciclo for</span>
+
+figure(n);
+fig = figure(n);
+set(fig, <span class="string">'Position'</span>, [0, 0, 900, 500])  <span class="comment">% x, y, largura e comprimento da figura</span>
+n = n+1;
+<span class="keyword">for</span> l=[l_temp(ind1) l_temp(ind2) l_temp(ind3) l_temp(ind4)]
+    J = ((M*(L^2))/3) + m*(l^2); <span class="comment">% Momento de in&eacute;rcia</span>
+    cte= m*g*l+M*g*L/2;
+    wn = sqrt((k-cte)/J);
+    qsi = beta/(2*J*sqrt((k-cte)/J));
+    A = [0 1;(m*g*l+(M*g*L/2)-k)/(((M*(L^2))/3)+m*(l^2)) -beta/J];
+    B = [0 1]';
+    sim(<span class="string">'Q6'</span>, 20);
+    tau = exp(-qsi*wn*t); <span class="comment">% constantes de tempo de decaimento</span>
+    subplot(2,2,aux)
+    hold <span class="string">all</span>;
+    plot(t,Y(:,1));
+    <span class="comment">% Representar os decaimentos superior e inferior:</span>
+    plot(t, tau);
+    plot(t, -tau);
+    xlabel(<span class="string">'Tempo (s)'</span>);
+    ylabel(<span class="string">'{\theta}   [rad]'</span>)
+    title(strcat(<span class="string">'Varia&ccedil;&atilde;o de {\theta} para '</span>,num2str(bpm(aux)),<span class="string">' BPM'</span>));
+    grid <span class="string">on</span>;
+    <span class="comment">% Determina&ccedil;&atilde;o dos valores dos picos e os seus &iacute;ndices de forma a</span>
+    <span class="comment">% determinar os instantes em que ocorrem:</span>
+    [picos, loc] = findpeaks(Y(:,1));
+    t_picos = zeros(1,length(loc));
+    <span class="comment">% frequencia de oscila&ccedil;&atilde;o entre dois picos:</span>
+    wa_e = zeros(1,length(t_picos)-1);
+    <span class="comment">% inicializa&ccedil;&atilde;o da variavel que guarda a soma das frequencias de</span>
+    <span class="comment">% oscila&ccedil;&atilde;o entre cada par de picos:</span>
+    soma_wa = 0;
+    <span class="comment">% Instantes de tempo em que se encontram os picos:</span>
+    <span class="keyword">for</span> i = 1:length(t_picos)
+        t_picos(i) = t(loc(i));
+    <span class="keyword">end</span>
+    <span class="comment">% calacular a frequencia em cada intervalo de tempo (t_picos(i+1) - t_picos(i))</span>
+    <span class="keyword">for</span> i = 1:length(wa_e)
+        <span class="comment">% sabendo que : wa = 2*pi*f = (2*pi)/(tempo):</span>
+        wa_e(i) = (2*pi) ./ (t_picos(i+1) - t_picos(i));
+        <span class="comment">% Somar as frequenciasobtidas em cada intervalo de tempo:</span>
+        soma_wa = soma_wa + wa_e(i);
+    <span class="keyword">end</span>
+    <span class="comment">% Por fim realizar a media das frequencias todas calculadas e</span>
+    <span class="comment">% determinar a frequencia de oscila&ccedil;&atilde;o empirica:</span>
+    media = soma_wa/length(wa_e);
+    disp(strcat(<span class="string">'Frequ&ecirc;ncia angular para '</span>,num2str(bpm(aux)),<span class="string">' BPM = '</span>,num2str(media),<span class="string">'rad/s '</span> ));
+    aux = aux+1;
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">Frequ&ecirc;ncia angular para50 BPM =1.891rad/s
+Frequ&ecirc;ncia angular para150 BPM =7.508rad/s
+Frequ&ecirc;ncia angular para76 BPM =3.3321rad/s
+Frequ&ecirc;ncia angular para124 BPM =6.244rad/s
+</pre><img vspace="5" hspace="5" src="lab3_13.png" alt=""> <p>Atrav&eacute;s da an&aacute;lise dos gr&aacute;ficos, &eacute; poss&iacute;vel concluir que o &acirc;ngulo apresenta varia&ccedil;&otilde;es de acordo com o esperado para ambas as frequ&ecirc;ncias embora com uma pequena discrep&acirc;ncia entre a envolvente e a varia&ccedil;&atilde;o do &acirc;ngulo.</p><h2>Quest&atilde;o 10<a name="26"></a></h2><p>Simula&ccedil;&atilde;o para o modelo n&atilde;o linear do metronome cosiderando os valores da quest&atilde;o 9.</p><pre class="codeinput">open_system(<span class="string">'Q10'</span>);
+</pre><img vspace="5" hspace="5" src="lab3_14.png" alt=""> <p>Usamos agora o dimensionamento da quest&atilde;o anterior:</p><pre class="codeinput">m = 0.09;
+l_150 = 0.077586; <span class="comment">% comprimento l para 150 BPM</span>
+l_50 = 0.20862; <span class="comment">% comprimento l para 50 BPM</span>
+l_124 = 0.10517;<span class="comment">% comprimento l para 124 BPM</span>
+l_76 = 0.17414; <span class="comment">% comprimento l para 76 BPM</span>
+bpm = [50 150 76 124];
+aux = 1;<span class="comment">% contador auxiliar para o ciclo for</span>
+<span class="comment">% Bin&aacute;rio externo nulo:</span>
+U = 0;
+<span class="comment">% Condi&ccedil;&otilde;es Inicias:</span>
+teta0 = pi/4;  <span class="comment">% &acirc;ngulo inicial</span>
+v0 = 0 ; <span class="comment">% velocidade angular inicial</span>
+
+
+<span class="comment">% Simula&ccedil;&atilde;o do sistema n&atilde;o linear para o comprimento l correspondente aos</span>
+<span class="comment">% 150 BPM, 50 BPM, 74 BPM e 124 BPM:</span>
+figure(n);
+fig = figure(n);
+set(fig, <span class="string">'Position'</span>, [0, 0, 900, 500])  <span class="comment">% x, y, largura e comprimento da figura</span>
+n = n+1;
+
+<span class="keyword">for</span> l= [l_50 l_150 l_76 l_124]
+    cte3 = m*g*l + M*g*L/2;
+    cte4 = 1/(((M*(L^2))/3 + m*(l^2)));
+    sim(<span class="string">'Q10'</span>, 20);
+    subplot(2,2,aux)
+    plot(t,teta(:,1));
+    xlabel(<span class="string">'Tempo (s)'</span>);
+    ylabel(<span class="string">'{\theta}   [rad]'</span>)
+    title(strcat(<span class="string">'Varia&ccedil;&atilde;o de {\theta} para'</span>,num2str(bpm(aux)),<span class="string">' BPM no modelo n&atilde;o linear'</span>));
+    grid <span class="string">on</span>;
+    <span class="comment">% Determina&ccedil;&atilde;o dos valores dos picos e os seus &iacute;ndices de forma a</span>
+    <span class="comment">% determinar os instantes em que ocorrem:</span>
+    [picos, loc] = findpeaks(teta(:,1));
+    t_picos = zeros(1,length(loc));
+    <span class="comment">% wa_e &eacute; um vector em que cada indice guarda a frequencia de oscila&ccedil;&atilde;o</span>
+    <span class="comment">% entre dois picos:</span>
+    wa_e = zeros(1,length(t_picos)-1);
+    <span class="comment">% inicializa&ccedil;&atilde;o da variavel que guarda a soma das frequencias de</span>
+    <span class="comment">% oscila&ccedil;&atilde;o entre cada par de picos:</span>
+    soma_wa = 0;
+    <span class="comment">% Instantes de tempo em que se encontram os picos:</span>
+    <span class="keyword">for</span> i = 1:length(t_picos)
+        t_picos(i) = t(loc(i));
+    <span class="keyword">end</span>
+    <span class="comment">% calacular a frequencia em cada intervalo de tempo (t_picos(i+1) - t_picos(i))</span>
+    <span class="keyword">for</span> i = 1:length(wa_e)
+        <span class="comment">% sabendo que : wa = 2*pi*f = (2*pi)/(tempo):</span>
+        wa_e(i) = (2*pi) ./ (t_picos(i+1) - t_picos(i));
+        <span class="comment">% Somar as frequenciasobtidas em cada intervalo de tempo:</span>
+        soma_wa = soma_wa + wa_e(i);
+    <span class="keyword">end</span>
+    <span class="comment">% Por fim realizar a media das frequencias todas calculadas e</span>
+    <span class="comment">% determinar a frequencia de oscila&ccedil;&atilde;o empirica:</span>
+    media = soma_wa/length(wa_e);
+    disp(strcat(<span class="string">'Frequ&ecirc;ncia angular para '</span>, num2str(bpm(aux)),<span class="string">' BPM = '</span>, num2str(media),<span class="string">'rad/s '</span> ));
+    aux = aux+1;
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">Frequ&ecirc;ncia angular para50 BPM =2.8897rad/s
+Frequ&ecirc;ncia angular para150 BPM =7.8252rad/s
+Frequ&ecirc;ncia angular para76 BPM =4.0473rad/s
+Frequ&ecirc;ncia angular para124 BPM =6.6695rad/s
+</pre><img vspace="5" hspace="5" src="lab3_15.png" alt=""> <p>Conforme era esperado as frequ&ecirc;ncias angulares s&atilde;o um pouco diferentes comparadas com a simula&ccedil;&atilde;o considerando um modelo linear.</p><p>Uma forma de redimensionar as posi&ccedil;&otilde;es da massa m para que as cad&ecirc;ncias de oscila&ccedil;&atilde;o se aproximem mais dos valores pretendidos consiste em determinar o m&oacute;dulo da diferen&ccedil;a entre a frequ&ecirc;ncia pretendida e frequ&ecirc;ncia calculada com o sitema n&atilde;o linear.</p><pre class="codeinput"><span class="comment">%Vector que cont&eacute;m os comprimentos que se v&atilde;o obter</span>
+<span class="comment">% ln = zeros(1, 2);</span>
+<span class="comment">% aux = 1;</span>
+
+p=30; <span class="comment">%numero de condi&ccedil;&otilde;es iniciais a testar</span>
+ls = linspace(0.05,0.25,p);
+was = zeros(1,length(ls));
+aux = 1;<span class="comment">% contador auxiliar para o ciclo for</span>
+<span class="comment">% Inicializa&ccedil;&atilde;o do vector que vai guardar os l que optimizam as</span>
+<span class="comment">% frequanecias:</span>
+ls_opt= zeros(1,4);
+
+<span class="keyword">for</span> f = [2*pi*50/120 2*pi*150/120 2*pi*76/120 2*pi*124/120]
+
+    <span class="keyword">for</span> p = 1:length(ls)
+        l=ls(p);
+        cte3 = m*g*l + M*g*L/2;
+        cte4 = 1/(((M*(L^2))/3 + m*(l^2)));
+        sim(<span class="string">'Q10'</span>, 20);
+        <span class="comment">% Determina&ccedil;&atilde;o dos valores dos picos e os seus &iacute;ndices de forma a</span>
+        <span class="comment">% determinar os instantes em que ocorrem:</span>
+        [picos, loc] = findpeaks(teta(:,1));
+        t_picos = zeros(1,length(loc));
+        <span class="comment">% wa_e &eacute; um vector em que cada indice guarda a frequencia de oscila&ccedil;&atilde;o</span>
+        <span class="comment">% entre dois picos:</span>
+        wa_e = zeros(1,length(t_picos)-1);
+        <span class="comment">% inicializa&ccedil;&atilde;o da variavel que guarda a soma das frequencias de</span>
+        <span class="comment">% oscila&ccedil;&atilde;o entre cada par de picos:</span>
+        soma_wa = 0;
+        <span class="comment">% Instantes de tempo em que se encontram os picos:</span>
+        <span class="keyword">for</span> i = 1:length(t_picos)
+            t_picos(i) = t(loc(i));
+        <span class="keyword">end</span>
+        <span class="comment">% calacular a frequencia em cada intervalo de tempo (t_picos(i+1) - t_picos(i))</span>
+        <span class="keyword">for</span> i = 1:length(wa_e)
+            <span class="comment">% sabendo que : wa = 2*pi*f = (2*pi)/(tempo):</span>
+            wa_e(i) = (2*pi) ./ (t_picos(i+1) - t_picos(i));
+            <span class="comment">% Somar as frequenciasobtidas em cada intervalo de tempo:</span>
+            soma_wa = soma_wa + wa_e(i);
+        <span class="keyword">end</span>
+        <span class="comment">% Por fim realizar a media das frequencias todas calculadas e</span>
+        <span class="comment">% determinar a frequencia de oscila&ccedil;&atilde;o empirica:</span>
+        media = soma_wa/length(wa_e);
+        was(p)=abs(f - media);
+    <span class="keyword">end</span>
+    <span class="comment">% O m&iacute;nimo local obtido pela fun&ccedil;&atilde;o fminsearch &eacute;:</span>
+    [minimo,ind] = min(was);
+    disp(strcat(<span class="string">'Distancia l obtida para '</span>,num2str(bpm(aux)),<span class="string">' BPM = '</span>,num2str(ls(ind))));
+    ls_opt(aux)=ls(ind);
+    h = waitbar(aux/4, <span class="string">'A calcular... Est&aacute; quase...'</span>);
+    <span class="comment">% barra de loading a apresentar durante simula&ccedil;&atilde;o</span>
+    delete(h)
+    aux=aux+1;
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">Distancia l obtida para50 BPM =0.21552
+Distancia l obtida para150 BPM =0.077586
+Distancia l obtida para76 BPM =0.17414
+Distancia l obtida para124 BPM =0.11207
+</pre><p>Agora realizam-se de novo os c&aacute;lculos das frequ&ecirc;ncias angulares, utilizando os novos valores optimizados para l :</p><pre class="codeinput"><span class="comment">% Simula&ccedil;&atilde;o do sistema n&atilde;o linear para valores de comprimento l optimizados</span>
+figure(n);
+fig = figure(n);
+set(fig, <span class="string">'Position'</span>, [0, 0, 900, 500])  <span class="comment">% x, y, largura e comprimento da figura</span>
+n = n+1;
+aux=1;
+
+<span class="keyword">for</span> l= ls_opt
+    cte3 = m*g*l + M*g*L/2;
+    cte4 = 1/(((M*(L^2))/3 + m*(l^2)));
+    sim(<span class="string">'Q10'</span>, 20);
+    subplot(2,2,aux)
+    plot(t,teta(:,1));
+    xlabel(<span class="string">'Tempo (s)'</span>);
+    ylabel(<span class="string">'{\theta}   [rad]'</span>)
+    title(strcat(<span class="string">'Varia&ccedil;&atilde;o de {\theta} para'</span>,num2str(bpm(aux)),<span class="string">' BPM no modelo n&atilde;o linear'</span>));
+    grid <span class="string">on</span>;
+    <span class="comment">% Determina&ccedil;&atilde;o dos valores dos picos e os seus &iacute;ndices de forma a</span>
+    <span class="comment">% determinar os instantes em que ocorrem:</span>
+    [picos, loc] = findpeaks(teta(:,1));
+    t_picos = zeros(1,length(loc));
+    <span class="comment">% wa_e &eacute; um vector em que cada indice guarda a frequencia de oscila&ccedil;&atilde;o</span>
+    <span class="comment">% entre dois picos:</span>
+    wa_e = zeros(1,length(t_picos)-1);
+    <span class="comment">% inicializa&ccedil;&atilde;o da variavel que guarda a soma das frequencias de</span>
+    <span class="comment">% oscila&ccedil;&atilde;o entre cada par de picos:</span>
+    soma_wa = 0;
+    <span class="comment">% Instantes de tempo em que se encontram os picos:</span>
+    <span class="keyword">for</span> i = 1:length(t_picos)
+        t_picos(i) = t(loc(i));
+    <span class="keyword">end</span>
+    <span class="comment">% calacular a frequencia em cada intervalo de tempo (t_picos(i+1) - t_picos(i))</span>
+    <span class="keyword">for</span> i = 1:length(wa_e)
+        <span class="comment">% sabendo que : wa = 2*pi*f = (2*pi)/(tempo):</span>
+        wa_e(i) = (2*pi) ./ (t_picos(i+1) - t_picos(i));
+        <span class="comment">% Somar as frequenciasobtidas em cada intervalo de tempo:</span>
+        soma_wa = soma_wa + wa_e(i);
+    <span class="keyword">end</span>
+    <span class="comment">% Por fim realizar a media das frequencias todas calculadas e</span>
+    <span class="comment">% determinar a frequencia de oscila&ccedil;&atilde;o empirica:</span>
+    media = soma_wa/length(wa_e);
+    disp(strcat(<span class="string">'Frequ&ecirc;ncia angular para '</span>, num2str(bpm(aux)),<span class="string">' BPM = '</span>, num2str(media),<span class="string">'rad/s '</span> ));
+    aux = aux+1;
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">Frequ&ecirc;ncia angular para50 BPM =2.6724rad/s
+Frequ&ecirc;ncia angular para150 BPM =7.8252rad/s
+Frequ&ecirc;ncia angular para76 BPM =4.0472rad/s
+Frequ&ecirc;ncia angular para124 BPM =6.386rad/s
+</pre><img vspace="5" hspace="5" src="lab3_16.png" alt=""> <p>A forma utilizada para refinar o dimensionamento das distancias l, parecem adequadas, uma vez que, as novas posi&ccedil;oes da massa m permitem obter valores para as cadencias proximos dos valores desejados.</p><h2>Quest&atilde;o 11<a name="32"></a></h2><p>Simula&ccedil;&atilde;o de um mecanismo de relojoaria no metr&oacute;nomo que impulsiona o p&ecirc;ndulo quando este passa na vertical de modo a contrariar o decaimento para zero da amplitude das oscila&ccedil;&otilde;es.</p><pre class="codeinput">open_system(<span class="string">'Q11'</span>);
+</pre><img vspace="5" hspace="5" src="lab3_17.png" alt=""> <p>Neste diagrama realiza-se a dete&ccedil;&atilde;o das passagens por zero do &acirc;ngulo teta e aplica um impulso positivo na entrada nas transi&ccedil;&otilde;es negativo-&gt;positivo.</p><pre class="codeinput">aux=1;
+<span class="keyword">for</span> l= ls_opt
+    cte3 = m*g*l + M*g*L/2;
+    cte4 = 1/(((M*(L^2))/3 + m*(l^2)));
+    sim(<span class="string">'Q11'</span>, 20);
+    figure (n)
+    fig = figure(n);
+    set(fig, <span class="string">'Position'</span>, [0, 0, 900, 500])  <span class="comment">% x, y, largura e comprimento da figura</span>
+    n = n+1;
+    plot(t,teta,t,impulsos);
+    xlabel(<span class="string">'Tempo (s)'</span>);
+    ylabel(<span class="string">'{\theta}   [rad] | Impulsos T [Nm]'</span>)
+    title(strcat(<span class="string">' BPM = '</span>, num2str(bpm(aux)),<span class="string">' Varia&ccedil;&atilde;o de {\theta} do sistema dimensionado para l = '</span>,num2str(ls_opt(aux)),<span class="string">' com aplica&ccedil;&atilde;o de bin&aacute;rio externo'</span>));
+    grid <span class="string">on</span>;
+    <span class="comment">% Determina&ccedil;&atilde;o dos valores dos picos e os seus &iacute;ndices de forma a</span>
+    <span class="comment">% determinar os instantes em que ocorrem:</span>
+    [picos, loc] = findpeaks(teta(:,1));
+    t_picos = zeros(1,length(loc));
+    <span class="comment">% wa_e &eacute; um vector em que cada indice guarda a frequencia de oscila&ccedil;&atilde;o</span>
+    <span class="comment">% entre dois picos:</span>
+    wa_e = zeros(1,length(t_picos)-1);
+    <span class="comment">% inicializa&ccedil;&atilde;o da variavel que guarda a soma das frequencias de</span>
+    <span class="comment">% oscila&ccedil;&atilde;o entre cada par de picos:</span>
+    soma_wa = 0;
+    <span class="comment">% Instantes de tempo em que se encontram os picos:</span>
+    <span class="keyword">for</span> i = 1:length(t_picos)
+        t_picos(i) = t(loc(i));
+    <span class="keyword">end</span>
+    <span class="comment">% calacular a frequencia em cada intervalo de tempo (t_picos(i+1) - t_picos(i))</span>
+    <span class="keyword">for</span> i = 1:length(wa_e)
+        <span class="comment">% sabendo que : wa = 2*pi*f = (2*pi)/(tempo):</span>
+        wa_e(i) = (2*pi) ./ (t_picos(i+1) - t_picos(i));
+        <span class="comment">% Somar as frequenciasobtidas em cada intervalo de tempo:</span>
+        soma_wa = soma_wa + wa_e(i);
+    <span class="keyword">end</span>
+    <span class="comment">% Por fim realizar a media das frequencias todas calculadas e</span>
+    <span class="comment">% determinar a frequencia de oscila&ccedil;&atilde;o empirica:</span>
+    media = soma_wa/length(wa_e);
+    disp(strcat(<span class="string">'Frequ&ecirc;ncia angular para '</span>, num2str(media),<span class="string">' BPM = '</span>, num2str(bpm(aux)),<span class="string">'rad/s para a distancia l='</span>,num2str(ls_opt(aux)) ));
+    aux = aux+1;
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">Frequ&ecirc;ncia angular para3.3305 BPM =50rad/s para a distancia l=0.21552
+Frequ&ecirc;ncia angular para8.3049 BPM =150rad/s para a distancia l=0.077586
+Frequ&ecirc;ncia angular para4.6012 BPM =76rad/s para a distancia l=0.17414
+Frequ&ecirc;ncia angular para6.988 BPM =124rad/s para a distancia l=0.11207
+</pre><img vspace="5" hspace="5" src="lab3_18.png" alt=""> <img vspace="5" hspace="5" src="lab3_19.png" alt=""> <img vspace="5" hspace="5" src="lab3_20.png" alt=""> <img vspace="5" hspace="5" src="lab3_21.png" alt=""> <p>Os valores das frequ&ecirc;ncias de oscila&ccedil;&atilde;o nas condi&ccedil;&otilde;es dimensionadas sofrem um pequeno aumento na presen&ccedil;a do mecanismo de relojoaria. O que permite concluir que a presen&ccedil;a deste mecanismo afecta um pouco a frequ&ecirc;ncia de oscila&ccedil;&atilde;o.</p><h2>Quest&atilde;o 12<a name="36"></a></h2><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Trabalho de Laboratório nº3 - Dinâmica de um metrónomo básico
+% 
+%   Autor: Diogo Vilar Sardinha
+%  
+%%
+close all;
+clear;
+n=1;
+% inicialização do contador para as figuras
+
+%% Questão 5 
+%%
+% Diagrama de blocos que simula a dinâmica de um metrónomo básico
+open_system('Q5')
+%%
+% De acordo com o modelo obtido na preparação teórica obtemos:
+
+% Dados do enunciado:
+L=0.5;      % comprimento da haste
+M=0.15;     % peso da haste
+l=0.4;      % Distancia a que está a massa da origem
+m=0.2;      % peso da massa
+k=3;        % constante da mola
+beta=0.1;   % coeficiente de atrito
+g=9.8;      % aceleração da gravidade
+
+% Condições Inicias:
+teta0 = 0;  % ângulo inicial
+v0 = pi/4 ; % velocidade angular inicial
+
+% Valores do ganhos da retroacção da velocidade angular e do ângulo como
+% é representado no diagrama de blocos:
+cte1 = (beta) / ( ((M*(L^2))/3) + m*(l^2) );
+cte2 = ( m*g*l + (M*g*L/2) -k ) / ( ((M*(L^2))/3) + m*(l^2) );
+
+U=0; % Binário aplicado
+
+sim('Q5',7)
+
+%%
+% Representação da evolução do ângulo e velocidade angular do sistema ao 
+% longo do tempo:
+figure(n)
+n=n+1;
+hold all;
+subplot(2,1,1)
+plot(t,teta)
+xlabel('Tempo [s]')
+ylabel('{\theta}   [rad]')
+grid on
+title('Variação da Posição angular {\theta(t)}')
+subplot(2,1,2)
+plot(t,v)
+xlabel('Tempo [s]')
+ylabel(' {d\theta }/{dt}   [rad/s]')
+grid on
+title('Variação da Velocidade angular {d\theta(t)}/{dt} ')
+
+%%
+% Representação da evolução do ângulo e velocidade angular do sistema no
+% espaço de estados:
+figure(n)
+n=n+1;
+plot(teta,v)
+title('Representação das variáveis de estado no espaço de estados')
+xlabel('{\theta}   [rad]')
+ylabel('{d\theta }/{dt}    [rad/s]')
+grid on
+%%
+% Trata-se de um foco estável.
+
+%% Questão 6 
+%%
+
+J = ((M*(L^2))/3) + m*(l^2); % Momento de inércia
+A = [0 1;(m*g*l+(M*g*L/2)-k)/(((M*(L^2))/3)+m*(l^2)) -beta/J];
+B = [0 1]';
+C = [1 0;0 1];
+D = [0 0]';
+x0 = [0 pi/4]';
+
+%%
+% O diagrama de Simulink que simula o sistema recorrendo a um bloco de 
+% modelo de estado pré-definido é:
+
+open_system('Q6')
+
+%%
+% As matrizes A e B foram obtidas na resolução teorica.
+%
+% Para efeitos de simulação, a matriz C é definida por C=[1 0;0 1]. Desta 
+% forma a saída Y é uma matriz que contém as variáveis de estado (posição e
+% velocidade angular).
+%
+% A matriz D é uma matriz nula.
+
+%% Questão 7 
+%%
+% Representação grafica da resposta no tempo para $\enspace$ ${\beta}$=0 e 
+% $\enspace$ ${\beta}$=1.
+
+beta_aux=[0 1];
+figure(n)
+fig = figure(n);
+set(fig, 'Position', [0, 0, 900, 500])  % x, y, largura e comprimento da figura
+n=n+1;
+hold all;
+for p=1:2
+    beta=beta_aux(p);
+    A = [0 1;(m*g*l+(M*g*L/2)-k)/(((M*(L^2))/3)+m*(l^2)) -beta/J];
+    sim('Q6',4)
+    
+    subplot(2,2,p)
+    plot(t,Y(:,1)) % Y(todas as linahs, coluna 1)
+    title(['Respostas no tempo da Posição angular {\theta(t)} para {\beta}=',num2str(beta)])
+    xlabel('Tempo [s]')
+    ylabel('{\theta}  [rad]')
+    grid on
+    
+    subplot(2,2,p+2)
+    plot(t,Y(:,2)) % Y(todas as linahs, coluna 2)
+    title(['Respostas no tempo da velocidade angular para {\beta}=',num2str(beta)])
+    xlabel('Tempo [s]')
+    ylabel('{d\theta }/{dt}  [rad/s]')
+    grid on 
+end
+
+%%
+% Representação grafica da evolução do sistema no plano de estado para 
+% $\enspace$ ${\beta}$=0 e $\enspace$ ${\beta}$=1.
+
+beta_aux=[0 1];
+figure(n)
+fig = figure(n);
+set(fig, 'Position', [0, 0, 900, 350])  % x, y, largura e comprimento da figura
+n=n+1;
+hold all;
+for p=1:2
+    beta=beta_aux(p);
+    A = [0 1;(m*g*l+(M*g*L/2)-k)/(((M*(L^2))/3)+m*(l^2)) -beta/J];
+    sim('Q6',4)
+    subplot(1,2,p)
+    plot(Y(:,1),Y(:,2))
+    title(['Evolução do sistema no plano de estado para {\beta}=',num2str(beta)])
+    xlabel('{\theta}   [rad]')
+    ylabel('{d\theta }/{dt}    [rad/s]')
+    grid on
+end
+
+%%
+% Representação grafica da evolução do sistema no plano de estado para 
+% $\enspace$ ${\beta}$=0 e $\enspace$ ${\beta}$=1 considerando várias 
+% condições iníciais.
+
+p=20; %numero de condições iniciais a testar
+col1= linspace(-pi,pi,p); % intervalo de posições angulares iniciais a testar
+col2= linspace(-2*pi,2*pi,p); %intervalo de velocidades nagulares iniciais a testar
+x0= [col1; col2]; %inicialização de x0
+x0_aux =  transpose(x0);
+aux = size(x0_aux); %aux guarda o numero de colunas e numero de linhas
+p_aux = aux(1); %p_aux guarda o número de linhas
+
+for beta=[0 0.1 1]
+    figure(n)
+    fig = figure(n);
+    set(fig, 'Position', [0, 0, 1200, 500])  % x, y, largura e comprimento da figura
+    n=n+1;
+    hold all;
+    for p=1:p_aux
+        A = [0 1;(m*g*l+(M*g*L/2)-k)/(((M*(L^2))/3)+m*(l^2)) -beta/J];
+        x0=x0_aux(p,:);
+        sim('Q6',4)
+        plot(Y(:,1),Y(:,2),'DisplayName',['[{\theta} , {d\theta }/{dt}] = ', num2str(x0) ])
+    end
+    xlabel('{\theta}   [rad]')
+    ylabel('{d\theta }/{dt}    [rad/s]')
+    grid on
+    title(['Evolução do sistema no plano de estado para {\beta}=',num2str(beta)])
+    legend('show')
+    %Inicialização das matrizes que guardam as componentes horizontais e
+    %verticais que constituem cada vector do campo vectorial:
+    cx= zeros(p_aux,p_aux); %componente em x
+    cy= zeros(p_aux,p_aux); %componente em y
+    Max = max(Y);
+    mini = min(Y);
+    %intervalos de pontos na horizontal do campo vectorial
+    xx = col1;
+    %intervalos de pontos na vertical do campo vectorial:
+    if abs(Max(2))<=abs(mini(2))
+        yy = linspace(-mini(2),mini(2),p); 
+    end
+    if abs(Max(2))>=abs(mini(2))
+        yy = linspace(-Max(2),Max(2),p); 
+    end 
+    % Criação da matriz que contem as componetes horizontais e
+    % verticais de cada vector do campo vectorial:
+    for i=1:p
+        for j=1:p
+            aux1=A*[xx(i);yy(j)];
+            cx(j,i)=aux1(1);
+            cy(j,i)=aux1(2);
+        end
+    end
+    quiver(xx,yy,cx,cy)
+    %V ectores e valores próprios da matriz A:
+    [eigenvectors,eigenvalues] = eig(A,'matrix');
+    disp(' ');
+    disp(strcat('Para beta = ',num2str(beta),':'));
+    disp(' ');
+    disp('Matriz Modal cujas colunas são os Vectores Próprios de A:');
+    disp(eigenvectors);
+    disp('Matriz Diagonal dos Valores Próprios de A:');
+    disp(eigenvalues);
+end
+%%
+% Quando $\enspace$ ${\beta}$=0, os valores próprios são puramente 
+% imaginários, o que origina uma resposta oscilatória constante, 
+% representada por uma circunferência no plano de estado. 
+%
+% Quando $\enspace$ ${\beta}$=0.1, os valores próprios são complexos com 
+% parte real negativa, o que resulta numa resposta oscilatória a tender 
+% para a origem.
+%
+% Quando $\enspace$ ${\beta}$=1, os valores próprios são reais e negativos,
+% o que origina uma resposta com forma exponecial a tender para zero sem 
+% oscilação.
+
+%% Questão 8 
+%%
+% Representação da evolução no plano de estados de duas trajectorias
+% rectilineas com $\enspace$ ${\beta}$=1. 
+% 
+% Se a condição inicial x0 for um múltiplo escalar de um dos vectores 
+% próprios v1 ou v2, a evolução da trajectoria nos espaço de estados é 
+% rectílínea.
+
+figure(n)
+n=n+1;
+hold all;
+for i=1:2
+    x0=3*eigenvectors(:,i);
+    sim('Q6',6)
+    plot(Y(:,1),Y(:,2))
+end
+legend('x0 = 3*v1','x0 = 3*v2')
+xlabel('{\theta}   [rad]')
+ylabel('{d\theta }/{dt}    [rad/s]')
+grid on
+title(['Evolução do sistema no plano de estado com trajectorias rectílineas para {\beta}=',num2str(beta)])
+
+%% Questão 9 
+%%
+% Estimar os parametros l e m da massa na haste do metronomo
+
+L = 0.25; %Comprimento da haste
+M = 0.1; %Peso da haste
+k = 0.35; %Constante da mola
+beta = 0.001; %Coeficiente de atrito
+g = 9.8; %Aceleração da gravidade
+U=0; %binário aplicado é nulo
+x0=[pi/10 pi]';
+
+p=30; %numero de condições iniciais a testar
+m_temp = linspace(0,0.2,p);
+l_temp = linspace(0.05,L,p);
+wa=zeros(p,p);
+
+for i=1:p
+    for j=1:p
+        m = m_temp(i);
+        l = l_temp(j);
+        J = ((M*(L^2))/3) + m*(l^2); % Momento de inércia
+        cte= m*g*l+M*g*L/2;
+        wn = sqrt((k-cte)/J);
+        qsi = beta/(2*J*sqrt((k-cte)/J));
+        aux  = wn*sqrt(1-power(qsi,2));
+        wa(i,j) = abs(aux);
+    end
+end
+
+figure(n);
+n = n+1;
+contour(m_temp,l_temp,wa,'ShowText','on');
+xlabel('massa(m)'); ylabel('Distancia da massa(l)'); colorbar;
+%%
+% Temos wa=2*pi*f; bpm = f*60*2; logo obtemos:
+wa_50 = ((2*pi)*50)/120;  % frequência para 50bpm
+wa_150 = ((2*pi)*150)/120; % frequência para 150bpm
+wa_76 = ((2*pi)*76)/120;   % frequência para 76bpm
+wa_124 = ((2*pi)*124)/120; % frequência para 124bpm
+%%
+% 150BPM equivale a uma velocidade angular de 5pi/2 rad/s ~ 7.854 rad/s
+%
+% 50 BPM equivale a uma velocidade angular de pi/4 rad/s ~ 0.785 rad/s
+%
+% 124BPM equivale a uma velocidade angular de ~ 6.4926 rad/s
+%
+% 76 BPM equivale a uma velocidade angular de ~ 3.9794 rad/s
+%
+% Analisando as curvas de nivel do gráfico para diferentes frequencias 
+% podemos dizer que m=0.09 é um valor aceitavel para a massa m.
+%
+% Utilizando este valor para a massa podemos determinar dois valores para a
+% a distancia l (l>= 0.05) a que se encontra a massa, que permitam obter no 
+% metrónomo as velocidades angulares correspondentes a 50 BPM (lento), 
+% 150 BPM (allegro), 76 BPM e 124bpm.
+
+m=0.09;
+for i=1:p
+    l = l_temp(i);
+    J = ((M*(L^2))/3) + m*(l^2); % Momento de inércia
+    cte= m*g*l+M*g*L/2;
+    wn = sqrt((k-cte)/J);
+    qsi = beta/(2*J*sqrt((k-cte)/J));
+    aux  = wn*sqrt(1-power(qsi,2));
+    wa_new(i) = abs(aux);
+end
+
+figure(n);
+n = n+1;
+plot(l_temp,wa_new)
+ylabel('Velocidade angular (wa) (rad/s)');
+xlabel('Distancia da massa (l)');
+grid on;
+
+%Cálculo do comprimento da posição da massa para a cadência de 50 BMP
+[m1,ind1] = min(abs(wa_50-wa_new));
+disp(strcat('Posição da massa para 50 BPM: l= ', num2str(l_temp(ind1))));
+%Cálculo do comprimento da posição da massa para a cadência de 150 BPM
+[m2,ind2] = min(abs(wa_150-wa_new));
+disp(strcat('Posição da massa para 150 BPM: l= ', num2str(l_temp(ind2))));
+%Cálculo do comprimento da posição da massa para a cadência de 76 BMP
+[m3,ind3] = min(abs(wa_76-wa_new));
+disp(strcat('Posição da massa para 76 BPM: l= ', num2str(l_temp(ind3))));
+%Cálculo do comprimento da posição da massa para a cadência de 124 BPM
+[m4,ind4] = min(abs(wa_124-wa_new));
+disp(strcat('Posição da massa para 124 BPM: l= ', num2str(l_temp(ind4))));
+
+%%
+% Concluimos que com m=0.09kg, se verifica:
+%
+% Para 150 BPM : l=0.077586.
+%
+% Para 50 BPM : l=0.20862.
+%
+% Para 124 BPM : l=0.10517.
+%
+% Para 76 BPM : l=0.17414.
+%%
+% Realizando a simulação vamos sobrepor graficamente a evolução da
+% oscilação da posição angular e a envolvente teorica e determinar a
+% frequencia de oscilação empirica para cada uma das situações
+
+U=0; % binário aplicado é nulo
+m = 0.1;
+bpm = [50 150 76 124];
+x0 = [pi/4 0]';
+aux = 1; % contador auxiliar para o ciclo for
+
+figure(n);
+fig = figure(n);
+set(fig, 'Position', [0, 0, 900, 500])  % x, y, largura e comprimento da figura
+n = n+1;
+for l=[l_temp(ind1) l_temp(ind2) l_temp(ind3) l_temp(ind4)]
+    J = ((M*(L^2))/3) + m*(l^2); % Momento de inércia
+    cte= m*g*l+M*g*L/2;
+    wn = sqrt((k-cte)/J);
+    qsi = beta/(2*J*sqrt((k-cte)/J));
+    A = [0 1;(m*g*l+(M*g*L/2)-k)/(((M*(L^2))/3)+m*(l^2)) -beta/J];
+    B = [0 1]';
+    sim('Q6', 20);
+    tau = exp(-qsi*wn*t); % constantes de tempo de decaimento
+    subplot(2,2,aux)
+    hold all;
+    plot(t,Y(:,1));
+    % Representar os decaimentos superior e inferior:
+    plot(t, tau);
+    plot(t, -tau);
+    xlabel('Tempo (s)');
+    ylabel('{\theta}   [rad]')
+    title(strcat('Variação de {\theta} para ',num2str(bpm(aux)),' BPM'));
+    grid on;
+    % Determinação dos valores dos picos e os seus índices de forma a 
+    % determinar os instantes em que ocorrem:
+    [picos, loc] = findpeaks(Y(:,1));   
+    t_picos = zeros(1,length(loc));
+    % frequencia de oscilação entre dois picos:
+    wa_e = zeros(1,length(t_picos)-1);
+    % inicialização da variavel que guarda a soma das frequencias de
+    % oscilação entre cada par de picos:
+    soma_wa = 0; 
+    % Instantes de tempo em que se encontram os picos:
+    for i = 1:length(t_picos)
+        t_picos(i) = t(loc(i));
+    end
+    % calacular a frequencia em cada intervalo de tempo (t_picos(i+1) - t_picos(i))
+    for i = 1:length(wa_e)
+        % sabendo que : wa = 2*pi*f = (2*pi)/(tempo):
+        wa_e(i) = (2*pi) ./ (t_picos(i+1) - t_picos(i));
+        % Somar as frequenciasobtidas em cada intervalo de tempo:
+        soma_wa = soma_wa + wa_e(i);
+    end
+    % Por fim realizar a media das frequencias todas calculadas e
+    % determinar a frequencia de oscilação empirica:
+    media = soma_wa/length(wa_e);
+    disp(strcat('Frequência angular para ',num2str(bpm(aux)),' BPM = ',num2str(media),'rad/s ' ));
+    aux = aux+1;
+end
+
+%%
+% Através da análise dos gráficos, é possível concluir que o ângulo
+% apresenta variações de acordo com o esperado para ambas as frequências
+% embora com uma pequena discrepância entre a envolvente e a variação do
+% ângulo.
+
+%% Questão 10
+%%
+% Simulação para o modelo não linear do metronome cosiderando os valores da
+% questão 9.
+
+open_system('Q10');
+%%
+% Usamos agora o dimensionamento da questão anterior:
+m = 0.09;
+l_150 = 0.077586; % comprimento l para 150 BPM 
+l_50 = 0.20862; % comprimento l para 50 BPM
+l_124 = 0.10517;% comprimento l para 124 BPM
+l_76 = 0.17414; % comprimento l para 76 BPM
+bpm = [50 150 76 124];
+aux = 1;% contador auxiliar para o ciclo for
+% Binário externo nulo:
+U = 0;
+% Condições Inicias:
+teta0 = pi/4;  % ângulo inicial
+v0 = 0 ; % velocidade angular inicial
+
+
+% Simulação do sistema não linear para o comprimento l correspondente aos
+% 150 BPM, 50 BPM, 74 BPM e 124 BPM:
+figure(n);
+fig = figure(n);
+set(fig, 'Position', [0, 0, 900, 500])  % x, y, largura e comprimento da figura
+n = n+1;
+
+for l= [l_50 l_150 l_76 l_124]
+    cte3 = m*g*l + M*g*L/2;
+    cte4 = 1/(((M*(L^2))/3 + m*(l^2)));
+    sim('Q10', 20);
+    subplot(2,2,aux)
+    plot(t,teta(:,1));
+    xlabel('Tempo (s)');
+    ylabel('{\theta}   [rad]')
+    title(strcat('Variação de {\theta} para',num2str(bpm(aux)),' BPM no modelo não linear'));
+    grid on;
+    % Determinação dos valores dos picos e os seus índices de forma a 
+    % determinar os instantes em que ocorrem:
+    [picos, loc] = findpeaks(teta(:,1));   
+    t_picos = zeros(1,length(loc));
+    % wa_e é um vector em que cada indice guarda a frequencia de oscilação 
+    % entre dois picos:
+    wa_e = zeros(1,length(t_picos)-1);
+    % inicialização da variavel que guarda a soma das frequencias de
+    % oscilação entre cada par de picos:
+    soma_wa = 0; 
+    % Instantes de tempo em que se encontram os picos:
+    for i = 1:length(t_picos)
+        t_picos(i) = t(loc(i));
+    end
+    % calacular a frequencia em cada intervalo de tempo (t_picos(i+1) - t_picos(i))
+    for i = 1:length(wa_e)
+        % sabendo que : wa = 2*pi*f = (2*pi)/(tempo):
+        wa_e(i) = (2*pi) ./ (t_picos(i+1) - t_picos(i));
+        % Somar as frequenciasobtidas em cada intervalo de tempo:
+        soma_wa = soma_wa + wa_e(i);
+    end
+    % Por fim realizar a media das frequencias todas calculadas e
+    % determinar a frequencia de oscilação empirica:
+    media = soma_wa/length(wa_e);
+    disp(strcat('Frequência angular para ', num2str(bpm(aux)),' BPM = ', num2str(media),'rad/s ' ));
+    aux = aux+1;
+end
+
+%%
+% Conforme era esperado as frequências angulares são um pouco diferentes
+% comparadas com a simulação considerando um modelo linear. 
+%
+% Uma forma de redimensionar as posições da massa m para que as cadências 
+% de oscilação se aproximem mais dos valores pretendidos consiste em 
+% determinar o módulo da diferença entre a frequência pretendida e 
+% frequência calculada com o sitema não linear.
+
+%Vector que contém os comprimentos que se vão obter
+% ln = zeros(1, 2);
+% aux = 1;
+
+p=30; %numero de condições iniciais a testar
+ls = linspace(0.05,0.25,p);
+was = zeros(1,length(ls));
+aux = 1;% contador auxiliar para o ciclo for
+% Inicialização do vector que vai guardar os l que optimizam as
+% frequanecias:
+ls_opt= zeros(1,4);
+
+for f = [2*pi*50/120 2*pi*150/120 2*pi*76/120 2*pi*124/120]
+    
+    for p = 1:length(ls)
+        l=ls(p);
+        cte3 = m*g*l + M*g*L/2;
+        cte4 = 1/(((M*(L^2))/3 + m*(l^2)));
+        sim('Q10', 20);
+        % Determinação dos valores dos picos e os seus índices de forma a
+        % determinar os instantes em que ocorrem:
+        [picos, loc] = findpeaks(teta(:,1));
+        t_picos = zeros(1,length(loc));
+        % wa_e é um vector em que cada indice guarda a frequencia de oscilação
+        % entre dois picos:
+        wa_e = zeros(1,length(t_picos)-1);
+        % inicialização da variavel que guarda a soma das frequencias de
+        % oscilação entre cada par de picos:
+        soma_wa = 0;
+        % Instantes de tempo em que se encontram os picos:
+        for i = 1:length(t_picos)
+            t_picos(i) = t(loc(i));
+        end
+        % calacular a frequencia em cada intervalo de tempo (t_picos(i+1) - t_picos(i))
+        for i = 1:length(wa_e)
+            % sabendo que : wa = 2*pi*f = (2*pi)/(tempo):
+            wa_e(i) = (2*pi) ./ (t_picos(i+1) - t_picos(i));
+            % Somar as frequenciasobtidas em cada intervalo de tempo:
+            soma_wa = soma_wa + wa_e(i);
+        end
+        % Por fim realizar a media das frequencias todas calculadas e
+        % determinar a frequencia de oscilação empirica:
+        media = soma_wa/length(wa_e);     
+        was(p)=abs(f - media);
+    end
+    % O mínimo local obtido pela função fminsearch é: 
+    [minimo,ind] = min(was);
+    disp(strcat('Distancia l obtida para ',num2str(bpm(aux)),' BPM = ',num2str(ls(ind))));
+    ls_opt(aux)=ls(ind);
+    h = waitbar(aux/4, 'A calcular... Está quase...');
+    % barra de loading a apresentar durante simulação
+    delete(h)
+    aux=aux+1;
+end
+
+%%
+% Agora realizam-se de novo os cálculos das frequências angulares, 
+% utilizando os novos valores optimizados para l :
+
+% Simulação do sistema não linear para valores de comprimento l optimizados
+figure(n);
+fig = figure(n);
+set(fig, 'Position', [0, 0, 900, 500])  % x, y, largura e comprimento da figura
+n = n+1;
+aux=1;
+
+for l= ls_opt
+    cte3 = m*g*l + M*g*L/2;
+    cte4 = 1/(((M*(L^2))/3 + m*(l^2)));
+    sim('Q10', 20);
+    subplot(2,2,aux)
+    plot(t,teta(:,1));
+    xlabel('Tempo (s)');
+    ylabel('{\theta}   [rad]')
+    title(strcat('Variação de {\theta} para',num2str(bpm(aux)),' BPM no modelo não linear'));
+    grid on;
+    % Determinação dos valores dos picos e os seus índices de forma a 
+    % determinar os instantes em que ocorrem:
+    [picos, loc] = findpeaks(teta(:,1));   
+    t_picos = zeros(1,length(loc));
+    % wa_e é um vector em que cada indice guarda a frequencia de oscilação 
+    % entre dois picos:
+    wa_e = zeros(1,length(t_picos)-1);
+    % inicialização da variavel que guarda a soma das frequencias de
+    % oscilação entre cada par de picos:
+    soma_wa = 0; 
+    % Instantes de tempo em que se encontram os picos:
+    for i = 1:length(t_picos)
+        t_picos(i) = t(loc(i));
+    end
+    % calacular a frequencia em cada intervalo de tempo (t_picos(i+1) - t_picos(i))
+    for i = 1:length(wa_e)
+        % sabendo que : wa = 2*pi*f = (2*pi)/(tempo):
+        wa_e(i) = (2*pi) ./ (t_picos(i+1) - t_picos(i));
+        % Somar as frequenciasobtidas em cada intervalo de tempo:
+        soma_wa = soma_wa + wa_e(i);
+    end
+    % Por fim realizar a media das frequencias todas calculadas e
+    % determinar a frequencia de oscilação empirica:
+    media = soma_wa/length(wa_e);
+    disp(strcat('Frequência angular para ', num2str(bpm(aux)),' BPM = ', num2str(media),'rad/s ' ));
+    aux = aux+1;
+end
+
+%%
+% A forma utilizada para refinar o dimensionamento das distancias l,  
+% parecem adequadas, uma vez que, as novas posiçoes da massa m permitem 
+% obter valores para as cadencias proximos dos valores desejados.
+
+%% Questão 11
+%%
+% Simulação de um mecanismo de relojoaria no metrónomo que impulsiona 
+% o pêndulo quando este passa na vertical de modo a contrariar o decaimento 
+% para zero da amplitude das oscilações. 
+
+open_system('Q11');
+
+%%
+% Neste diagrama realiza-se a deteção das passagens por zero do ângulo teta
+% e aplica um impulso positivo na entrada nas transições negativo->positivo.
+
+aux=1;
+for l= ls_opt
+    cte3 = m*g*l + M*g*L/2;
+    cte4 = 1/(((M*(L^2))/3 + m*(l^2)));
+    sim('Q11', 20);
+    figure (n)
+    fig = figure(n);
+    set(fig, 'Position', [0, 0, 900, 500])  % x, y, largura e comprimento da figura
+    n = n+1;
+    plot(t,teta,t,impulsos);
+    xlabel('Tempo (s)');
+    ylabel('{\theta}   [rad] | Impulsos T [Nm]')
+    title(strcat(' BPM = ', num2str(bpm(aux)),' Variação de {\theta} do sistema dimensionado para l = ',num2str(ls_opt(aux)),' com aplicação de binário externo'));
+    grid on;
+    % Determinação dos valores dos picos e os seus índices de forma a 
+    % determinar os instantes em que ocorrem:
+    [picos, loc] = findpeaks(teta(:,1));   
+    t_picos = zeros(1,length(loc));
+    % wa_e é um vector em que cada indice guarda a frequencia de oscilação 
+    % entre dois picos:
+    wa_e = zeros(1,length(t_picos)-1);
+    % inicialização da variavel que guarda a soma das frequencias de
+    % oscilação entre cada par de picos:
+    soma_wa = 0; 
+    % Instantes de tempo em que se encontram os picos:
+    for i = 1:length(t_picos)
+        t_picos(i) = t(loc(i));
+    end
+    % calacular a frequencia em cada intervalo de tempo (t_picos(i+1) - t_picos(i))
+    for i = 1:length(wa_e)
+        % sabendo que : wa = 2*pi*f = (2*pi)/(tempo):
+        wa_e(i) = (2*pi) ./ (t_picos(i+1) - t_picos(i));
+        % Somar as frequenciasobtidas em cada intervalo de tempo:
+        soma_wa = soma_wa + wa_e(i);
+    end
+    % Por fim realizar a media das frequencias todas calculadas e
+    % determinar a frequencia de oscilação empirica:
+    media = soma_wa/length(wa_e);
+    disp(strcat('Frequência angular para ', num2str(media),' BPM = ', num2str(bpm(aux)),'rad/s para a distancia l=',num2str(ls_opt(aux)) ));
+    aux = aux+1;
+end
+
+%%
+% Os valores das frequências de oscilação nas condições dimensionadas 
+% sofrem um pequeno aumento na presença do mecanismo de relojoaria. 
+% O que permite concluir que a presença deste mecanismo afecta um pouco a
+% frequência de oscilação.
+
+%% Questão 12
+%%
+
+##### SOURCE END #####
+--></body></html>

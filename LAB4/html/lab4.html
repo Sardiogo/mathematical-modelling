@@ -1,0 +1,669 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Trabalho de Laborat&oacute;rio n&ordm;4 - Detec&ccedil;&atilde;o de Hotspots Wifi</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-05-29"><meta name="DC.source" content="lab4.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Trabalho de Laborat&oacute;rio n&ordm;4 - Detec&ccedil;&atilde;o de Hotspots Wifi</h1><!--introduction--><pre class="language-matlab">Autor: Diogo Vilar <span class="string">Sardinha</span>
+</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Quest&atilde;o 2.a)</a></li><li><a href="#8">Quest&atilde;o 2.b)</a></li><li><a href="#9">Quest&atilde;o 2.c)</a></li><li><a href="#10">Quest&atilde;o 2.d)</a></li></ul></div><h2>Quest&atilde;o 2.a)<a name="1"></a></h2><p>Decomposi&ccedil;&atilde;o da matriz P trasnposta em valores e vectores pr&oacute;prios. Obten&ccedil;&atilde;o da distribui&ccedil;&atilde;o de equil&iacute;brio da cadeia de Markov por normaliza&ccedil;&atilde;o de um dos vectores pr&oacute;prios e ilustra&ccedil;&atilde;o da mesma usando o comando bar.</p><pre class="codeinput">load(<span class="string">'MarkovChain.mat'</span>)
+
+Ptrans = transpose(P);
+[VecP,ValP] = eig(transpose(P)); <span class="comment">% [eigenvectors,eigenvalues] = [VecP,ValP]</span>
+<span class="comment">% A fun&ccedil;&atilde;o eig(Ptrans) calcula os valores pr&oacute;prios da matriz transposta de</span>
+<span class="comment">% P e coloca-os numa matriz diagonal ValP e coloca na matriz VecP os</span>
+<span class="comment">% vectores pr&oacute;prios por colunas.</span>
+
+disp(ValP)
+</pre><pre class="codeoutput">  Columns 1 through 7
+
+    1.0000         0         0         0         0         0         0
+         0    0.8948         0         0         0         0         0
+         0         0    0.9722         0         0         0         0
+         0         0         0    0.9509         0         0         0
+         0         0         0         0   -0.9621         0         0
+         0         0         0         0         0    0.5065         0
+         0         0         0         0         0         0    0.4227
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+
+  Columns 8 through 14
+
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+    0.3156         0         0         0         0         0         0
+         0    0.2478         0         0         0         0         0
+         0         0   -0.8238         0         0         0         0
+         0         0         0   -0.8040         0         0         0
+         0         0         0         0   -0.7035         0         0
+         0         0         0         0         0    0.0242         0
+         0         0         0         0         0         0   -0.0551
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0
+
+  Columns 15 through 20
+
+         0         0         0         0         0         0
+         0         0         0         0         0         0
+         0         0         0         0         0         0
+         0         0         0         0         0         0
+         0         0         0         0         0         0
+         0         0         0         0         0         0
+         0         0         0         0         0         0
+         0         0         0         0         0         0
+         0         0         0         0         0         0
+         0         0         0         0         0         0
+         0         0         0         0         0         0
+         0         0         0         0         0         0
+         0         0         0         0         0         0
+         0         0         0         0         0         0
+   -0.5140         0         0         0         0         0
+         0   -0.2834         0         0         0         0
+         0         0   -0.3508         0         0         0
+         0         0         0   -0.4380         0         0
+         0         0         0         0   -0.4000         0
+         0         0         0         0         0   -0.0000
+
+</pre><p>De acordo com a matriz diagonal de valores pr&oacute;prios ValP, h&aacute; uma entrada nesta matriz cujo valor &eacute; 1.</p><p>A cadeia de Markov evolui para uma distribui&ccedil;&atilde;o de equil&iacute;brio estacion&aacute;ria dada pelo vector pr&oacute;prio associado ao valor pr&oacute;prio 1:</p><pre class="codeinput">disp(VecP(:,1))
+</pre><pre class="codeoutput">    0.2326
+    0.1904
+    0.1058
+    0.3174
+    0.1861
+    0.2326
+    0.3808
+    0.0423
+    0.0705
+    0.0705
+    0.1861
+    0.0529
+    0.3174
+    0.2294
+    0.1861
+    0.2034
+    0.0423
+    0.2164
+    0.3808
+    0.3029
+
+</pre><p>Normaliza&ccedil;&atilde;o do vector pr&oacute;prio que contem a distribui&ccedil;&atilde;o de equil&iacute;brio:</p><pre class="codeinput">Deq = VecP(:,1)/sum(VecP(:,1));
+
+disp(<span class="string">'Distribui&ccedil;&atilde;o de Equil&iacute;brio da cadeia de Markov:'</span>);
+disp(<span class="string">' '</span>)
+<span class="keyword">for</span> i = 1:length(Deq)
+    disp(strcat(<span class="string">'Estado '</span>, num2str(i),<span class="string">' -&gt; '</span>, num2str(Deq(i))));
+<span class="keyword">end</span>
+[M,I] = min(Deq);
+disp(<span class="string">' '</span>)
+disp(strcat(<span class="string">'Estado menos prov&aacute;vel: Estado '</span>, num2str(I)));
+[M,I] = max(Deq);
+disp(strcat(<span class="string">'Estado mais prov&aacute;vel: Estado '</span>, num2str(I)));
+</pre><pre class="codeoutput">Distribui&ccedil;&atilde;o de Equil&iacute;brio da cadeia de Markov:
+ 
+Estado1 -&gt;0.058938
+Estado2 -&gt;0.048247
+Estado3 -&gt;0.026804
+Estado4 -&gt;0.080411
+Estado5 -&gt;0.04715
+Estado6 -&gt;0.058938
+Estado7 -&gt;0.096493
+Estado8 -&gt;0.010721
+Estado9 -&gt;0.017869
+Estado10 -&gt;0.017869
+Estado11 -&gt;0.04715
+Estado12 -&gt;0.013402
+Estado13 -&gt;0.080411
+Estado14 -&gt;0.058115
+Estado15 -&gt;0.04715
+Estado16 -&gt;0.051536
+Estado17 -&gt;0.010721
+Estado18 -&gt;0.054826
+Estado19 -&gt;0.096493
+Estado20 -&gt;0.076756
+ 
+Estado menos prov&aacute;vel: Estado17
+Estado mais prov&aacute;vel: Estado7
+</pre><p>Distribui&ccedil;&atilde;o de Equil&iacute;brio da cadeia de Markov:</p><pre class="codeinput">count=1;
+figure(count)
+count=count+1;
+bar(Deq,0.4)
+xlabel(<span class="string">'N&uacute;mero de cada agente'</span>);
+ylabel(<span class="string">'Probabilidade de equil&iacute;brio'</span>)
+title(strcat(<span class="string">'Distribui&ccedil;&atilde;o de Equil&iacute;brio da cadeia de Markov'</span>));
+grid <span class="string">on</span>
+</pre><img vspace="5" hspace="5" src="lab4_01.png" alt=""> <p>Grafo de comunica&ccedil;&atilde;o entre agentes:</p><pre class="codeinput">MarkovChainDraw(count)
+count=count+1;
+</pre><img vspace="5" hspace="5" src="lab4_02.png" alt=""> <p>Observando a Distribui&ccedil;ao de Equil&iacute;brio Estacion&aacute;ria da Cadeia de Markov, conclu&iacute;mos, que os estados variam em probabilidade de equil&iacute;brio consoate o n&uacute;mero de ramos de liga&ccedil;&atilde;o e a probabilidade de transi&ccedil;&atilde;o associada a cada ramo.</p><p>&Aacute; medida que nos aproximamos de uma situa&ccedil;&atilde;o esatcion&aacute;ria o agente que estar&aacute; na posse do token corresponder&aacute; ao estado com probabilidade de equ&iacute;librio mais elevada.</p><h2>Quest&atilde;o 2.b)<a name="8"></a></h2><p>Gera&ccedil;&atilde;o de observa&ccedil;&otilde;es de RSS para a localiza&ccedil;&atilde;o da fonte fornecida com P0=100, sigma^2=10^-2 e ni~N(0,sigma^2).</p><p>Tendo como base o c&oacute;digo fornecido no ficheiro rssiloc.m e fazendo algumas altera&ccedil;&otilde;es temos o seguinte c&oacute;digo:</p><pre class="codeinput">figure(count)
+count=count+1;
+<span class="comment">% Simulation setup</span>
+N = 20;					<span class="comment">% No. of anchors</span>
+n = 2;					<span class="comment">% Embedding dimension</span>
+sidelength = 100;
+aux1 = transpose(nodePos);
+aux2=[aux1(2,:);aux1(3,:)];
+a = aux2;		<span class="comment">% Anchor positions</span>
+x = sourcePos';		<span class="comment">% Source position</span>
+
+M=1000; <span class="comment">% N&uacute;mero de observa&ccedil;&otilde;es</span>
+as=zeros(2,M);
+as_aux=zeros(2,M);
+<span class="keyword">for</span> count2=1:length(Deq')
+    <span class="keyword">for</span> i = 1:round(Deq(count2)*M)
+        as_aux(:,i)=a(:,count2);
+    <span class="keyword">end</span>
+    <span class="keyword">if</span> count2==1
+       as=as_aux;
+    <span class="keyword">end</span>
+    <span class="keyword">if</span> count2&gt;1
+       as=[as,as_aux];
+    <span class="keyword">end</span>
+    <span class="keyword">if</span> count2&lt;length(Deq'),
+       clear <span class="string">as_aux</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+D = squareform(pdist([x zeros(size(x)) as]'));
+d = D(1,3:end);				<span class="comment">% Source-anchor distances</span>
+an = D(2,3:end);			<span class="comment">% Anchor norms</span>
+
+<span class="comment">% Generate observations</span>
+P0 = 100;				<span class="comment">% Source power</span>
+P_2 = P0./(d.^2);				<span class="comment">% Noiseless RSSI</span>
+
+stdev = 20e-2;				<span class="comment">% Log-noise standard deviation</span>
+<span class="comment">%stdev = 0;</span>
+P_2 = P_2.*exp(stdev*randn(size(P_2)));	<span class="comment">% Introduce noise</span>
+QP = 1e-2;
+P_2 = QP*round(P_2/QP);			<span class="comment">% Quantize power measurements</span>
+
+<span class="comment">% Localize source by least-squares</span>
+A = [-2*repmat(P_2,[n 1]).*as; -ones(size(P_2)); P_2]';
+b = (-P_2.*(an.^2))';
+
+z = A\b;
+xe = z(1:n);
+aux=norm(x-xe);
+disp(strcat(<span class="string">'Erro:'</span>, num2str(aux)));
+
+<span class="keyword">if</span> n==2,
+  plot(a'*[1; 1i],<span class="string">'o'</span>); hold <span class="string">all</span>
+  plot(x'*[1; 1i],<span class="string">'rh'</span>); plot(xe'*[1; 1i],<span class="string">'x'</span>); hold <span class="string">off</span>
+  title(<span class="string">'Posi&ccedil;&atilde;o dos agentes(o), da fonte exacta(rh) e estimada(x)'</span>);
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">Erro:5.0814
+</pre><img vspace="5" hspace="5" src="lab4_03.png" alt=""> <h2>Quest&atilde;o 2.c)<a name="9"></a></h2><p>Evolu&ccedil;&atilde;o das probabilidades dos diversos estados da cadeia de Markov ao longo do tempo para diferentes condi&ccedil;&otilde;es iniciais pi(0).</p><pre class="codeinput"><span class="comment">% Tempo de simula&ccedil;&atilde;o:</span>
+N=120;
+
+<span class="comment">%Vector do Tempo:</span>
+tempo = 1:N;
+
+<span class="comment">% Condi&ccedil;&otilde;es iniciais a testar:</span>
+f_pi_ini = [0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0; 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0.5; 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0];
+<span class="comment">% 1.&ordf; Linha - Token est&aacute; no agente 2;</span>
+<span class="comment">% 2.&ordf; Linha - Igual probabilidade de o token estar no no agente 19 ou 20;</span>
+<span class="comment">% 3.&ordf; Linha - Token est&aacute; no agente 7.</span>
+
+<span class="keyword">for</span> ini=1:3
+    clear <span class="string">f_pi</span>;
+    <span class="comment">% Cria&ccedil;&atilde;o da matriz pi(t):</span>
+    f_pi = f_pi_ini(ini,:);
+    <span class="keyword">for</span> t=2:N
+        aux_pi = f_pi_ini(ini,:)*(P^(t-1));
+        <span class="keyword">if</span> sum(aux_pi) ~= 1
+        <span class="comment">% Se para este instante do tempo, a soma das probabilidades dos</span>
+        <span class="comment">% diferentes estados for diferente de 1...</span>
+            aux_pi = aux_pi/sum(aux_pi);
+        <span class="keyword">end</span>
+
+        f_pi=[f_pi; aux_pi];
+    <span class="keyword">end</span>
+
+    <span class="comment">% Impress&atilde;o de pi(t), para cada estado em fun&ccedil;&atilde;o do tempo:</span>
+    figure(count)
+    <span class="keyword">for</span> j=1:20
+        estado=ones(1,N)*j;
+        plot3(tempo,estado,f_pi(:,j));
+        xlabel(<span class="string">'Tempo'</span>)
+        ylabel(<span class="string">'N.&ordm; do Agente (Estado)'</span>)
+        zlabel(<span class="string">'pi(tempo)'</span>)
+        title([<span class="string">'Evolu&ccedil;&atilde;o temporal das probabilidades dos diversos estados para f_pi_ini {\ini}='</span>,num2str(ini)])
+        hold <span class="string">on</span>;
+    <span class="keyword">end</span>
+    count=count+1;
+<span class="keyword">end</span>
+
+<span class="comment">% Verificamos que a partir de um certo tempo a fun&ccedil;&atilde;o pi(t) estabiliza, ou</span>
+<span class="comment">% seja, as probabilidades de cada estado deixam de variar com a passagem do</span>
+<span class="comment">% tempo.</span>
+
+<span class="comment">% Diferentes condi&ccedil;&otilde;es iniciais afectam bastante a evolu&ccedil;&atilde;o temporal das</span>
+<span class="comment">% probabilidades dos diferentes estados durante os primeiros instantes da</span>
+<span class="comment">% simula&ccedil;&atilde;o. Mas independentemente das condi&ccedil;&otilde;es iniciais escolhidas,</span>
+<span class="comment">% quando a fun&ccedil;&atilde;o pi(t) estabiliza, esta tende para os valores da</span>
+<span class="comment">% distribui&ccedil;&atilde;o de equil&iacute;brio da cadeia de markov anteriormente calculada.</span>
+</pre><img vspace="5" hspace="5" src="lab4_04.png" alt=""> <img vspace="5" hspace="5" src="lab4_05.png" alt=""> <img vspace="5" hspace="5" src="lab4_06.png" alt=""> <h2>Quest&atilde;o 2.d)<a name="10"></a></h2><p>Dividimos os estados da cadeia em 4 subconjuntos: A -&gt; 6-11-16 B -&gt; 1-7-14-16-18-20 C -&gt; 2-4-13-19 D -&gt; 8-9-10-12-17</p><pre class="codeinput"><span class="comment">% Para dificultar a circula&ccedil;&atilde;o do token, consideramos as</span>
+<span class="comment">% seguintes altera&ccedil;&otilde;es na matriz P de modo a que o token fique</span>
+<span class="comment">% "aprisionado" no subconjunto D:</span>
+P(3,19)=0.05;
+P(3,12)=0.95;
+
+<span class="comment">% Imprimimos de novo a nova distribui&ccedil;&atilde;o de equil&iacute;brio da cadeia de Markov:</span>
+[VecP,ValP] = eig(transpose(P));
+Deq = VecP(:,1)/sum(VecP(:,1));
+
+figure(count)
+count=count+1;
+bar(Deq,0.4)
+xlabel(<span class="string">'N&uacute;mero de cada agente'</span>);
+ylabel(<span class="string">'Probabilidade de equil&iacute;brio'</span>)
+title(strcat(<span class="string">'Distribui&ccedil;&atilde;o de Equil&iacute;brio da cadeia de Markov com pior circula&ccedil;&atilde;o'</span>));
+grid <span class="string">on</span>
+
+<span class="comment">% Como podemos verificar, os estados com maior probabilidade s&atilde;o sobretudo</span>
+<span class="comment">% os do subconjunto D que era o pretendido.</span>
+
+<span class="comment">% Para melhorar a efic&aacute;cia de circula&ccedil;&atilde;o global do token, consideramos as</span>
+<span class="comment">% seguintes altera&ccedil;&otilde;es na matriz P:</span>
+
+<span class="comment">% Melhoramento na comunica&ccedil;&atilde;o entre A e B:</span>
+P(6,1)=0.5;
+P(6,11)=0.25;
+P(6,15)=0.25;
+
+P(1,6)=0.5;
+P(1,7)=0.25;
+P(1,20)=0.25;
+
+<span class="comment">% Melhoramento na comunica&ccedil;&atilde;o entre B e C:</span>
+P(7,1)=0.2;
+P(7,16)=0.1;
+P(7,19)=0.5;
+P(7,20)=0.2;
+
+P(19,3)=0.4; <span class="comment">% Esta altera&ccedil;&atilde;o tamb&eacute;m melhora a comunica&ccedil;&atilde;o entre C e D.</span>
+P(19,4)=0.1;
+P(19,7)=0.4;
+P(19,13)=0.1;
+
+<span class="comment">% Melhoramento na comunica&ccedil;&atilde;o entre C e D:</span>
+P(3,19)=0.65;
+P(3,12)=0.35;
+
+P(12,3)=0.5;
+P(12,8)=0.25;
+P(12,10)=0.25;
+
+<span class="comment">% Por fim, imprimimos a nova distribui&ccedil;&atilde;o de equil&iacute;brio da cadeia de Markov:</span>
+[VecP,ValP] = eig(transpose(P));
+Deq = VecP(:,1)/sum(VecP(:,1));
+
+figure(count)
+count=count+1;
+bar(Deq,0.4)
+xlabel(<span class="string">'N&uacute;mero de cada agente'</span>);
+ylabel(<span class="string">'Probabilidade de equil&iacute;brio'</span>)
+title(strcat(<span class="string">'Distribui&ccedil;&atilde;o de Equil&iacute;brio da cadeia de Markov com melhor circula&ccedil;&atilde;o'</span>));
+grid <span class="string">on</span>
+
+<span class="comment">% Verifica-se uma circula&ccedil;&atilde;o do token mais equilibrada por todos os</span>
+<span class="comment">% agentes e uma maior probabilidade de passagem do token pelos</span>
+<span class="comment">% agentes que ligam diferentes subconjuntos e por isso temos uma melhor</span>
+<span class="comment">% circula&ccedil;&atilde;o do token por entre os v&aacute;rios subconjuntos.</span>
+
+<span class="comment">% Em suma, quanto menor for a fluidez de o token circular por todos os</span>
+<span class="comment">% subconjuntos e agentes, menos precisa vai ser a localiza&ccedil;&atilde;o da fonte</span>
+<span class="comment">% obtida e vice-versa. Por outras palavras, quanto mais uniforme for a</span>
+<span class="comment">% circula&ccedil;&atilde;o do token por todos os agentes, mais precis&atilde;o vamos ter na</span>
+<span class="comment">% detecc&ccedil;&atilde;o da fonte.</span>
+</pre><img vspace="5" hspace="5" src="lab4_07.png" alt=""> <img vspace="5" hspace="5" src="lab4_08.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Trabalho de Laboratório nº4 - Detecção de Hotspots Wifi
+% 
+%   Autor: Diogo Vilar Sardinha
+%  
+%% Questão 2.a) 
+% Decomposição da matriz P trasnposta em valores e vectores próprios. 
+% Obtenção da distribuição de equilíbrio da cadeia de Markov por 
+% normalização de um dos vectores próprios e ilustração da mesma usando o 
+% comando bar.
+%%
+load('MarkovChain.mat')
+
+Ptrans = transpose(P);
+[VecP,ValP] = eig(transpose(P)); % [eigenvectors,eigenvalues] = [VecP,ValP]
+% A função eig(Ptrans) calcula os valores próprios da matriz transposta de 
+% P e coloca-os numa matriz diagonal ValP e coloca na matriz VecP os 
+% vectores próprios por colunas.
+
+disp(ValP)
+%%
+% De acordo com a matriz diagonal de valores próprios ValP, há uma entrada
+% nesta matriz cujo valor é 1. 
+% 
+% A cadeia de Markov evolui para uma distribuição de equilíbrio 
+% estacionária dada pelo vector próprio associado ao valor próprio 1:
+disp(VecP(:,1))
+
+%%
+% Normalização do vector próprio que contem a distribuição de equilíbrio:
+Deq = VecP(:,1)/sum(VecP(:,1)); 
+
+disp('Distribuição de Equilíbrio da cadeia de Markov:');
+disp(' ')
+for i = 1:length(Deq)
+    disp(strcat('Estado ', num2str(i),' -> ', num2str(Deq(i))));
+end
+[M,I] = min(Deq);
+disp(' ')
+disp(strcat('Estado menos provável: Estado ', num2str(I)));
+[M,I] = max(Deq);
+disp(strcat('Estado mais provável: Estado ', num2str(I)));
+%%
+% Distribuição de Equilíbrio da cadeia de Markov:
+count=1;
+figure(count)
+count=count+1;
+bar(Deq,0.4)
+xlabel('Número de cada agente');
+ylabel('Probabilidade de equilíbrio')
+title(strcat('Distribuição de Equilíbrio da cadeia de Markov')); 
+grid on
+%%
+% Grafo de comunicação entre agentes:
+MarkovChainDraw(count)
+count=count+1;
+
+%%
+% Observando a Distribuiçao de Equilíbrio Estacionária da Cadeia de Markov,
+% concluímos, que os estados variam em probabilidade de equilíbrio consoate 
+% o número de ramos de ligação e a probabilidade de transição associada a 
+% cada ramo. 
+%
+% Á medida que nos aproximamos de uma situação esatcionária 
+% o agente que estará na posse do token corresponderá ao estado com
+% probabilidade de equílibrio mais elevada.
+
+%% Questão 2.b) 
+% Geração de observações de RSS para a localização da fonte fornecida com
+% P0=100, sigma^2=10^-2 e ni~N(0,sigma^2).
+%
+% Tendo como base o código fornecido no ficheiro rssiloc.m e fazendo
+% algumas alterações temos o seguinte código:
+
+figure(count)
+count=count+1;
+% Simulation setup
+N = 20;					% No. of anchors
+n = 2;					% Embedding dimension
+sidelength = 100;
+aux1 = transpose(nodePos);
+aux2=[aux1(2,:);aux1(3,:)];
+a = aux2;		% Anchor positions
+x = sourcePos';		% Source position
+
+M=1000; % Número de observações
+as=zeros(2,M);
+as_aux=zeros(2,M);
+for count2=1:length(Deq')
+    for i = 1:round(Deq(count2)*M)
+        as_aux(:,i)=a(:,count2);
+    end
+    if count2==1
+       as=as_aux;
+    end
+    if count2>1
+       as=[as,as_aux];
+    end
+    if count2<length(Deq'),
+       clear as_aux
+    end
+end
+
+D = squareform(pdist([x zeros(size(x)) as]'));
+d = D(1,3:end);				% Source-anchor distances
+an = D(2,3:end);			% Anchor norms
+
+% Generate observations
+P0 = 100;				% Source power
+P_2 = P0./(d.^2);				% Noiseless RSSI
+
+stdev = 20e-2;				% Log-noise standard deviation
+%stdev = 0;
+P_2 = P_2.*exp(stdev*randn(size(P_2)));	% Introduce noise
+QP = 1e-2;
+P_2 = QP*round(P_2/QP);			% Quantize power measurements
+
+% Localize source by least-squares
+A = [-2*repmat(P_2,[n 1]).*as; -ones(size(P_2)); P_2]';
+b = (-P_2.*(an.^2))';
+
+z = A\b;
+xe = z(1:n);
+aux=norm(x-xe);
+disp(strcat('Erro:', num2str(aux)));
+
+if n==2,
+  plot(a'*[1; 1i],'o'); hold all
+  plot(x'*[1; 1i],'rh'); plot(xe'*[1; 1i],'x'); hold off
+  title('Posição dos agentes(o), da fonte exacta(rh) e estimada(x)');
+end
+
+%% Questão 2.c) 
+% Evolução das probabilidades dos diversos estados da cadeia de Markov ao 
+% longo do tempo para diferentes condições iniciais pi(0).
+
+% Tempo de simulação:
+N=120;
+
+%Vector do Tempo:
+tempo = 1:N;
+
+% Condições iniciais a testar:
+f_pi_ini = [0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0; 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0.5; 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0]; 
+% 1.ª Linha - Token está no agente 2;
+% 2.ª Linha - Igual probabilidade de o token estar no no agente 19 ou 20;
+% 3.ª Linha - Token está no agente 7.
+
+for ini=1:3
+    clear f_pi;
+    % Criação da matriz pi(t):
+    f_pi = f_pi_ini(ini,:);
+    for t=2:N
+        aux_pi = f_pi_ini(ini,:)*(P^(t-1));
+        if sum(aux_pi) ~= 1 
+        % Se para este instante do tempo, a soma das probabilidades dos 
+        % diferentes estados for diferente de 1...
+            aux_pi = aux_pi/sum(aux_pi);
+        end
+            
+        f_pi=[f_pi; aux_pi];   
+    end
+
+    % Impressão de pi(t), para cada estado em função do tempo:
+    figure(count)
+    for j=1:20
+        estado=ones(1,N)*j;
+        plot3(tempo,estado,f_pi(:,j));
+        xlabel('Tempo')
+        ylabel('N.º do Agente (Estado)')
+        zlabel('pi(tempo)')
+        title(['Evolução temporal das probabilidades dos diversos estados para f_pi_ini {\ini}=',num2str(ini)])
+        hold on;
+    end
+    count=count+1;
+end
+
+% Verificamos que a partir de um certo tempo a função pi(t) estabiliza, ou
+% seja, as probabilidades de cada estado deixam de variar com a passagem do
+% tempo.
+
+% Diferentes condições iniciais afectam bastante a evolução temporal das
+% probabilidades dos diferentes estados durante os primeiros instantes da
+% simulação. Mas independentemente das condições iniciais escolhidas,
+% quando a função pi(t) estabiliza, esta tende para os valores da
+% distribuição de equilíbrio da cadeia de markov anteriormente calculada.
+
+%% Questão 2.d) 
+% Dividimos os estados da cadeia em 4 subconjuntos:
+% A -> 6-11-16
+% B -> 1-7-14-16-18-20
+% C -> 2-4-13-19
+% D -> 8-9-10-12-17
+
+% Para dificultar a circulação do token, consideramos as
+% seguintes alterações na matriz P de modo a que o token fique 
+% "aprisionado" no subconjunto D:
+P(3,19)=0.05;
+P(3,12)=0.95;
+
+% Imprimimos de novo a nova distribuição de equilíbrio da cadeia de Markov:
+[VecP,ValP] = eig(transpose(P));
+Deq = VecP(:,1)/sum(VecP(:,1)); 
+
+figure(count)
+count=count+1;
+bar(Deq,0.4)
+xlabel('Número de cada agente');
+ylabel('Probabilidade de equilíbrio')
+title(strcat('Distribuição de Equilíbrio da cadeia de Markov com pior circulação')); 
+grid on
+
+% Como podemos verificar, os estados com maior probabilidade são sobretudo
+% os do subconjunto D que era o pretendido.
+
+% Para melhorar a eficácia de circulação global do token, consideramos as
+% seguintes alterações na matriz P:
+
+% Melhoramento na comunicação entre A e B:
+P(6,1)=0.5;
+P(6,11)=0.25;
+P(6,15)=0.25;
+
+P(1,6)=0.5;
+P(1,7)=0.25;
+P(1,20)=0.25;
+
+% Melhoramento na comunicação entre B e C:
+P(7,1)=0.2;
+P(7,16)=0.1;
+P(7,19)=0.5;
+P(7,20)=0.2;
+
+P(19,3)=0.4; % Esta alteração também melhora a comunicação entre C e D.
+P(19,4)=0.1;
+P(19,7)=0.4;
+P(19,13)=0.1;
+
+% Melhoramento na comunicação entre C e D:
+P(3,19)=0.65;
+P(3,12)=0.35;
+
+P(12,3)=0.5;
+P(12,8)=0.25;
+P(12,10)=0.25;
+
+% Por fim, imprimimos a nova distribuição de equilíbrio da cadeia de Markov:
+[VecP,ValP] = eig(transpose(P));
+Deq = VecP(:,1)/sum(VecP(:,1)); 
+
+figure(count)
+count=count+1;
+bar(Deq,0.4)
+xlabel('Número de cada agente');
+ylabel('Probabilidade de equilíbrio')
+title(strcat('Distribuição de Equilíbrio da cadeia de Markov com melhor circulação')); 
+grid on
+
+% Verifica-se uma circulação do token mais equilibrada por todos os
+% agentes e uma maior probabilidade de passagem do token pelos
+% agentes que ligam diferentes subconjuntos e por isso temos uma melhor
+% circulação do token por entre os vários subconjuntos.
+
+% Em suma, quanto menor for a fluidez de o token circular por todos os
+% subconjuntos e agentes, menos precisa vai ser a localização da fonte
+% obtida e vice-versa. Por outras palavras, quanto mais uniforme for a
+% circulação do token por todos os agentes, mais precisão vamos ter na
+% deteccção da fonte.
+##### SOURCE END #####
+--></body></html>

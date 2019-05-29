@@ -1,0 +1,487 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Trabalho de Laborat&oacute;rio n&ordm;2 - Optimiza&ccedil;&atilde;o do servomecanismo de um disco r&iacute;gido</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-05-29"><meta name="DC.source" content="lab2.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Trabalho de Laborat&oacute;rio n&ordm;2 - Optimiza&ccedil;&atilde;o do servomecanismo de um disco r&iacute;gido</h1><!--introduction--><pre class="language-matlab">Autor: Diogo Vilar <span class="string">Sardinha</span>
+</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Quest&atilde;o 2 - Gera&ccedil;&atilde;o do impulso prot&oacute;tipo</a></li><li><a href="#4">Quest&atilde;o 3 - Gera&ccedil;&atilde;o de um sinal de controlo u(t)</a></li><li><a href="#6">Quest&atilde;o 7 - Testes da din&acirc;mica do sistema para diferentes par&acirc;metros</a></li><li><a href="#13">Quest&atilde;o 8 -</a></li></ul></div><pre class="codeinput">close <span class="string">all</span>;
+n=1;
+<span class="comment">% inicializa&ccedil;&atilde;o do contador para as figuras</span>
+</pre><h2>Quest&atilde;o 2 - Gera&ccedil;&atilde;o do impulso prot&oacute;tipo<a name="2"></a></h2><p>beta pertence ao intervalo [0,1]. beta controla a suavidade dos flancos dos impulsos.</p><pre class="codeinput">beta = 0.6;
+<span class="comment">% cria&ccedil;&atilde;o do vector com os instantes de tempo</span>
+t_min=-1;
+t_max=1;
+p=100; <span class="comment">% n&uacute;mero de pontos para a escala do tempo</span>
+t=linspace(t_min,t_max,p);
+<span class="comment">% geradora - Fun&ccedil;&atilde;o que gera o impulso prot&oacute;tipo.</span>
+impulso = geradora_pb(t,beta);
+
+hold <span class="string">all</span>;
+figure(n);
+n=n+1;
+plot(t,impulso);
+XMIN=-1; XMAX=1; YMIN=0; YMAX=1.5;
+axis ([XMIN XMAX YMIN YMAX]);
+grid <span class="string">on</span>
+xlabel(<span class="string">'Tempo'</span>);
+ylabel(<span class="string">'Amplitude do impulso'</span>);
+title(<span class="string">'Impulso Prot&oacute;tipo'</span>);
+</pre><img vspace="5" hspace="5" src="lab2_01.png" alt=""> <h2>Quest&atilde;o 3 - Gera&ccedil;&atilde;o de um sinal de controlo u(t)<a name="4"></a></h2><p>Nesta quest&atilde;o pretende-se apenas testar se a fun&ccedil;&atilde;o para  criar u(t), est&aacute; correcta, definindo assim valores arbitr&aacute;rios para as amplitudes U1 e U2, para alpha, beta e valores de T.</p><pre class="codeinput"><span class="comment">% dura&ccedil;&atilde;o total da forma de onda</span>
+T = 1;
+alpha = 1.5;
+<span class="comment">% n&uacute;mero de pontos para a escala do tempo de cada um dos impulsos</span>
+n1 = 100;
+n2 = 100;
+<span class="comment">% Amplitudes</span>
+U1 = -1.5;
+U2 = 1;
+<span class="comment">% Sinal u(t) e sua dura&ccedil;&atilde;o</span>
+[ut, tempo] = geradora_ut(T,alpha,beta,U1,U2,n1,n2);
+
+figure(n);
+n=n+1;
+plot(tempo,ut);
+grid <span class="string">on</span>
+xlabel(<span class="string">'Tempo'</span>);
+ylabel(<span class="string">'Amplitude'</span>);
+title(<span class="string">'Sinal de controlo u(t)'</span>);
+</pre><img vspace="5" hspace="5" src="lab2_02.png" alt=""> <h2>Quest&atilde;o 7 - Testes da din&acirc;mica do sistema para diferentes par&acirc;metros<a name="6"></a></h2><p>Nesta quest&atilde;o simulamos a dinamica do sistema para diferentes valores dos parametros que comp&otilde;em o sinal de comcontrolo u(t)</p><p>Diagrama de blocos que simula a din&acirc;mica do servomecanismo do disco r&iacute;gido</p><pre class="codeinput">open_system(<span class="string">'dinamicadosistema'</span>)
+
+<span class="comment">% dura&ccedil;&atilde;o total do sinal de entrada u(t) (de controlo)</span>
+T = 1;
+<span class="comment">% n&uacute;mero de pontos para a escala do tempo de cada um dos impulsos de u(t)</span>
+n1 = 100;
+n2 = 100;
+<span class="comment">% Amplitudes</span>
+U1 = -1;
+U2 = 1;
+<span class="comment">%Parametros a testar</span>
+beta_aux=[1 0.3 0.5 0.0001];
+alpha_aux=[0.5 1 2 1];
+<span class="comment">%Estados Iniciais</span>
+dy0=0;
+y0=1;
+</pre><p>Sinais de controlo u(t)</p><pre class="codeinput"><span class="comment">% Simula&ccedil;&otilde;es sem perturba&ccedil;&atilde;o do sistema com efeito de atrito (b=0)</span>
+b=0;
+figure(n)
+fig = figure(n);
+set(fig, <span class="string">'Position'</span>, [0, 0, 700, 500])  <span class="comment">% x, y, largura e comprimento da figura</span>
+n=n+1;
+hold <span class="string">all</span>;
+<span class="keyword">for</span> k=1:4
+    beta = beta_aux(k);
+    alpha = alpha_aux(k);
+    [ut, tempo] = geradora_ut(T,alpha,beta,U1,U2,n1,n2);
+    entrada = [tempo' ut'];
+    sim(<span class="string">'dinamicadosistema'</span>,tempo);
+    plot(tempo,ut,<span class="string">'DisplayName'</span>, [<span class="string">'{\beta }='</span>,num2str(beta),<span class="string">', {\alpha }='</span>,num2str(alpha),<span class="string">', b='</span>,num2str(b)]);
+<span class="keyword">end</span>
+xlabel(<span class="string">'Tempo'</span>);
+ylabel(<span class="string">'Amplitude'</span>);
+title(<span class="string">'Sinais de controlo u(t)'</span>);
+grid <span class="string">on</span>
+legend(<span class="string">'show'</span>)
+</pre><img vspace="5" hspace="5" src="lab2_03.png" alt=""> <p>Velocidades angulares para diferentes parametros</p><pre class="codeinput"><span class="comment">% Simula&ccedil;&otilde;es sem perturba&ccedil;&atilde;o do sistema com efeito de atrito (b=0)</span>
+b=0;
+figure(n)
+fig = figure(n);
+set(fig, <span class="string">'Position'</span>, [0, 0, 800, 500])  <span class="comment">% x, y, largura e comprimento da figura</span>
+n=n+1;
+subplot(1,2,1)
+hold <span class="string">all</span>;
+<span class="keyword">for</span> k=1:4
+    beta = beta_aux(k);
+    alpha = alpha_aux(k);
+    [ut, tempo] = geradora_ut(T,alpha,beta,U1,U2,n1,n2);
+    entrada = [tempo' ut'];
+    sim(<span class="string">'dinamicadosistema'</span>,tempo);
+    plot(tout,v,<span class="string">'DisplayName'</span>, [<span class="string">'Sinais {\beta }='</span>,num2str(beta),<span class="string">', {\alpha }='</span>,num2str(alpha),<span class="string">', b='</span>,num2str(b)]);
+<span class="keyword">end</span>
+xlabel(<span class="string">'Tempo'</span>);
+ylabel(<span class="string">'Velocidade Angular'</span>);
+title(<span class="string">'Velocidades angulares sem efeito de atrito'</span>);
+grid <span class="string">on</span>
+legend(<span class="string">'show'</span>)
+
+
+<span class="comment">% Simula&ccedil;&otilde;es com perturba&ccedil;&atilde;o do sistema com efeito de atrito (b=0.025)</span>
+b=0.025;
+subplot(1,2,2)
+hold <span class="string">all</span>;
+<span class="keyword">for</span> k=1:4
+    beta = beta_aux(k);
+    alpha = alpha_aux(k);
+    [ut, tempo] = geradora_ut(T,alpha,beta,U1,U2,n1,n2);
+    entrada = [tempo' ut'];
+    sim(<span class="string">'dinamicadosistema'</span>,tempo);
+    plot(tout,v,<span class="string">'DisplayName'</span>, [<span class="string">'Sinais {\beta }='</span>,num2str(beta),<span class="string">', {\alpha }='</span>,num2str(alpha),<span class="string">', b='</span>,num2str(b)]);
+<span class="keyword">end</span>
+xlabel(<span class="string">'Tempo'</span>);
+ylabel(<span class="string">'Velocidade Angular'</span>);
+title(<span class="string">'Velocidades angulares com efeito de atrito'</span>);
+grid <span class="string">on</span>
+legend(<span class="string">'show'</span>)
+</pre><img vspace="5" hspace="5" src="lab2_04.png" alt=""> <p>Posi&ccedil;&otilde;es angulares para diferentes parametros</p><pre class="codeinput"><span class="comment">% Simula&ccedil;&otilde;es sem perturba&ccedil;&atilde;o do sistema com efeito de atrito (b=0)</span>
+b=0;
+figure(n)
+fig = figure(n);
+set(fig, <span class="string">'Position'</span>, [0, 0, 700, 500])  <span class="comment">% x, y, largura e comprimento da figura</span>
+n=n+1;
+subplot(1,2,1)
+hold <span class="string">all</span>;
+<span class="keyword">for</span> k=1:4
+    beta = beta_aux(k);
+    alpha = alpha_aux(k);
+    [ut, tempo] = geradora_ut(T,alpha,beta,U1,U2,n1,n2);
+    entrada = [tempo' ut'];
+    sim(<span class="string">'dinamicadosistema'</span>,tempo);
+    plot(tout,y,<span class="string">'DisplayName'</span>, [<span class="string">'Sinais {\beta }='</span>,num2str(beta),<span class="string">', {\alpha }='</span>,num2str(alpha),<span class="string">', b='</span>,num2str(b)]);
+<span class="keyword">end</span>
+xlabel(<span class="string">'Tempo'</span>);
+ylabel(<span class="string">'Posi&ccedil;&atilde;o'</span>);
+title(<span class="string">'Posi&ccedil;&atilde;o angular sem efeito de atrito'</span>);
+grid <span class="string">on</span>
+legend(<span class="string">'show'</span>)
+
+
+<span class="comment">% Simula&ccedil;&otilde;es com perturba&ccedil;&atilde;o do sistema com efeito de atrito (b=0.025)</span>
+b=0.025;
+subplot(1,2,2)
+hold <span class="string">all</span>;
+<span class="keyword">for</span> k=1:4
+    beta = beta_aux(k);
+    alpha = alpha_aux(k);
+    [ut, tempo] = geradora_ut(T,alpha,beta,U1,U2,n1,n2);
+    entrada = [tempo' ut'];
+    sim(<span class="string">'dinamicadosistema'</span>,tempo);
+    plot(tout,y,<span class="string">'DisplayName'</span>, [<span class="string">'Sinais {\beta }='</span>,num2str(beta),<span class="string">', {\alpha }='</span>,num2str(alpha),<span class="string">', b='</span>,num2str(b)]);
+<span class="keyword">end</span>
+xlabel(<span class="string">'Tempo'</span>);
+ylabel(<span class="string">'Posi&ccedil;&atilde;o'</span>);
+title(<span class="string">'Posi&ccedil;&atilde;o angular com efeito de atrito'</span>);
+grid <span class="string">on</span>
+legend(<span class="string">'show'</span>)
+</pre><img vspace="5" hspace="5" src="lab2_05.png" alt=""> <p>Infelizmente devido &agrave; falta de tempo n&atilde;o foi feita a analise teorica correctamente. Os valores finais da velocidade e da posi&ccedil;&atilde;o da cabe&ccedil;a do disco deviam tender para zero o que n&atilde;o se verifica em todos os casos. Para al&eacute;m disto o modelo n&atilde;o apresenta diferen&ccedil;as significativas quando se considera o efeito de atrito (b&gt;0), o que n&atilde;o devia ser verdade pois o atrito leva a que n&atilde;o seja antingida a posi&ccedil;&atilde;o pertendida e ocorreria uma redu&ccedil;&atilde;o de velocidade.</p><h2>Quest&atilde;o 8 -<a name="13"></a></h2><pre class="codeinput">open_system(<span class="string">'P8'</span>);
+
+y=linspace(-5,5,100);
+dy=linspace(-5,5,100);
+
+sim(<span class="string">'P8'</span>)
+
+figure(n)
+n=n+1;
+surf(u);colorbar;
+title(<span class="string">'Pergunta 8 - Fun&ccedil;&atilde;o de Gera&ccedil;&atilde;o u(y,dy)'</span>)
+xlabel(<span class="string">'Posi&ccedil;&atilde;o'</span>)
+ylabel(<span class="string">'Velocidade'</span>)
+zlabel(<span class="string">'u'</span>)
+</pre><pre class="codeoutput">Warning: Source 'P8/From Workspace' specifies that its sample time (-1) is
+back-inherited. You should explicitly specify the sample time of sources. You
+can disable this diagnostic by setting the 'Source block specifies -1 sample
+time' diagnostic to 'none' in the Sample Time group on the Diagnostics pane of
+the Configuration Parameters dialog box. 
+Warning: Source 'P8/From Workspace1' specifies that its sample time (-1) is
+back-inherited. You should explicitly specify the sample time of sources. You
+can disable this diagnostic by setting the 'Source block specifies -1 sample
+time' diagnostic to 'none' in the Sample Time group on the Diagnostics pane of
+the Configuration Parameters dialog box. 
+Warning: Model 'P8' is using a default value of 0.2 for maximum step size. You
+can disable this diagnostic by setting 'Automatic solver parameter selection'
+diagnostic to 'none' in the Diagnostics page of the configuration parameters
+dialog 
+</pre><img vspace="5" hspace="5" src="lab2_06.png" alt=""> <img vspace="5" hspace="5" src="lab2_07.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Trabalho de Laboratório nº2 - Optimização do servomecanismo de um disco rígido
+% 
+%   Autor: Diogo Vilar Sardinha
+%  
+%%
+close all;
+n=1;
+% inicialização do contador para as figuras
+
+%% Questão 2 - Geração do impulso protótipo
+%%
+% beta pertence ao intervalo [0,1].  
+% beta controla a suavidade dos flancos dos impulsos.
+beta = 0.6;
+% criação do vector com os instantes de tempo
+t_min=-1;
+t_max=1;
+p=100; % número de pontos para a escala do tempo
+t=linspace(t_min,t_max,p); 
+% geradora - Função que gera o impulso protótipo.
+impulso = geradora_pb(t,beta);
+
+hold all;
+figure(n);
+n=n+1;
+plot(t,impulso);
+XMIN=-1; XMAX=1; YMIN=0; YMAX=1.5;
+axis ([XMIN XMAX YMIN YMAX]);
+grid on
+xlabel('Tempo');
+ylabel('Amplitude do impulso');
+title('Impulso Protótipo');
+
+%% Questão 3 - Geração de um sinal de controlo u(t)
+%%
+% Nesta questão pretende-se apenas testar se a função para  criar u(t),
+% está correcta, definindo assim valores arbitrários para as amplitudes 
+% U1 e U2, para alpha, beta e valores de T.
+
+% duração total da forma de onda
+T = 1;
+alpha = 1.5;
+% número de pontos para a escala do tempo de cada um dos impulsos
+n1 = 100;
+n2 = 100; 
+% Amplitudes
+U1 = -1.5;
+U2 = 1;
+% Sinal u(t) e sua duração
+[ut, tempo] = geradora_ut(T,alpha,beta,U1,U2,n1,n2);
+
+figure(n);
+n=n+1;
+plot(tempo,ut);
+grid on
+xlabel('Tempo');
+ylabel('Amplitude');
+title('Sinal de controlo u(t)');
+
+%% Questão 7 - Testes da dinâmica do sistema para diferentes parâmetros
+%%
+% Nesta questão simulamos a dinamica do sistema para diferentes valores dos
+% parametros que compõem o sinal de comcontrolo u(t) 
+
+%%
+% Diagrama de blocos que simula a dinâmica do servomecanismo do disco
+% rígido
+open_system('dinamicadosistema')
+
+% duração total do sinal de entrada u(t) (de controlo)
+T = 1;
+% número de pontos para a escala do tempo de cada um dos impulsos de u(t)
+n1 = 100;
+n2 = 100; 
+% Amplitudes
+U1 = -1;
+U2 = 1;
+%Parametros a testar
+beta_aux=[1 0.3 0.5 0.0001];
+alpha_aux=[0.5 1 2 1];
+%Estados Iniciais
+dy0=0; 
+y0=1;
+
+%%
+% Sinais de controlo u(t) 
+
+% Simulações sem perturbação do sistema com efeito de atrito (b=0)
+b=0;
+figure(n)
+fig = figure(n);
+set(fig, 'Position', [0, 0, 700, 500])  % x, y, largura e comprimento da figura
+n=n+1;
+hold all;
+for k=1:4 
+    beta = beta_aux(k);
+    alpha = alpha_aux(k);
+    [ut, tempo] = geradora_ut(T,alpha,beta,U1,U2,n1,n2);
+    entrada = [tempo' ut'];
+    sim('dinamicadosistema',tempo);
+    plot(tempo,ut,'DisplayName', ['{\beta }=',num2str(beta),', {\alpha }=',num2str(alpha),', b=',num2str(b)]);
+end
+xlabel('Tempo');
+ylabel('Amplitude');
+title('Sinais de controlo u(t)');
+grid on
+legend('show')
+
+
+%%
+% Velocidades angulares para diferentes parametros
+
+% Simulações sem perturbação do sistema com efeito de atrito (b=0)
+b=0;
+figure(n)
+fig = figure(n);
+set(fig, 'Position', [0, 0, 800, 500])  % x, y, largura e comprimento da figura
+n=n+1;
+subplot(1,2,1)
+hold all;
+for k=1:4 
+    beta = beta_aux(k);
+    alpha = alpha_aux(k);
+    [ut, tempo] = geradora_ut(T,alpha,beta,U1,U2,n1,n2);
+    entrada = [tempo' ut'];
+    sim('dinamicadosistema',tempo);
+    plot(tout,v,'DisplayName', ['Sinais {\beta }=',num2str(beta),', {\alpha }=',num2str(alpha),', b=',num2str(b)]);
+end
+xlabel('Tempo');
+ylabel('Velocidade Angular');
+title('Velocidades angulares sem efeito de atrito');
+grid on
+legend('show')   
+
+
+% Simulações com perturbação do sistema com efeito de atrito (b=0.025)
+b=0.025;
+subplot(1,2,2)
+hold all;
+for k=1:4 
+    beta = beta_aux(k);
+    alpha = alpha_aux(k);
+    [ut, tempo] = geradora_ut(T,alpha,beta,U1,U2,n1,n2);
+    entrada = [tempo' ut'];
+    sim('dinamicadosistema',tempo);
+    plot(tout,v,'DisplayName', ['Sinais {\beta }=',num2str(beta),', {\alpha }=',num2str(alpha),', b=',num2str(b)]);
+end
+xlabel('Tempo');
+ylabel('Velocidade Angular');
+title('Velocidades angulares com efeito de atrito');
+grid on
+legend('show')   
+
+%%
+% Posições angulares para diferentes parametros
+
+% Simulações sem perturbação do sistema com efeito de atrito (b=0)
+b=0;
+figure(n)
+fig = figure(n);
+set(fig, 'Position', [0, 0, 700, 500])  % x, y, largura e comprimento da figura
+n=n+1;
+subplot(1,2,1)
+hold all;
+for k=1:4 
+    beta = beta_aux(k);
+    alpha = alpha_aux(k);
+    [ut, tempo] = geradora_ut(T,alpha,beta,U1,U2,n1,n2);
+    entrada = [tempo' ut'];
+    sim('dinamicadosistema',tempo);
+    plot(tout,y,'DisplayName', ['Sinais {\beta }=',num2str(beta),', {\alpha }=',num2str(alpha),', b=',num2str(b)]);
+end
+xlabel('Tempo');
+ylabel('Posição');
+title('Posição angular sem efeito de atrito');
+grid on
+legend('show')   
+
+
+% Simulações com perturbação do sistema com efeito de atrito (b=0.025)
+b=0.025;
+subplot(1,2,2)
+hold all;
+for k=1:4 
+    beta = beta_aux(k);
+    alpha = alpha_aux(k);
+    [ut, tempo] = geradora_ut(T,alpha,beta,U1,U2,n1,n2);
+    entrada = [tempo' ut'];
+    sim('dinamicadosistema',tempo);
+    plot(tout,y,'DisplayName', ['Sinais {\beta }=',num2str(beta),', {\alpha }=',num2str(alpha),', b=',num2str(b)]);
+end
+xlabel('Tempo');
+ylabel('Posição');
+title('Posição angular com efeito de atrito');
+grid on
+legend('show')   
+
+%%
+% Infelizmente devido à falta de tempo não foi feita a analise teorica 
+% correctamente. Os valores finais da velocidade e da posição da cabeça do
+% disco deviam tender para zero o que não se verifica em todos os casos. 
+% Para além disto o modelo não apresenta diferenças significativas quando 
+% se considera o efeito de atrito (b>0), o que não devia ser verdade pois 
+% o atrito leva a que não seja antingida a posição pertendida e ocorreria 
+% uma redução de velocidade.
+
+%% Questão 8 - 
+%%
+
+open_system('P8');
+
+y=linspace(-5,5,100); 
+dy=linspace(-5,5,100);
+        
+sim('P8')
+
+figure(n)
+n=n+1;
+surf(u);colorbar;
+title('Pergunta 8 - Função de Geração u(y,dy)')
+xlabel('Posição')
+ylabel('Velocidade')
+zlabel('u')
+
+
+
+
+
+
+##### SOURCE END #####
+--></body></html>
